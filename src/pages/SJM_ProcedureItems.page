@@ -1,0 +1,331 @@
+<apex:page standardController="Procedure__c" docType="html-5.0" showHeader="true" standardStylesheets="true" sidebar="false" extensions="SJM_ProcedureEditController" >     
+   <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Assets, '/SJM_Assets/css/bootstrap.min.css')}" /> 
+    <link rel="stylesheet" type="text/css" href="{!$Page.SJM_Style}" /> 
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_FontAwesome, 'css/font-awesome.min.css')}" />
+    <!-- container -->
+    <apex:form Id="form"> 
+       <div class="container-fluid">
+           <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <input type="button" class="btn btn-default btn-padding" value=" Cancel " onclick="cancel();" />
+                    <!-- <apex:commandButton value="Cancel"  action="{!cancel}"  styleclass="btn btn-default btn-cancel" immediate="true" /> -->
+                </div>
+                <div class="col-xs-6 text-right">
+                    <input type="button" class="btn btn-warning btn-padding" value=" Add Item " data-toggle="modal" data-target="#tipModal" />
+
+                    <input type="button" class="btn btn-primary btn-padding" value=" Save "  onclick="saveMethod();"/>
+                </div>
+            </div>
+           <!-- procedure detail -->
+             <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">Procedure Detail</div>  
+            </div>
+            
+            <div class="row procedure_section">
+                
+                <apex:repeat value="{!$ObjectType.Procedure__c.FieldSets.SJM_Procedure_Details_Fields}" var="f">
+                    <apex:outputPanel rendered="{!f.Type == 'reference'}">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                            <label class="no-margin label-new">{!f.Label}</label>
+                            <apex:inputField value="{!Procedure__c[f]}" styleClass="form-control auto-complete {!f.fieldPath}"  />
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!f.Type != 'reference'}">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                            <label class="no-margin label-new">{!f.Label}</label>
+                            <apex:inputField value="{!Procedure__c[f]}" styleClass="form-control {!f.fieldPath}"  />
+                        </div>
+                    </apex:outputPanel>
+                </apex:repeat>
+            </div>     <!-- procedure detail ends-->
+       
+         <!-- procedure items detail ends-->
+                <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">Procedure Items</div>  
+            </div>
+           <div class="row">
+                <div class="col-xs-12">
+                    <ul class="accordion">
+                         
+                        <li class="parent_li">
+                            <a class="toggle" href="javascript:void(0);">ICM <i class="fa collapse-icon fa-angle-right"></i>
+                                <div class="tip_section parent">
+                                    <i class="fa fa-pencil-square-o fa-2x"></i>
+                                </div>
+                            </a>
+                            
+                            <ul class="inner">
+                               <li> <!-- item type record start -->
+                                    <a href="#" class="toggle"><span class="stepno"> P000101</span>   <i class="fa collapse-icon fa-angle-right"></i>
+                                        <div class="tip_section_child">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                            <i class="fa fa-trash-o" onclick="showModal();"></i>
+                                        </div>
+                                    </a>
+                                    <ul class="inner steps_ul">
+                                        <li>
+                                            <span class="question">Procedure item number</span>
+                                            <span class="question_option picklist">
+                                             P000101
+                                            </span> 
+                                        </li>
+                                         <li>
+                                            <span class="question">Procedure item</span>
+                                            <span class="question_option picklist">
+                                             ABC
+                                            </span> 
+                                        </li>
+                                         <li>
+                                            <span class="question">Manufecturer</span>
+                                            <span class="question_option picklist">
+                                             SJM
+                                            </span> 
+                                        </li>
+                                    </ul> <!-- inner steps_ul -->
+                                </li> 
+                                
+                                <li> 
+                                    <a href="#" class="toggle"><span class="stepno">P10002</span>  <i class="fa collapse-icon fa-angle-right"></i>
+                                       <div class="tip_section_child">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                            <i class="fa fa-trash-o" onclick="showModal();"></i>
+                                        </div>
+                                    </a>
+                                 
+                                         <ul class="inner steps_ul">
+                                        <li>
+                                            <span class="question">Procedure item number</span>
+                                            <span class="question_option picklist">
+                                             P000102
+                                            </span> 
+                                        </li> 
+                                         <li>
+                                            <span class="question">Procedure item</span>
+                                            <span class="question_option picklist">
+                                             ABCD
+                                            </span> 
+                                        </li>
+                                         <li>
+                                            <span class="question">Manufacturer</span>
+                                            <span class="question_option picklist">
+                                             SJM
+                                            </span> 
+                                        </li>
+                                    </ul> <!-- inner steps_ul -->
+                                   
+                                </li>
+                            </ul>
+                        </li> <!-- /li.parent_li -->
+                        
+                         <li class="parent_li">
+                            <a class="toggle" href="javascript:void(0);">DCZS <i class="fa collapse-icon fa-angle-right"></i>
+                                <div class="tip_section parent">
+                                    <i class="fa fa-pencil-square-o fa-2"></i>
+                                </div>
+                            </a>
+                            <ul class="inner">
+                               <li> <!-- item type record start -->
+                                    <a href="#" class="toggle"><span class="stepno"> P000101</span>   <i class="fa collapse-icon fa-angle-right"></i>
+                                        <div class="tip_section_child">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                            <i class="fa fa-trash-o" onclick="showModal();"></i>
+                                        </div>
+                                    </a>
+                                    <ul class="inner steps_ul">
+                                        <li>
+                                            <span class="question">Procedure item number</span>
+                                            <span class="question_option picklist">
+                                             P000101
+                                            </span> 
+                                        </li>
+                                         <li>
+                                            <span class="question">Procedure item</span>
+                                            <span class="question_option picklist">
+                                             ABC
+                                            </span> 
+                                        </li>
+                                         <li>
+                                            <span class="question">Manufacturer</span>
+                                            <span class="question_option picklist">
+                                             SJM
+                                            </span> 
+                                        </li>
+                                    </ul> <!-- inner steps_ul -->
+                                </li> 
+                                
+                                <li> 
+                                    <a href="#" class="toggle"><span class="stepno">P10002</span>  <i class="fa collapse-icon fa-angle-right"></i>
+                                         <div class="tip_section_child">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                            <i class="fa fa-trash-o" onclick="showModal();"></i>
+                                        </div>
+                                         
+                                       
+                                    </a>
+                                 
+                                         <ul class="inner steps_ul">
+                                        <li>
+                                            <span class="question">Procedure item number</span>
+                                            <span class="question_option picklist">
+                                             P000102
+                                            </span> 
+                                        </li> 
+                                         <li>
+                                            <span class="question">Procedure item</span>
+                                            <span class="question_option picklist">
+                                             ABCD
+                                            </span> 
+                                        </li>
+                                         <li>
+                                            <span class="question">Manufacturer</span>
+                                            <span class="question_option picklist">
+                                             SJM
+                                            </span> 
+                                        </li>
+                                    </ul> <!-- inner steps_ul -->
+                                   
+                                </li>
+                                <li> 
+                                    <a href="#" class="toggle"><span class="stepno">P10003</span>  <i class="fa collapse-icon fa-angle-right"></i>
+                                       <div class="tip_section_child">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                            <i class="fa fa-trash-o" onclick="showModal();"></i>
+                                        </div>
+                                    </a>
+                                 
+                                         <ul class="inner steps_ul">
+                                        <li>
+                                            <span class="question">Procedure item number</span>
+                                            <span class="question_option picklist">
+                                             P000102
+                                            </span> 
+                                        </li> 
+                                         <li>
+                                            <span class="question">Procedure item</span>
+                                            <span class="question_option picklist">
+                                             ABCD
+                                            </span> 
+                                        </li>
+                                         <li>
+                                            <span class="question">Manufacturer</span>
+                                            <span class="question_option picklist">
+                                             SJM
+                                            </span> 
+                                        </li>
+                                    </ul> <!-- inner steps_ul -->
+                                   
+                                </li>
+                            </ul>
+                        </li> <!-- /li.parent_li -->
+                       
+                        
+                     
+                        
+                        
+                      
+                        
+                     
+                        
+                    </ul> <!-- /ul.accordian -->
+                </div> <!-- /col-xs-12 -->
+            </div> <!-- /row -->  
+             
+  <!-- procedure items detail ends-->
+        
+        
+        </div>  <!-- @Ends container -->
+        
+         <!-- Modal -->
+        <div id="tipModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header div-heading">
+                          Delete Procedure Items
+                   </div>
+                    <div class="modal-body text-center">
+                     Are you Sure You Want to delete procedure item?
+                    </div> <!-- ENDS: modal-body -->
+                    <div class="row">   
+                            <div class="col-xs-12 text-center">
+                                <input type="button" class="btn btn-primary btn-padding" value=" Save "  />
+                                <input type="button" class="btn btn-danger btn-padding" value=" Cancel "  data-dismiss="modal" />
+                            </div>
+                        </div> <!-- ENDS: Row -->
+                </div> <!-- ENDS: modal-content -->
+            </div> <!-- ENDS: modal-dialog -->
+        </div>
+        <!-- @Ends modal -->
+     </apex:form>
+  
+    
+    
+    
+    <!-- Scripts -->
+     <script type="text/javascript" src="{!URLFOR($Resource.SJM_Assets, '/SJM_Assets/js/jquery-1.11.3.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.SJM_Assets, '/SJM_Assets/js/bootstrap.min.js')}"></script>
+    <script>
+    function saveMethod()
+    {
+     var inputList= {}; 
+       $('input.form-control, select.form-control').each(function(){
+           var classString= $(this).attr('class'); 
+           var lastClass = classString.lastIndexOf(' ') + 1;
+           var res = classString.substring(lastClass, classString.length);
+           inputList[res] = $(this).val();
+       
+       });// each loop
+           console.log(inputList);                                                
+    }// save method
+    
+   function showModal()
+    {
+        $("#tipModal").modal('show');
+    }
+    function initJS(){
+        $('.toggle').click(function(e) {
+            
+            e.preventDefault();
+            var $this = $(this);
+            if ($this.next().hasClass('show')) {
+                $this.next().removeClass('show');
+                $this.children('i:first').removeClass('fa-angle-down').addClass('fa-angle-right');
+            } else {
+                $this.parent().parent().find('li .inner').removeClass('show');
+                $this.parent().parent().find('li .inner').slideUp(350);
+                $this.next().toggleClass('show');
+                $this.children('i:first').removeClass('fa-angle-right').addClass('fa-angle-down');
+            }
+           $('ul.accordion li a.toggle').each(function(){
+                if ($(this).next().hasClass('show') ) {
+                    $(this).children('i:first').removeClass('fa-angle-right').addClass('fa-angle-down'); 
+                }
+                else
+                {
+                    $(this).children('i:first').removeClass('fa-angle-down').addClass('fa-angle-right');
+                }
+            });
+        }); //@Ends toggle
+       
+    } //@Ends initJS(){
+    
+    function updateParent()
+    {
+    $('ul.accordion li.parent_li').each(function(){
+        var items= 0;
+        items = $(this).children('ul.inner').children('li');
+                                 
+         $(this).find('div.tip_section.parent').html('('+items.length+')');
+  
+    }); //  ends $('ul.accordion li.parent_li').each(
+    
+        }
+    
+    
+    $(document).ready(function(){
+        initJS();
+       updateParent();
+    });
+        </script>  
+</apex:page>

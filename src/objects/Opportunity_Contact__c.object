@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Champion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Champion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>Opportunity_Contacts</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Level_Of_Advocacy__c</fullName>
+        <externalId>false</externalId>
+        <label>Level Of Advocacy</label>
+        <picklist>
+            <picklistValues>
+                <fullName>+3 Vocal proponent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>+2 Moderate Supporter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>+1 Neutral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>-1 Uninterested</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>-2 Resistor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>-3 Vocal Detractor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Level_Of_Influence__c</fullName>
+        <externalId>false</externalId>
+        <label>Level Of Influence</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Mode__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Growth
+Trouble
+Even Keel
+Over Confident</inlineHelpText>
+        <label>Mode</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Growth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trouble</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Even Keel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Over Confident</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipName>Opportunity_Contacts</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Role</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Administrative Stakeholder</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinical user</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT Stakeholder</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Driver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Stakeholder_Interests__c</fullName>
+        <externalId>false</externalId>
+        <label>Stakeholder Interests</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stakeholder_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact__r.LastName  &amp; &apos;,&apos;  &amp;  Contact__r.FirstName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Stakeholder Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Opportunity Stakeholder</label>
+    <nameField>
+        <displayFormat>OS-{0000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Opportunity Stakeholders</pluralLabel>
+    <recordTypes>
+        <fullName>Capital_Opportunity_Contact</fullName>
+        <active>true</active>
+        <label>Capital Opportunity Contact</label>
+        <picklistValues>
+            <picklist>Level_Of_Advocacy__c</picklist>
+            <values>
+                <fullName>%2B1 Neutral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%2B2 Moderate Supporter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%2B3 Vocal proponent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-1 Uninterested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-2 Resistor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-3 Vocal Detractor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Level_Of_Influence__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Mode__c</picklist>
+            <values>
+                <fullName>Even Keel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Growth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Over Confident</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trouble</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>Administrative Stakeholder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinical user</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT Stakeholder</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Opportunity_Contact</fullName>
+        <active>true</active>
+        <label>Opportunity Contact</label>
+        <picklistValues>
+            <picklist>Level_Of_Advocacy__c</picklist>
+            <values>
+                <fullName>%2B1 Neutral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%2B2 Moderate Supporter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%2B3 Vocal proponent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-1 Uninterested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-2 Resistor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-3 Vocal Detractor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Level_Of_Influence__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Mode__c</picklist>
+            <values>
+                <fullName>Even Keel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Growth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Over Confident</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trouble</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>Administrative Stakeholder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinical user</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT Stakeholder</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

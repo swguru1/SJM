@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>EditCandidateDetails</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>CreateNewCandidate</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Candidate Stages Tracking</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Candidate</relationshipLabel>
+        <relationshipName>Facility</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>(NOW() -  CreatedDate )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <summarizedField>Candidate_Product__c.LineItemPrice__c</summarizedField>
+        <summaryForeignKey>Candidate_Product__c.Candidate__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Case_Id__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Insurance Verification Case Id</inlineHelpText>
+        <label>Case Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Info__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case_Id__c  &amp; TEXT(Other_Authorization_Options__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Info</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Consent_to_Proceed_for_Education__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Consent to Proceed for Education?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EducationCompleted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>EducationCompleted?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Education_DateTime__c</fullName>
+        <externalId>false</externalId>
+        <label>Education DateTime</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Education_Duration__c</fullName>
+        <externalId>false</externalId>
+        <formula>Verify_Insurance_Start_Date__c   -  Education_Stage_Start_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Education Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Education_Stage_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Education Stage Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Entity_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>External Entity Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_System_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>External System Id</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_System_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>External System Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Identify_Duration__c</fullName>
+        <externalId>false</externalId>
+        <formula>Education_Stage_Start_Date__c  -  DATEVALUE(CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Identify-Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inactive_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Inactive Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Opt_Out_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Opt-Out Reason</label>
+        <picklist>
+            <controllingField>Stage_Name__c</controllingField>
+            <picklistValues>
+                <fullName>No Opportunity</fullName>
+                <default>false</default>
+                <controllingFieldValues>Opt-Out</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Candidate Opted-Out</fullName>
+                <default>false</default>
+                <controllingFieldValues>Opt-Out</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Response</fullName>
+                <default>false</default>
+                <controllingFieldValues>Opt-Out</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lost against competition</fullName>
+                <default>false</default>
+                <controllingFieldValues>Opt-Out</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fear of surgery</fullName>
+                <default>false</default>
+                <controllingFieldValues>Opt-Out</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not a good candidate suitable for procedure</fullName>
+                <default>false</default>
+                <controllingFieldValues>Opt-Out</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Insurance denied procedure</fullName>
+                <default>false</default>
+                <controllingFieldValues>Opt-Out</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Opt_Out__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Opt-Out?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Other_Authorization_Options__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Authorization Options</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Auth by PTA complete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient does not require Auth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient Insurance denied Appeals in process</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Physician/Facility performs Auth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Procedure_Covered_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Procedure Covered By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Candidates</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductCount__c</fullName>
+        <externalId>false</externalId>
+        <label>ProductCount</label>
+        <summaryForeignKey>Candidate_Product__c.Candidate__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Referred_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Referred By</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Candidate</relationshipLabel>
+        <relationshipName>Referred_By</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Referred_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Referred To</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Referred To</relationshipLabel>
+        <relationshipName>ReferredTo</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Schedule_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Schedule Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Schedule__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Schedule?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Scheduled_Duration__c</fullName>
+        <externalId>false</externalId>
+        <formula>Scheduled_Start_Date__c  -  Verify_Insurance_Start_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Scheduled - Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Scheduled_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Scheduled Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Referred by patient</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E-Learning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Marketing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rep Visit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Phone Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Physician referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Referred by Patient Advocacy group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Stage1_Implant_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage1 Implant DateTime</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Stage1_Implant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Stage1 Implant?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Stage1_Implanted_Duration__c</fullName>
+        <externalId>false</externalId>
+        <formula>Stage_Stage2_Implant_Start_Date__c  -  Stage_Stage1_Implant_Start_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Stage1-Implanted Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stage2_Implant_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage2 Implant DateTime</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Stage2_Implant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Stage2-Implant?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Stage_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage Name</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Identify</fullName>
+                <color>#33FF33</color>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Verify Insurance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Implanted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Opt-Out</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Stage_Stage1_Implant_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage - Stage1 Implant Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Stage_Stage2_Implant_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage - Stage2 Implant Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Verify_Insurance_Duration__c</fullName>
+        <externalId>false</externalId>
+        <formula>Scheduled_Start_Date__c  -  Verify_Insurance_Start_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Verify Insurance Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Verify_Insurance_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Verify Insurance Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Verify_Insurance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Verify Insurance?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Candidate</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Stage_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Referred_To__c</columns>
+        <columns>Referred_By__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CD-{000000}</displayFormat>
+        <label>Candidate Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Candidates</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>DBS_Candidate</fullName>
+        <active>true</active>
+        <description>Track Candidate profile for Movement Disorder Therapies specifically targeted for DBS Product Launch in US.</description>
+        <label>DBS Candidate</label>
+        <picklistValues>
+            <picklist>Opt_Out_Reason__c</picklist>
+            <values>
+                <fullName>Candidate Opted-Out</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fear of surgery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance denied procedure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost against competition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Opportunity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not a good candidate suitable for procedure</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Other_Authorization_Options__c</picklist>
+            <values>
+                <fullName>Auth by PTA complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient Insurance denied Appeals in process</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient does not require Auth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physician%2FFacility performs Auth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Source__c</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E-Learning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physician referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referred by Patient Advocacy group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referred by patient</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rep Visit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Stage_Name__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Identify</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Implanted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Opt-Out</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verify Insurance</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Stage_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Referred_By__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Referred_To__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Forward</excludedStandardButtons>
+        <listViewButtons>Search</listViewButtons>
+        <lookupDialogsAdditionalFields>Stage_Name__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Stage_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Referred_By__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Referred_To__c</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>Search</searchResultsCustomButtons>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>Identify_Education</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( ISCHANGED(Stage_Name__c) , ISPICKVAL( Stage_Name__c , &quot;Education&quot;) , NOT( ISPICKVAL( PRIORVALUE(Stage_Name__c) , &quot;Identify&quot;) ), $Profile.Name &lt;&gt; &apos;System Administrator&apos;)</errorConditionFormula>
+        <errorDisplayField>Stage_Name__c</errorDisplayField>
+        <errorMessage>Stage can be moved to &apos;Education&apos; only from &apos;Identify&apos; Stage.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>New_Candidate_Stage_Identify</fullName>
+        <active>false</active>
+        <description>New Candidate must have a stage - Idenify</description>
+        <errorConditionFormula>AND( ISNEW() , NOT( ISPICKVAL( Stage_Name__c , &quot;Identify&quot;)))</errorConditionFormula>
+        <errorDisplayField>Stage_Name__c</errorDisplayField>
+        <errorMessage>Stage Name must be &apos;Identify&apos; for a new Candidate record creation.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_Update_Completed_Opt_Out</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISPICKVAL( PRIORVALUE(Stage_Name__c) , &quot;Completed&quot;)</errorConditionFormula>
+        <errorMessage>The Candidate Record can not be updated. Please clone the Record to start tracking the Candidate.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Opt_Out_Reason_Required</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(ISPICKVAL(Stage_Name__c, &quot;Opt-Out&quot;), ISBLANK(TEXT( Opt_Out_Reason__c)))</errorConditionFormula>
+        <errorDisplayField>Opt_Out_Reason__c</errorDisplayField>
+        <errorMessage>Please select the Reason for Opt-Out</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ProductValidation</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(ISPICKVAL( Stage_Name__c , &quot;Scheduled&quot;), ProductCount__c  = 0)</errorConditionFormula>
+        <errorMessage>At least One product must be entered prior to Scheduling the candidate for procedure.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Scheduled_Date_Verification</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+ISPICKVAL(Stage_Name__c, &quot;Scheduled&quot;),
+
+OR(
+ISNULL(Schedule_Date__c)
+,
+
+ISBLANK(Procedure_Covered_By__c),
+
+ISBLANK(Account__c) 
+)
+
+)</errorConditionFormula>
+        <errorMessage>Please fill in following - Scheduled Date, Procedure Covered By and Account Info prior to moving the Stage to &apos;Scheduled&apos;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validate_Move_Education_Verify_Insurance</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( ISCHANGED(Stage_Name__c),ISPICKVAL( Stage_Name__c , &quot;Verify Insurance&quot;) , NOT( ISPICKVAL( PRIORVALUE(Stage_Name__c) , &quot;Education&quot;) ), $Profile.Name &lt;&gt; &apos;System Administrator&apos;)</errorConditionFormula>
+        <errorDisplayField>Stage_Name__c</errorDisplayField>
+        <errorMessage>Stage can be moved to &apos;Verify Insurance&apos; only from &apos;Education&apos; Stage.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validate_Stage_Move_Identify</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( ISPICKVAL( Stage_Name__c , &quot;Identify&quot;) , NOT( ISPICKVAL( PRIORVALUE(Stage_Name__c) , &quot;Identify&quot;) ))</errorConditionFormula>
+        <errorDisplayField>Stage_Name__c</errorDisplayField>
+        <errorMessage>Stage Can not be moved to Identify.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Verify_Insurance_Scheduled</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( ISCHANGED(Stage_Name__c),ISPICKVAL( Stage_Name__c , &quot;Scheduled&quot;) , NOT( ISPICKVAL( PRIORVALUE(Stage_Name__c) , &quot;Verify Insurance&quot;) ), $Profile.Name &lt;&gt; &apos;System Administrator&apos;)</errorConditionFormula>
+        <errorDisplayField>Stage_Name__c</errorDisplayField>
+        <errorMessage>Stage can be moved to &quot;Scheduled&quot; only from &quot;Verify Insurance&quot; Stage.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Search</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Search</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/SearchCandidate</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Search1</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Search</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/SearchCandidate</url>
+    </webLinks>
+</CustomObject>

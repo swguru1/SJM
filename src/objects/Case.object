@@ -1,0 +1,3732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ChangeStatus</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CloneAsChild</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CloseCase</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MassClose</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>NewCase</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <businessProcesses>
+        <fullName>ANZ Customer Feedback</fullName>
+        <description>Used for cases raised as ANZ Customer Feedback</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Initiated</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Ready For Closure</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <businessProcesses>
+        <fullName>Contact Ops</fullName>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Assigned</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Info%28Hold%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableFeeds>true</enableFeeds>
+    <fields>
+        <fullName>ANZ_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>ANZ ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AccountId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.SJM_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_SJM_Id__c</fullName>
+        <description>SJM Customer Id</description>
+        <externalId>false</externalId>
+        <inlineHelpText>SJM Sold To Number</inlineHelpText>
+        <label>Account SJM Id</label>
+        <length>90</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AssetId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Award_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>RFP Update Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Off Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non- applicatble</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Committed(MS/Rev)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dual Vendor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Individual Tier Commitments/Attainments</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Limited Access W/ Commitment to other Vendors</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Open Access/Capped(All Play)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Open(pending award)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sole Vendor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tri Vendor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>BusinessHoursId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CAPA_IR_Number__c</fullName>
+        <description>Corrective &amp; Preventive Action or Issue Review reference number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Corrective &amp; Preventive Action or Issue Review reference number</inlineHelpText>
+        <label>CAPA/IR Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Change_Request_Number__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If a change request needs to be lodged based on this case record the reference number in this field.</inlineHelpText>
+        <label>Change Request Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ClosedDate</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Comments</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Complete_Info_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Complete Info Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ContactEmail</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>ContactFax</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>ContactId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ContactMobile</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>ContactPhone</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Contact_Position_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Position Title</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Customer_Desired_Outcome__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Note on how customer would like to see this issue resolved</inlineHelpText>
+        <label>Customer Desired Outcome</label>
+        <length>4000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Customer_Ref__c</fullName>
+        <description>Customer Reference</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer Reference. Could be there PO number for example</inlineHelpText>
+        <label>Customer Ref</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer_Reply_Requested__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Reply Requested</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Date_Quoted__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Quoted</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Received__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
+        <externalId>false</externalId>
+        <label>Date Received</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Deal_Type__c</fullName>
+        <description>Deal Type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Contracts Only</inlineHelpText>
+        <label>Deal Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Disposable/Implantable Product Agreement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standalone Rebate Agreement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fixed Cost Program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bridge to Budget</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Budgetary Quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Capital Alternative (CAP)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cash Purchase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cash Rental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disposable Purchase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disposable Rental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evaluation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QP Offset</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Detailed_information__c</fullName>
+        <description>Detailed info about the case</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Put as much detail about what the customer has reported, and what we have investigated and found</inlineHelpText>
+        <label>Detailed information</label>
+        <length>10000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>20</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Draft_distribution_date__c</fullName>
+        <externalId>false</externalId>
+        <label>Draft distribution date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Entered_Updated_in_Rebate_Systems__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Rebate Analyst Only</inlineHelpText>
+        <label>Entered/Updated in Rebate Systems</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Fee_Setup_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Fee Setup Notes</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Forecast_Entered_for_Accruals__c</fullName>
+        <externalId>false</externalId>
+        <label>Forecast Entered for Accruals</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Hardware_Platform_Info__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Hardware Platform and options requested.</inlineHelpText>
+        <label>Hardware Platform Info</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>In_Progress_Track__c</fullName>
+        <externalId>false</externalId>
+        <label>In Progress Track</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>In_Progress_to_Quoted_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND( 9 * ( 
+( 5 * FLOOR( ( DATEVALUE( Quoted_Track__c ) - DATE( 1900, 1, 8) ) / 7) + 
+MIN(5, 
+MOD( DATEVALUE( Quoted_Track__c ) - DATE( 1900, 1, 8), 7) + 
+MIN( 1, 24 / 9 * ( MOD( Quoted_Track__c - DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1 ) ) ) 
+) 
+) 
+- 
+( 5 * FLOOR( ( DATEVALUE(  In_Progress_Track__c  ) - DATE( 1900, 1, 8) ) / 7) + 
+MIN( 5, 
+MOD( DATEVALUE( In_Progress_Track__c ) - DATE( 1996, 1, 1), 7 ) + 
+MIN( 1, 24 / 9 * ( MOD( In_Progress_Track__c - DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1) ) ) 
+) 
+) 
+), 
+0 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>In Progress to Quoted (Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Info_Hold_Set__c</fullName>
+        <externalId>false</externalId>
+        <label>Info Hold Set</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Info_Hold_to_Current_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(Status, &quot;Info(Hold)&quot;), 
+ROUND( 9 * ( 
+( 5 * FLOOR( ( DATEVALUE( NOW() ) - DATE( 1900, 1, 8) ) / 7) + 
+MIN(5, 
+MOD( DATEVALUE( NOW() ) - DATE( 1900, 1, 8), 7) + 
+MIN( 1, 24 / 9 * ( MOD( NOW() - DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1 ) ) ) 
+) 
+) 
+- 
+( 5 * FLOOR( ( DATEVALUE( Info_Hold_Set__c ) - DATE( 1900, 1, 8) ) / 7) + 
+MIN( 5, 
+MOD( DATEVALUE( Info_Hold_Set__c ) - DATE( 1996, 1, 1), 7 ) + 
+MIN( 1, 24 / 9 * ( MOD( Info_Hold_Set__c- DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1) ) ) 
+) 
+) 
+), 
+0 ), null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Info Hold to Current (Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Installedproduct__c</fullName>
+        <externalId>false</externalId>
+        <label>Installed Product</label>
+        <length>90</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsClosedOnCreate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>IsEscalated</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Left_Info_Hold_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Left Info Hold Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Master_Agreement_Reference__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Contract  Number of the Master agreement to which this new document (amendment, contract) refers.</inlineHelpText>
+        <label>Master Agreement Reference</label>
+        <referenceTo>Contract</referenceTo>
+        <relationshipLabel>Cases (Master Agreement Reference)</relationshipLabel>
+        <relationshipName>Cases1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>New_to_Quoted_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND( 9 * (
+   ( 5 * FLOOR( ( DATEVALUE(  Quoted_Track__c ) - DATE( 1900, 1, 8) ) / 7) +
+    MIN(5, 
+     MOD( DATEVALUE( Quoted_Track__c ) - DATE( 1900, 1, 8), 7) +
+     MIN( 1, 24 / 9 * ( MOD( Quoted_Track__c - DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1 ) ) )
+    ) 
+   )
+ -
+   ( 5 * FLOOR( ( DATEVALUE(  CreatedDate  ) - DATE( 1900, 1, 8) ) / 7) +
+     MIN( 5,
+      MOD( DATEVALUE( CreatedDate ) - DATE( 1996, 1, 1), 7 ) +
+      MIN( 1, 24 / 9 * ( MOD( CreatedDate - DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1) ) )
+    )
+   ) 
+  ), 
+0 )</formula>
+        <label>New to Quoted (Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Revisions__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this a revision to a recent request? Then, count as revision. If it&apos;s been &gt; ~2 weeks using same document, or it&apos;s a large change, then create a new entry. Note: RFP team will count every revision prior to submission date.</inlineHelpText>
+        <label>Number of Revisions</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Onsite_Scheduled_date__c</fullName>
+        <externalId>false</externalId>
+        <label>Onsite Scheduled date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Request Contract</relationshipLabel>
+        <relationshipName>Request_Contract</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Origin</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Phone Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reported Internally</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In person</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Opportunity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Other_Name__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of someone who&apos;s neither a practitioner or contact. Might be a vendor, or a patient</inlineHelpText>
+        <label>Other Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ParentId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Performance_Measurement_Starting_Period__c</fullName>
+        <externalId>false</externalId>
+        <label>Performance Measurement Starting Period</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Price_Structure__c</fullName>
+        <externalId>false</externalId>
+        <label>Price Structure</label>
+        <picklist>
+            <picklistValues>
+                <fullName>N/A</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Open Access/Capped</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tri-Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dual Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sole Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Committed (MS/Rev)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Individual Tier Commitments/Attainments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Limited Access W/ Commitment to other Vendors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Floor__c</fullName>
+        <description>Type of Pricing for the Contract or Quote</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Type of Pricing for the Contract or Quote</inlineHelpText>
+        <label>Pricing Floor</label>
+        <picklist>
+            <picklistValues>
+                <fullName>List Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GPO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Promo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Teaching Institution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Representative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RSD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AVP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Priority</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>High</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N/A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product_Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Only for product related, not master T&amp;Cs and non-specific NDAs</inlineHelpText>
+        <label>Product Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Implants/Disposables</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Capital</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Quoted_Track__c</fullName>
+        <externalId>false</externalId>
+        <label>Quoted Track</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Quoted_to_Close_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND( 9 * ( 
+( 5 * FLOOR( ( DATEVALUE(  ClosedDate  ) - DATE( 1900, 1, 8) ) / 7) + 
+MIN(5, 
+MOD( DATEVALUE( ClosedDate ) - DATE( 1900, 1, 8), 7) + 
+MIN( 1, 24 / 9 * ( MOD( ClosedDate - DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1 ) ) ) 
+) 
+) 
+- 
+( 5 * FLOOR( ( DATEVALUE(  Quoted_Track__c  ) - DATE( 1900, 1, 8) ) / 7) + 
+MIN( 5, 
+MOD( DATEVALUE( Quoted_Track__c ) - DATE( 1996, 1, 1), 7 ) + 
+MIN( 1, 24 / 9 * ( MOD( Quoted_Track__c - DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1) ) ) 
+) 
+) 
+), 
+0 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quoted to Close (Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RFP_Consultant__c</fullName>
+        <externalId>false</externalId>
+        <label>RFP Consultant</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Advisory Board</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Aptitude</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ariba</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Curvo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Govt Contracting Officer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HPG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MedApproved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MedPricer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Premier</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vizient</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>None/Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RFP_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>RFP Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RFP_Response__c</fullName>
+        <externalId>false</externalId>
+        <label>RFP Response</label>
+        <picklist>
+            <picklistValues>
+                <fullName>N/A</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Participating</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Participating</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Reason</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Fully Executed</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executed Without Signature</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Administrator Configuration Change</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Case Moved To Premier Support</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Data Request Completed For User</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Feature Request For Next Phase</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>User Question(s) Answered</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SJM not participating</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Forecast_Form_Submitted__c</fullName>
+        <externalId>false</externalId>
+        <label>Rebate Forecast Form Submitted</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Program Notes</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Rebate_Starting_period__c</fullName>
+        <externalId>false</externalId>
+        <label>Rebate starting period</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Execution Date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Current Month</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Following Fiscal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Rebate Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>N/A</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Threshold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Share</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complete Source</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Admin Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Limited Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Change Out</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Risk Share</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QP Rebate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price Differential</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Choice Alliance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Therapeutic Upgrade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>One Time</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Heart Failure Bundle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AED Rebate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Rejected_Reason__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Only available if Status is &apos;Rejected&apos;</inlineHelpText>
+        <label>Rejected Reason</label>
+        <picklist>
+            <controllingField>Status</controllingField>
+            <picklistValues>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+                <controllingFieldValues>Rejected</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <controllingFieldValues>Rejected</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SJM not participating</fullName>
+                <default>false</default>
+                <controllingFieldValues>Rejected</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Related_Contract__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Contract Number of the contract to which this new document (amendment, contract) refers</inlineHelpText>
+        <label>Related Contract</label>
+        <referenceTo>Contract</referenceTo>
+        <relationshipLabel>Cases</relationshipLabel>
+        <relationshipName>Cases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Request_Type__c</fullName>
+        <description>Type of Request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Type of Request</inlineHelpText>
+        <label>Request Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amendment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Master T&amp;C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consignments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evaluations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NDA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Requester_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Name</label>
+        <length>35</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Required_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Required Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Resolution__c</fullName>
+        <description>Case Resolution</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the remedial action we have taken to resolve the issue.</inlineHelpText>
+        <label>Resolution</label>
+        <length>2000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SJM_Employee_informed__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>If there has been another SJM employee informed of this issue prior to this case being opened please list their name here.</inlineHelpText>
+        <label>SJM Employee informed</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Cases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SJM_Member_Responsible__c</fullName>
+        <externalId>false</externalId>
+        <label>SJM Member Responsible</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Warehouse</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Supplier</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Contractor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SJM_Ref_No__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Any SJM internal reference</inlineHelpText>
+        <label>SJM Ref No</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SalesOrg_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>SalesOrg Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Request Contract</relationshipLabel>
+        <relationshipName>Cases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Salesforce__c</fullName>
+        <externalId>false</externalId>
+        <formula>ISBLANK( SuppliedName )</formula>
+        <label>Salesforce</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Servicemax_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Servicemax Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Capital Services Cases</relationshipLabel>
+        <relationshipName>Servicemax_Cases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Servicemax_SJM_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Servicemax SJM ID</label>
+        <length>90</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SourceId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Standard_National_Contract__c</fullName>
+        <externalId>false</externalId>
+        <label>Standard/National Contract</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Standard Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>National Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status</fullName>
+        <inlineHelpText>Complete&quot; = Deliverable (document) was created or provided to requester</inlineHelpText>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Info(Hold)</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Initiated</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Escalated</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <closed>true</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Verified AUS</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ready For Closure</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Type_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub Type 1</label>
+        <picklist>
+            <controllingField>Type</controllingField>
+            <picklistValues>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer suggestion</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Damaged Product</fullName>
+                <default>false</default>
+                <controllingFieldValues>Delivery</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Instead Of Paper</fullName>
+                <default>false</default>
+                <controllingFieldValues>Invoice</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect Details</fullName>
+                <default>false</default>
+                <controllingFieldValues>Invoice</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect Item Sent</fullName>
+                <default>false</default>
+                <controllingFieldValues>Delivery</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect Payer</fullName>
+                <default>false</default>
+                <controllingFieldValues>Invoice</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect Pricing</fullName>
+                <default>false</default>
+                <controllingFieldValues>Invoice</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect Product</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect Quantity</fullName>
+                <default>false</default>
+                <controllingFieldValues>Delivery</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect Serial Or Batch</fullName>
+                <default>false</default>
+                <controllingFieldValues>Invoice</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect Ship To</fullName>
+                <default>false</default>
+                <controllingFieldValues>Delivery</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect Sold To</fullName>
+                <default>false</default>
+                <controllingFieldValues>Delivery</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incorrect TM linking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Late Delivery</fullName>
+                <default>false</default>
+                <controllingFieldValues>Delivery</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Invoice</fullName>
+                <default>false</default>
+                <controllingFieldValues>Invoice</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Negative Feedback</fullName>
+                <default>false</default>
+                <controllingFieldValues>Product</controllingFieldValues>
+                <controllingFieldValues>Staff</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Paper Instead Of Email</fullName>
+                <default>false</default>
+                <controllingFieldValues>Invoice</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Positive Feedback</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer suggestion</controllingFieldValues>
+                <controllingFieldValues>Delivery</controllingFieldValues>
+                <controllingFieldValues>Invoice</controllingFieldValues>
+                <controllingFieldValues>Product</controllingFieldValues>
+                <controllingFieldValues>Staff</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Question</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer suggestion</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Request</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer suggestion</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SJM staff complaint</fullName>
+                <default>false</default>
+                <controllingFieldValues>Staff</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SJM staff praise</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Someone Else&apos;s Delivery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stock</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Delivery</controllingFieldValues>
+                <controllingFieldValues>Invoice</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Type_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub Type 2</label>
+        <picklist>
+            <controllingField>Sub_Type_1__c</controllingField>
+            <picklistValues>
+                <fullName>Availability</fullName>
+                <default>false</default>
+                <controllingFieldValues>Question</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Back-Order</fullName>
+                <default>false</default>
+                <controllingFieldValues>Complaint</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Below Standard</fullName>
+                <default>false</default>
+                <controllingFieldValues>Complaint</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Damaged</fullName>
+                <default>false</default>
+                <controllingFieldValues>Complaint</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Damage in Transit</fullName>
+                <default>false</default>
+                <controllingFieldValues>Complaint</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Document Not Available</fullName>
+                <default>false</default>
+                <controllingFieldValues>Complaint</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Effectiveness</fullName>
+                <default>false</default>
+                <controllingFieldValues>Positive Feedback</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expired/Short Dated</fullName>
+                <default>false</default>
+                <controllingFieldValues>Complaint</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hold/Recall</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Late Delivery</fullName>
+                <default>false</default>
+                <controllingFieldValues>Complaint</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Product</fullName>
+                <default>false</default>
+                <controllingFieldValues>Positive Feedback</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Recall</fullName>
+                <default>false</default>
+                <controllingFieldValues>Question</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Usage</fullName>
+                <default>false</default>
+                <controllingFieldValues>Question</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reliability</fullName>
+                <default>false</default>
+                <controllingFieldValues>Positive Feedback</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reliable</fullName>
+                <default>false</default>
+                <controllingFieldValues>Positive Feedback</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Specifications</fullName>
+                <default>false</default>
+                <controllingFieldValues>Question</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Timeliness</fullName>
+                <default>false</default>
+                <controllingFieldValues>Positive Feedback</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wrong Product</fullName>
+                <default>false</default>
+                <controllingFieldValues>Complaint</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Subject</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>SuppliedCompany</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>SuppliedEmail</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>SuppliedName</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>SuppliedPhone</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>System_Serial_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>System Serial Number</label>
+        <length>90</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Technician_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Technician Name</label>
+        <length>95</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Technician_Phone__c</fullName>
+        <externalId>false</externalId>
+        <label>Technician Phone</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Technology_Clause__c</fullName>
+        <externalId>false</externalId>
+        <label>Technology Clause</label>
+        <picklist>
+            <picklistValues>
+                <fullName>All new products to be negotiated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All new products at no increase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All new products at capped increase ($/%)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evolutionary products at no increase, Revolutionary negotiated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evolutionary products at capped increase ($/%), Revolutionary negotiated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Terminating_of_Prior_Rebates__c</fullName>
+        <externalId>false</externalId>
+        <label>Terminating of Prior Rebates</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Total_Time_in_Info_Hold_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND( 9 * ( 
+( 5 * FLOOR( ( DATEVALUE( Left_Info_Hold_Status__c ) - DATE( 1900, 1, 8) ) / 7) + 
+MIN(5, 
+MOD( DATEVALUE( Left_Info_Hold_Status__c ) - DATE( 1900, 1, 8), 7) + 
+MIN( 1, 24 / 9 * ( MOD( Left_Info_Hold_Status__c - DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1 ) ) ) 
+) 
+) 
+- 
+( 5 * FLOOR( ( DATEVALUE( Info_Hold_Set__c ) - DATE( 1900, 1, 8) ) / 7) + 
+MIN( 5, 
+MOD( DATEVALUE( Info_Hold_Set__c ) - DATE( 1996, 1, 1), 7 ) + 
+MIN( 1, 24 / 9 * ( MOD( Info_Hold_Set__c- DATETIMEVALUE( &apos;1900-01-08 08:00:00&apos; ), 1) ) ) 
+) 
+) 
+), 
+0 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Time in Info Hold (Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Problem</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Feature Request</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Question</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer suggestion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Delivery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IFU Request</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Staff</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>User Question</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>National Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Warranty_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Warranty Status</label>
+        <length>90</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Web_Form__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(SuppliedName = null, false, true)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Web Form</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Y_M_CREATE__c</fullName>
+        <description>YYYY-MM</description>
+        <externalId>false</externalId>
+        <formula>TEXT(YEAR(DATEVALUE(CreatedDate)))+&quot;-&quot;+TEXT(MONTH(DATEVALUE(CreatedDate)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Y-M CREATE</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <listViews>
+        <fullName>ANZ_Customer_Feedback_Cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Case.Customer_Feedback</value>
+        </filters>
+        <label>ANZ Customer Feedback Cases</label>
+        <sharedTo>
+            <role>ANZ_ALL</role>
+            <role>ANZ_SJM_Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AllOpenCases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CASES.NAME</columns>
+        <columns>CASES.EMAIL</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>All Open Cases</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Closed_Cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filters>
+        <label>All Closed Cases</label>
+    </listViews>
+    <listViews>
+        <fullName>Contracts_Capital_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CASES.NAME</columns>
+        <columns>CASES.EMAIL</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>OWNER_NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>Contracts Capital Queue</label>
+        <queue>Contracts_Capital</queue>
+    </listViews>
+    <listViews>
+        <fullName>Contracts_Legal_Approval_Queue</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <label>Contracts Legal Approval Queue</label>
+        <queue>Contracts_Legal_Approval</queue>
+    </listViews>
+    <listViews>
+        <fullName>Contracts_Non_Capital</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <label>Contracts Non-Capital</label>
+        <queue>Contracts_Non_Capital</queue>
+    </listViews>
+    <listViews>
+        <fullName>Contracts_Pricing_Approval_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CASES.NAME</columns>
+        <columns>CASES.EMAIL</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <filterScope>Queue</filterScope>
+        <label>Contracts Pricing Approval Queue</label>
+        <queue>Contracts_Pricing_Approval</queue>
+    </listViews>
+    <listViews>
+        <fullName>MyCases</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Cases</label>
+    </listViews>
+    <listViews>
+        <fullName>MyOpenCases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CASES.NAME</columns>
+        <columns>CASES.EMAIL</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>My Open Cases</label>
+    </listViews>
+    <listViews>
+        <fullName>National_Contract_Queue</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <label>National Contract Queue</label>
+        <queue>National_Contract</queue>
+    </listViews>
+    <listViews>
+        <fullName>Standard_Contract_Queue</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <label>Standard Contract Queue</label>
+        <queue>Standard_Contract</queue>
+    </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Customer_Feedback</fullName>
+        <active>true</active>
+        <businessProcess>ANZ Customer Feedback</businessProcess>
+        <description>To track customer comments / questions / complaints etc</description>
+        <label>Customer Feedback</label>
+        <picklistValues>
+            <picklist>Customer_Reply_Requested__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Type__c</picklist>
+            <values>
+                <fullName>Capital Alternative %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QP Offset</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Origin</picklist>
+            <values>
+                <fullName>Direct Phone Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reported Internally</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pricing_Floor__c</picklist>
+            <values>
+                <fullName>AVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RSD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Representative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teaching Institution</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Product_Type__c</picklist>
+            <values>
+                <fullName>Capital</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason</picklist>
+            <values>
+                <fullName>Administrator Configuration Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Case Moved To Premier Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Request Completed For User</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Feature Request For Next Phase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User Question%28s%29 Answered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rejected_Reason__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Type__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SJM_Member_Responsible__c</picklist>
+            <values>
+                <fullName>Contractor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supplier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warehouse</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Type_1__c</picklist>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Details</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Item Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Payer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Quantity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Serial Or Batch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Ship To</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Sold To</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect TM linking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Late Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Negative Feedback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Positive Feedback</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Type_2__c</picklist>
+            <values>
+                <fullName>Availability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Back-Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Below Standard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damage in Transit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Document Not Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Effectiveness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expired%2FShort Dated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hold%2FRecall</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Late Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Recall</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Usage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reliability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reliable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specifications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeliness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wrong Product</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFU Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Staff</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FieldReq</fullName>
+        <active>true</active>
+        <businessProcess>Contact Ops</businessProcess>
+        <label>FieldReq</label>
+        <picklistValues>
+            <picklist>Award_Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non- applicatble</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Off Contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Type__c</picklist>
+            <values>
+                <fullName>Bridge to Budget</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Budgetary Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Alternative %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cash Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cash Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disposable Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disposable Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disposable%2FImplantable Product Agreement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fixed Cost Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QP Offset</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standalone Rebate Agreement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Entered_Updated_in_Rebate_Systems__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Forecast_Entered_for_Accruals__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Origin</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Price_Structure__c</picklist>
+            <values>
+                <fullName>All Committed %28MS%2FRev%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dual Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Individual Tier Commitments%2FAttainments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Access W%2F Commitment to other Vendors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open Access%2FCapped</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sole Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tri-Vendor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pricing_Floor__c</picklist>
+            <values>
+                <fullName>AVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RSD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Representative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teaching Institution</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Product_Type__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implants%2FDisposables</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RFP_Consultant__c</picklist>
+            <values>
+                <fullName>Advisory Board</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aptitude</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Curvo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Govt Contracting Officer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HPG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MedApproved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MedPricer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None%2FUnknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Premier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vizient</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RFP_Response__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Participating</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Participating</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason</picklist>
+            <values>
+                <fullName>Data Request Completed For User</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rebate_Forecast_Form_Submitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rebate_Starting_period__c</picklist>
+            <values>
+                <fullName>Current Month</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Execution Date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Following Fiscal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rebate_Type__c</picklist>
+            <values>
+                <fullName>AED Rebate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Admin Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Change Out</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Choice Alliance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complete Source</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heart Failure Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Share</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One Time</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Differential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QP Rebate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Risk Share</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Therapeutic Upgrade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Threshold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rejected_Reason__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SJM not participating</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Type__c</picklist>
+            <values>
+                <fullName>Amendment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consignments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Master T%26C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NDA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SJM_Member_Responsible__c</picklist>
+            <values>
+                <fullName>Contractor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supplier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warehouse</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Standard_National_Contract__c</picklist>
+            <values>
+                <fullName>National Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Technology_Clause__c</picklist>
+            <values>
+                <fullName>All new products at capped increase %28%24%2F%25%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All new products at no increase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All new products to be negotiated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evolutionary products at capped increase %28%24%2F%25%29%2C Revolutionary negotiated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evolutionary products at no increase%2C Revolutionary negotiated</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Terminating_of_Prior_Rebates__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>National Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Servicemax</fullName>
+        <active>true</active>
+        <businessProcess>Contact Ops</businessProcess>
+        <description>This record type is used to store Servicemax Case Information</description>
+        <label>Servicemax</label>
+        <picklistValues>
+            <picklist>Customer_Reply_Requested__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Type__c</picklist>
+            <values>
+                <fullName>Capital Alternative %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QP Offset</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Origin</picklist>
+            <values>
+                <fullName>Direct Phone Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reported Internally</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pricing_Floor__c</picklist>
+            <values>
+                <fullName>AVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RSD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Representative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teaching Institution</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Product_Type__c</picklist>
+            <values>
+                <fullName>Capital</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason</picklist>
+            <values>
+                <fullName>Administrator Configuration Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Case Moved To Premier Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Request Completed For User</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executed Without Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Feature Request For Next Phase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fully Executed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User Question%28s%29 Answered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rejected_Reason__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Type__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SJM_Member_Responsible__c</picklist>
+            <values>
+                <fullName>Contractor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supplier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warehouse</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Type_1__c</picklist>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email Instead Of Paper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Details</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Item Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Payer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Quantity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Serial Or Batch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Ship To</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect Sold To</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incorrect TM linking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Late Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missing Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Negative Feedback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paper Instead Of Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Positive Feedback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Question</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SJM staff complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SJM staff praise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Someone Else%27s Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stock</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Type_2__c</picklist>
+            <values>
+                <fullName>Availability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Back-Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Below Standard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damage in Transit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Damaged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Document Not Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Effectiveness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expired%2FShort Dated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hold%2FRecall</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Late Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Recall</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Usage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reliability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reliable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specifications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeliness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wrong Product</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Customer suggestion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Feature Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFU Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Problem</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Question</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Staff</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User Question</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>CASES.CASE_NUMBER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CASES.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CASES.EMAIL</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CASES.SUBJECT</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CASES.STATUS</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CASES.PRIORITY</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>CASES.CASE_NUMBER</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CASES.SUBJECT</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CASES.STATUS</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CASES.CASE_NUMBER</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CASES.SUBJECT</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CASES.STATUS</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>CASES.CASE_NUMBER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CASES.SUBJECT</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CASES.STATUS</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CASES.CREATED_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>Contact_In_Account</fullName>
+        <active>true</active>
+        <description>Chekcs to see if sleetc contact is in the selected account</description>
+        <errorConditionFormula>AND(
+(RecordType.DeveloperName = &apos;Customer_Feedback&apos;),
+(Contact.AccountId &lt;&gt; NULL),
+(Account.Id &lt;&gt; Contact.AccountId)
+)</errorConditionFormula>
+        <errorMessage>Sorry this contact isnt associated with this account. You need to create a relationship between the two before you can submit a case.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Fill_In_completed_Info_date</fullName>
+        <active>true</active>
+        <errorConditionFormula>RecordType.Name = &apos;FieldReq&apos; &amp;&amp;  ISBLANK(Complete_Info_Date__c )  &amp;&amp; ( ISPICKVAL(Status, &apos;Quoted&apos;) || ISPICKVAL(Status, &apos;Closed&apos;))</errorConditionFormula>
+        <errorDisplayField>Complete_Info_Date__c</errorDisplayField>
+        <errorMessage>Please Fill Completed Info date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Rejected_reason_should_Fill_In</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISPICKVAL(Status,&apos;Rejected&apos;)  &amp;&amp;  ISPICKVAL(Rejected_Reason__c,&apos;&apos;)</errorConditionFormula>
+        <errorDisplayField>Rejected_Reason__c</errorDisplayField>
+        <errorMessage>Please Fill In the Rejected Reason</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SalesReps_Should_Fill_In_Basic_Info</fullName>
+        <active>true</active>
+        <description>For Requesting Contracts SalesReps should Fill In some basic Info</description>
+        <errorConditionFormula>NOT(ISBLANK(Opportunity__c ))  &amp;&amp;  ISPICKVAL(Pricing_Floor__c,&apos;&apos; )</errorConditionFormula>
+        <errorDisplayField>Pricing_Floor__c</errorDisplayField>
+        <errorMessage>Please Fill In Pricing Floor Info</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Status_should_be_set_to_New</fullName>
+        <active>true</active>
+        <description>Status should be set to new while creating New Case</description>
+        <errorConditionFormula>ISNEW() &amp;&amp;   NOT( ISPICKVAL( Status, &quot;New&quot;)) &amp;&amp;   NOT(ISBLANK(Opportunity__c))</errorConditionFormula>
+        <errorDisplayField>Status</errorDisplayField>
+        <errorMessage>Please change the &apos;Status&apos; to New and Save</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Add_Disposable_Products</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Add Disposable Products</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>https://sjm.my.salesforce.com/a0X/e?CF00Nj000000B79GD={!Case.CaseNumber}&amp;CF00Nj000000B79GD_lkid={!Case.Id}&amp;retURL=%2F500j000000CsVvq&amp;RecordType=012j00000010JId&amp;ent=01Ij0000001N08n</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Add_Products</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Add Capital Products</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/caselineitems?id={!Case.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>CAP_Products</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>CAP Products</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/a0X/e?CF00Nj000000B79GD={!Case.CaseNumber}&amp;CF00Nj000000B79GD_lkid={!Case.Id}&amp;retURL=%2F500j0000008IdSq&amp;RecordType=012j0000000ufkI&amp;ent=01Ij0000001N08n</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Close_Case</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Close Case</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/{!Case.Id}/s?retURL=%2F{!Case.Id}&amp;_CONFIRMATIONTOKEN=VmpFPSxNakF4Tmkwd055MHhOVlF4T1RveU16bzBNeTQwTmpKYSx2ZEstS2tfbjVJakdmaXV2UlRDZlIzLE1HWXhNRE13&amp;common.udd.actions.ActionsUtilORIG_URI=%2F{!Case.Id}%2Fs&amp;cas7=Closed</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Enhanced_Clone</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Enhanced Clone</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+
+var clonedSobjectResult = JSON.parse(sforce.apex.execute(&quot;EnhancedCloneHelper&quot;,&quot;clone&quot;, { sObjectId : &quot;{!Case.Id}&quot; }));
+
+alert(clonedSobjectResult.message);
+
+if(clonedSobjectResult.isSuccess){
+  window.location = clonedSobjectResult.url;
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Contract</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Create Contract</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/800/e?retURL=%2F800%2Fo&amp;CF00Nj000000B7TQG={!Case.CaseNumber}&amp;ctrc7={!Case.Account}&amp;00Nj000000BsFWU={!Case.Request_Type__c}&amp;00Nj000000BiEv2={!Case.Rebate_Starting_period__c}&amp;00Nj000000BiEuz={!Case.Deal_Type__c}&amp;CF00Nj000000BXSn2={!Case.Master_Agreement_Reference__c}&amp;CF00Nj000000B7TQF={!Case.Related_Contract__c}&amp;00Nj000000BiEv3={!Case.Technology_Clause__c}&amp;00Nj000000BiEuw={!Case.Price_Structure__c}&amp;00Nj000000BiEv0={!Case.Performance_Measurement_Starting_Period__c}&amp;00Nj000000BsFWU={!Case.Rebate_Type__c}&amp;00Nj000000BsFWt={!Case.Requester_Name__c}&amp;00Nj000000BhsCv={!Case.Award_Status__c}</url>
+    </webLinks>
+</CustomObject>

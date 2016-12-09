@@ -1,0 +1,142 @@
+<apex:page showHeader="true" standardStylesheets="true" sidebar="true" applyHtmlTag="true" applyBodyTag="true" docType="html-5.0" standardController="Opportunity" extensions="HFMReorderOpportunity">
+    
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            
+            <apex:stylesheet value="{!URLFOR($Resource.SLDS, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+            
+            <style>
+                .managedWidth{
+                width: 100% !important;
+                }
+                
+                .hideLarge{
+                display:none;
+                }
+                
+                .showLarge{
+                display:flex;
+                }
+                
+                
+                
+                @media only screen 
+                and (min-device-width : 320px) 
+                and (max-device-width : 568px) { 
+                .managedWidth{
+                width: 305px !important;
+                }
+                .showSmall{
+                display:flex;
+                }
+                .hiddenSmall{
+                display:none;
+                }   
+                }
+                @media only screen 
+                and (min-device-width : 375px) 
+                and (max-device-width : 667px) { 
+                .managedWidth{
+                width: 360px !important;
+                }
+                .showSmall{
+                display:flex;
+                }
+                .hiddenSmall{
+                display:none;
+                }
+                }
+                @media only screen 
+                and (min-device-width : 414px) 
+                and (max-device-width : 736px) { 
+                .managedWidth{
+                width: 400px !important;
+                }
+                .showSmall{
+                display:flex;
+                }
+                .hiddenSmall{
+                display:none;
+                }
+                
+                
+                }
+                
+                
+                
+            </style>
+        </head>
+        <body style="padding: 0 0 0 0;">
+            
+            <!-- REQUIRED SLDS WRAPPER -->
+            <div class="slds">
+                <!-- PRIMARY CONTENT WRAPPER -->
+                <div class="myapp">
+                    
+                    <table class="slds-table slds-table--bordered slds-max-medium-table--stacked-horizontal">
+                        <thead>
+                            <tr class="slds-text-heading--label">
+                                <th scope="col" class="slds-cell-shrink">
+                                    <div class="slds-truncate" title="Schedule Month">Schedule Month</div>
+                                </th>
+                                <th scope="col" class="slds-cell-shrink">
+                                    <div class="slds-truncate" title="Quantity">Quantity</div>
+                                </th>
+                                <th scope="col" class="slds-cell-shrink">
+                                    <div class="slds-truncate" title="Price">Price</div>
+                                </th>
+                                <th scope="col" class="slds-cell-shrink">
+                                    <div class="slds-truncate" title="Total">Total</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <apex:repeat var="lineItems" value="{!ScheduleLineItems}">
+                                <tr class="slds-hint-parent">
+                                    <td class="slds-cell-shrink" data-label="Schedule Month">
+                                        <div class="slds-truncate" title="{!lineItems.ScheduleDate}">
+                                            <apex:outputText value="{0, date, MMMM yyyy}">
+                                                <apex:param value="{!lineItems.ScheduleDate}" />
+                                            </apex:outputText>
+                                        </div>
+                                    </td>
+                                    <td class="slds-cell-shrink" data-label="Quantity">
+                                        <div class="slds-truncate" title="{!lineItems.Quantity}">
+                                            {!FLOOR(lineItems.Quantity)}
+                                        </div>
+                                    </td>
+                                    <td class="slds-cell-shrink" data-label="Price">
+                                        <div class="slds-truncate" title="{!lineItems.Revenue}">
+                                            <apex:outputText value="{0, number, currency}">
+                                                <apex:param value="{!lineItems.Revenue}" />
+                                            </apex:outputText>
+                                        </div>
+                                    </td>
+                                    <td class="slds-cell-shrink" data-label="Quantity">
+                                        <div class="slds-truncate" title="">
+                                            <apex:outputText value="{0, number, currency}">
+                                                <apex:param value="{!(lineItems.Revenue*lineItems.Quantity)}" />
+                                            </apex:outputText>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </apex:repeat> 
+                        </tbody>
+                    </table>
+                    
+                    <hr />
+                    
+                    
+                </div>
+                <!-- / PRIMARY CONTENT WRAPPER -->
+                
+            </div>
+            <!-- / REQUIRED SLDS WRAPPER -->
+            <script type="text/javascript" src="{!URLFOR($Resource.SJM_Assets, 'js/jquery-1.11.3.min.js')}">  </script>
+
+            </body>
+            </html>
+            </apex:page>

@@ -1,0 +1,274 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" standardController="Opportunity" extensions="HFMReorderOpportunity">
+    
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            
+            <apex:stylesheet value="{!URLFOR($Resource.SLDS, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+            
+            <style>
+                .managedWidth{
+                width: 100% !important;
+                }
+                
+                .hideLarge{
+                	display:none;
+                }
+                
+                .showLarge{
+                	display:flex;
+                }
+                
+                
+                
+                @media only screen 
+                and (min-device-width : 320px) 
+                and (max-device-width : 568px) { 
+                    .managedWidth{
+                        width: 305px !important;
+                    }
+                    .showSmall{
+                        display:flex;
+                    }
+                    .hiddenSmall{
+                		display:none;
+                    }	
+                }
+                @media only screen 
+                and (min-device-width : 375px) 
+                and (max-device-width : 667px) { 
+                    .managedWidth{
+                    	width: 360px !important;
+                    }
+                    .showSmall{
+                        display:flex;
+                    }
+                    .hiddenSmall{
+                		display:none;
+                    }
+                }
+                @media only screen 
+                and (min-device-width : 414px) 
+                and (max-device-width : 736px) { 
+                    .managedWidth{
+                        width: 400px !important;
+                    }
+                    .showSmall{
+                        display:flex;
+                    }
+                    .hiddenSmall{
+                		display:none;
+                    }
+                	
+                    
+                }
+                
+                
+                
+            </style>
+        </head>
+        <body >
+            
+            <!-- REQUIRED SLDS WRAPPER -->
+            <div class="slds">
+                <div class="managedWidth">
+                    <div class="slds-page-header" role="banner">
+                        <div class="slds-media slds-media--center">
+                            <div class="slds-media__figure">
+                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-opportunity">
+                                    <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#opportunity"></use>
+                                </svg>
+                            </div>
+                            <div class="slds-media__body">
+                                <p class="slds-text-heading--label" style="opacity: 1;">Opportunity</p>
+                                <h1 class="slds-page-header__title slds-m-right--small slds-truncate slds-align-middle">
+                                    <span dir="ltr" data-aura-rendered-by="422:1;0" class="uiOutputText" data-aura-class="uiOutputText">
+                                        {!Opportunity.Name}
+                                    </span>
+                                </h1>
+                            </div>
+                            <div class="slds-col slds-no-flex slds-grid slds-align-bottom">
+                                <div class="slds-button-group" role="group">
+                                    <apex:form >
+                                        <apex:commandButton action="{!URLFOR($Action.Opportunity.EditReorder, Id)}" value="Edit" styleClass="slds-button slds-button--neutral" style=" border:1px solid #d8dde6;border-radius: .25rem 0 0 .25rem;"/>
+                                    </apex:form>
+                                    <!--
+                                     <apex:form >
+                                        <apex:commandButton action="{!newReorder}" value="New" styleClass="slds-button slds-button--neutral" style=" border:1px solid #d8dde6;border-radius: .25rem 0 0 .25rem;"/>
+                                    </apex:form>
+									-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hiddenSmall">
+                        
+                        <ul class="slds-grid slds-page-header__detail-row" style="opacity: 1; margin: 24px 0 12px 0;">
+                            <li class="slds-page-header__detail-block " style="padding-right: 20px;">
+                                <p class="slds-text-heading--label-normal slds-m-bottom--xx-small slds-truncate" title="Account Name">Account Name</p>
+                                <p class="slds-text-body--regular slds-truncate" >
+                                    <div class="outputLookupContainer forceOutputLookupWithPreview" data-aura-class="forceOutputLookupWithPreview">
+                                        <span class="photoContainer forceSocialPhoto forceOutputLookup" data-aura-class="forceSocialPhoto forceOutputLookup"></span>
+                                        <apex:outputLink value="{!URLFOR($Action.Account.View, Opportunity.AccountId)}" styleClass="textUnderline outputLookupLink forceOutputLookup">{!Opportunity.Account.Name}</apex:outputLink>
+                                </div>
+                            </p>
+                    </li>
+                    <!--
+                    <li class="slds-page-header__detail-block " style="padding-right: 20px;">
+                        <p class="slds-text-heading--label-normal slds-m-bottom--xx-small slds-truncate" title="Close Date">Close Date</p>
+                        <p class="slds-text-body--regular slds-truncate" >
+                            <span class="uiOutputDate" data-aura-class="uiOutputDate">
+                                <apex:outputText value="{0, date, MM'/'dd'/'yyyy}">
+                                    <apex:param value="{!Opportunity.CloseDate}" />
+                                </apex:outputText>
+                            </span>
+                        </p>
+                    </li>
+					-->
+                    <li class="slds-page-header__detail-block " style="padding-right: 20px;">
+                        <p class="slds-text-heading--label-normal slds-m-bottom--xx-small slds-truncate" title="Product">Product</p>
+                        <p class="slds-text-body--regular slds-truncate" >
+                            {!Opportunity.HFMReorderProduct__c}
+                        </p>
+                    </li>
+                    <!--
+                    <li class="slds-page-header__detail-block " style="padding-right: 20px;">
+                        <p class="slds-text-heading--label-normal slds-m-bottom--xx-small slds-truncate" title="Product">Stage</p>
+                        <p class="slds-text-body--regular slds-truncate" >
+                            {!Opportunity.StageName}
+                        </p>
+                    </li>
+					-->
+                    <li class="slds-page-header__detail-block " style="padding-right: 20px;">
+                        <p class="slds-text-heading--label-normal slds-m-bottom--xx-small slds-truncate" title="Opportunity Owner">Opportunity Owner</p>
+                        <p class="slds-text-body--regular slds-truncate">
+                            <div class="container showchangeOwnerLink forceOutputOwnerIdLookupWithChangeLink" data-aura-class="forceOutputOwnerIdLookupWithChangeLink">
+                                <div class="ownerName" >
+                                    <div class="outputLookupContainer forceOutputLookupWithPreview" data-aura-class="forceOutputLookupWithPreview">
+                                        <apex:outputLink value="{!URLFOR($Action.User.View, Opportunity.OwnerId)}" styleClass="textUnderline outputLookupLink forceOutputLookup">{!Opportunity.Owner.Name}</apex:outputLink>
+                                    </div>
+                                </div>
+                                <div class="clearBoth"></div>
+                        </div>
+                    </p>
+            </li>
+        </ul>
+        
+    </div>
+    <div class="showSmall hideLarge">
+    <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap">
+        <div class="slds-panel__section">
+            <div class="slds-form-element slds-hint-parent slds-has-divider--bottom">
+                <span class="slds-form-element__label">Account Name</span>
+                <div class="slds-form-element__control">
+                    <span class="slds-form-element__static">
+                        <apex:outputLink value="{!URLFOR($Action.Account.View, Opportunity.AccountId)}" styleClass="textUnderline outputLookupLink forceOutputLookup">{!Opportunity.Account.Name}</apex:outputLink>
+                    </span>
+                </div>
+            </div>
+            <!--
+            <div class="slds-form-element slds-hint-parent slds-has-divider--bottom">
+                <span class="slds-form-element__label">Close Date</span>
+                <div class="slds-form-element__control">
+                    <span class="slds-form-element__static"><apex:outputText value="{0, date, MM'/'dd'/'yyyy}">
+                        <apex:param value="{!Opportunity.CloseDate}" />
+                        </apex:outputText></span>
+                </div>
+            </div>
+			-->
+            <div class="slds-form-element slds-hint-parent slds-has-divider--bottom">
+                <span class="slds-form-element__label">Product</span>
+                <div class="slds-form-element__control">
+                    <span class="slds-form-element__static">{!Opportunity.HFMReorderProduct__c}</span>
+                </div>
+            </div>
+            <!--
+            <div class="slds-form-element slds-hint-parent slds-has-divider--bottom">
+                <span class="slds-form-element__label">Stage</span>
+                <div class="slds-form-element__control">
+                    <span class="slds-form-element__static">{!Opportunity.StageName}</span>
+                </div>
+            </div>
+			-->
+            <div class="slds-form-element slds-hint-parent slds-has-divider--bottom">
+                <span class="slds-form-element__label">Opportunity Owner</span>
+                <div class="slds-form-element__control">
+                    <span class="slds-form-element__static"><apex:outputLink value="{!URLFOR($Action.User.View, Opportunity.OwnerId)}" styleClass="textUnderline outputLookupLink forceOutputLookup">{!Opportunity.Owner.Name}</apex:outputLink></span>
+                </div>
+            </div>
+        </div>     
+    </div>
+    </div>
+</div>
+
+<br/>
+
+<!-- PRIMARY CONTENT WRAPPER -->
+<div class="myapp">
+    
+    <table class="slds-table slds-table--bordered slds-max-medium-table--stacked-horizontal">
+        <thead>
+            <tr class="slds-text-heading--label">
+                <th scope="col" class="slds-cell-shrink">
+                    <div class="slds-truncate" title="Schedule Month">Schedule Month</div>
+                </th>
+                <th scope="col" class="slds-cell-shrink">
+                    <div class="slds-truncate" title="Quantity">Quantity</div>
+                </th>
+                <th scope="col" class="slds-cell-shrink">
+                    <div class="slds-truncate" title="Price">Price</div>
+                </th>
+                <th scope="col" class="slds-cell-shrink">
+                    <div class="slds-truncate" title="Total">Total</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat var="lineItems" value="{!ScheduleLineItems}">
+                <tr class="slds-hint-parent">
+                    <td class="slds-cell-shrink" data-label="Schedule Month">
+                        <div class="slds-truncate" title="{!lineItems.ScheduleDate}">
+                            <apex:outputText value="{0, date, MMMM yyyy}">
+                                <apex:param value="{!lineItems.ScheduleDate}" />
+                            </apex:outputText>
+                        </div>
+                    </td>
+                    <td class="slds-cell-shrink" data-label="Quantity">
+                        <div class="slds-truncate" title="{!lineItems.Quantity}">
+                            {!FLOOR(lineItems.Quantity)}
+                        </div>
+                    </td>
+                    <td class="slds-cell-shrink" data-label="Price">
+                        <div class="slds-truncate" title="{!lineItems.Revenue}">
+                            <apex:outputText value="{0, number, currency}">
+                                <apex:param value="{!lineItems.Revenue}" />
+                            </apex:outputText>
+                        </div>
+                    </td>
+                    <td class="slds-cell-shrink" data-label="Quantity">
+                        <div class="slds-truncate" title="">
+                            <apex:outputText value="{0, number, currency}">
+                                <apex:param value="{!(lineItems.Revenue*lineItems.Quantity)}" />
+                            </apex:outputText>
+                        </div>
+                    </td>
+                </tr>
+            </apex:repeat> 
+        </tbody>
+    </table>
+    
+    <hr />
+    
+    
+</div>
+<!-- / PRIMARY CONTENT WRAPPER -->
+
+</div>
+<!-- / REQUIRED SLDS WRAPPER -->
+<script type="text/javascript" src="{!URLFOR($Resource.SJM_Assets, 'js/jquery-1.11.3.min.js')}">  </script>
+
+</body>
+</html>
+</apex:page>

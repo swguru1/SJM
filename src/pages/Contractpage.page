@@ -1,0 +1,24 @@
+<apex:page standardController="Contract"  docType="html-5.0" showHeader="true" standardStylesheets="true" sidebar="false">
+<html>
+ <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Assets, '/css/bootstrap.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Procedure, '/css/style.css')}" /> 
+    <!--
+    <link rel="stylesheet" type="text/css" href="{!$Page.SJM_Style}" /> 
+    -->
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_FontAwesome, 'css/font-awesome.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Datepicker, 'css/bootstrap-datepicker3.min.css')}" /> 
+
+
+
+       
+<apex:detail relatedList="True"/>
+
+
+  
+  
+</html>
+
+ 
+
+</apex:page>

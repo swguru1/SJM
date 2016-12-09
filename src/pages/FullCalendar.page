@@ -1,0 +1,854 @@
+<!-- Purpose: VisualForce Page to use the Fullcalendar Plug-in and build business Logic
+Autor: Manish Tyagi/ Prasad Karanam
+Date: 19/04/2015 -->
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" applyBodyTag="false" applyHtmlTag="false" docType="html-5.0" controller="SchedulerCalendar">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <body class="bodystyle">
+        <link href="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/lib/fullcalendar.min.css')}" rel="stylesheet" />
+        <link href="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/scheduler.min.css')}" rel="stylesheet" />
+        <apex:stylesheet value="{!URLFOR($Resource.FCStyleSheet,'SearchPanel.css')}" />
+        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+        <apex:stylesheet value="{!URLFOR($Resource.SLDS100, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <apex:form Id="form">
+            <table class = "fcContainer">
+                <tr>
+                    <td class = "Col1">
+                        <div class="searchClass" id="searchFiletsr">
+                            <div class="Filters">
+                                <div class="sFilters" id = "sRegion">
+                                    <label for="Region" class="SearchFilter">Region:</label>
+                                    <apex:selectList styleClass="clsRegion" value="{!sRegion}" multiselect="true" style="width:195px!important;">
+                                        <apex:selectOptions value="{!UserRegions}" /></apex:selectList>
+                                        <button class="slds-buttongo" type="button" title="Go" Id="gobtn">Go</button>
+                                </div>  
+                                <div />
+                                <div class="sFilters" id = "sHospital">
+                                    <label for="Hospital" class="SearchFilter">Hospital:</label>
+                                    <select class="SelectValues" id="cmbAcct" multiple="true" size="4">
+                                    </select>
+                                </div>
+                                <div class="sFilters" id = "sAssignee">
+                                    <label for="Assignee" class="SearchFilter">Assignee:</label>
+                                    <select class="SelectValues" id="cmbUser" multiple="true" size="4">
+                                    </select>
+                                </div>    
+                                <div class="sFilters" id="sStartDate">
+                                    <label class="SearchFilter" for="Startdate">Start Date:</label>                          
+                                    <input type="date" class="DateFields" id="sDate"></input>
+                                
+                            </div>
+                            <div class="sFilters" id = "sCancelled">
+                                <label for="Cancelled" class="SearchFilter" size="1">Cancelled:</label>
+                                <select class="SelectCancel" id="cmbCancelled">
+                                    <option selected="selected" class="cancelvalue">No</option>
+                                    <option class="cancelvalue">Yes</option>
+                                </select>
+                            </div>
+                            <div class="sFilters">
+                                <button class="slds-button" onclick="resetClickevents();getRemoteEvents();" type="button" title="Submit">
+                                    <svg class="slds-button__icon" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M8.8 19.6L1.2 12c-.3-.3-.3-.8 0-1.1l1-1c.3-.3.8-.3 1 0L9 15.7c.1.2.5.2.6 0L20.9 4.4c.2-.3.7-.3 1 0l1 1c.3.3.3.7 0 1L9.8 19.6c-.2.3-.7.3-1 0z">
+                                        </path></svg>Submit</button>
+                                <button class="slds-button" onclick="ResetCalendar();" type="button" title="Reset">
+                                    <svg aria-hidden="true" class="slds-button__icon" role="img" version="1.1" viewBox="0 0 24 24"><path d="M2.5 1.8h1.4c.4 0 .7.4.7.7v3.3c0 .4.2.6.6.3.1-.2.2-.3.4-.5 2.3-2.3 5.6-3.2 8.9-2.6 1.1.2 2.3.7 3.2 1.3 2.8 1.9 4.5 4.9 4.5 8.1 0 2.5-.9 5-2.7 6.8-1.6 1.8-3.9 2.8-6.2 3-.5 0-.8-.4-.8-.8V20c0-.3.2-.6.6-.7 2.2-.1 4.2-1.3 5.4-3.3.3-.6.6-1.2.7-1.8.7-3-.5-6.1-3.2-7.7-.5-.3-1.1-.6-1.7-.7-2.5-.6-5 .1-6.7 1.8-.2.2-.4.4-.5.6-.2.4.1.6.6.6h3.2c.4 0 .6.3.6.7v1.4c0 .4-.2.6-.6.6H2.4c-.3 0-.6-.2-.6-.6V2.5c0-.3.4-.7.7-.7z">
+                                        </path></svg>Reset</button>
+                            </div>
+                            <br></br>
+                            <div class="sFilters">
+                                <button class="slds-buttonExport" type="button" style="display:none;" onClick="fnredirect();" title="Export" Id="exptexl">Export to Excel</button>
+                            </div>
+                        </div>
+                    </div>  
+            </td>
+            <td style="vertical-align: top;">
+            <div>
+                <!--<img id="image1" class="searchimage" src="{!URLFOR($Resource.SLDS100,'assets/icons/utility/search_120.png')}" onclick="imageClick();" style="cursor: pointer;" title="Filter criteria"/>-->
+                <span id="divCalButtons">
+                <img id="image1" class="searchimage" src="{!URLFOR($Resource.SLDS100,'assets/icons/utility/filterList_120.png')}" onclick="imageClick();" style="cursor: pointer;" title="Filter criteria">Filter</img>
+                <img id="refresh" class="refreshimage" src= "{!URLFOR($Resource.SLDS100,'assets/icons/utility/refresh_120.png')}" onclick="refreshCalendar();" style="cursor: pointer;" title="Refresh"/>
+                <img id="new" class="newimage" src= "{!URLFOR($Resource.SLDS100,'assets/icons/utility/new_120.png')}" onclick="newEvent();" style="cursor: pointer;" title="Schedule a new event"/>
+                </span>
+            </div>    
+                <div id="calendar"></div>
+            </td>
+        </tr>
+    </table>
+    <div id="pnlNoAccess" style="display:none;font-size:0.75em">
+        <div id="body"></div>
+    </div>
+    <div  class = "loadingImage" id='loading'><img id ="refresh1" src= "{!URLFOR($Resource.SLDS100,'assets/images/spinners/slds_spinner_brand.gif')}"></img></div>
+</apex:form>
+
+<!-- Scripts -->
+<!-- Full Calendar Business Logic -->
+<script src="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/lib/moment.min.js')}"></script> 
+<script src="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/lib/jquery.min.js')}"></script>
+<script src="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/lib/fullcalendar.min.js')}"></script>
+<script src="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/scheduler.min.js')}"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script>
+var sUserId ='';
+var sAcctId;
+var formattedlday;
+var formattedfday;
+var rgn;
+var viewname;
+var StartDateView;
+var standardEvent = 'SJM Standard Event';
+var evestsuncoverd = 'Uncovered';
+var evestsassigned = 'Assigned';
+var evestsindipendent = 'Independent';
+
+function fnredirect() {
+       //alert('sRegion ' + sRegion + ' -- ' + sAcctId + ' -- ' + sUserId + ' -- ' + startDate );
+       sforce.one.navigateToURL('/apex/CaseSummaryRptExpExcel?region=' + sRegion + '&acctId=' + sAcctId + '&userId=' + sUserId + '&Date=' + startDate + '&Viewname=' + viewname);        
+ };
+
+function getUsersEvents()
+{
+    $('#calendar').fullCalendar( 'refetchResources' );
+    try {    
+        var cmbUser = document.getElementById("cmbUser");
+    } 
+    catch (e) {
+        console.log(e);
+    }
+}
+
+function getAcctEvents()
+{       
+    try {                    
+        var cmbAcct = document.getElementById("cmbAcct");
+        for (var i = 0; i < cmbAcct.length; i++) {
+            if (cmbAcct.options[i].selected)
+            {
+                $('#calendar').fullCalendar('addAccounts', {
+                    id: cmbAcct.options[i].value,
+                    title: cmbAcct.options[i].innerHTML
+                });
+            }
+        }                   
+    } 
+    catch (e) {
+        console.log(e);
+    }
+}
+
+function getCalendarUsers()
+{
+    //sUserId = '';
+    $('#loading').show();
+    try {                   
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.SchedulerCalendar.getUsersList}',                    
+            sRegion , 
+            handleUserList
+        );
+    } 
+    catch (e) {
+        console.log(e);
+    }
+}
+
+function getCalendarAccts() 
+{
+    //sAcctId = '';
+    $('#loading').show();
+    try {                    
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.SchedulerCalendar.getAcctsList}',                    
+            sRegion , 
+            handleAcctList
+        );
+    } 
+    catch (e) {
+        console.log(e);
+    }
+}
+
+var userList = [];
+function handleUserList(result, user) { 
+    var arrUserList = sUserId.split(',');
+    userList = [];
+    var options = [];
+    $("#cmbUser").empty();        
+    for(userIndex in result) {
+        var userDetItem = {};
+        var userDet = result[userIndex]; 
+        if (typeof userDet.id != "undefined" ) { 
+            if(userIndex == 0){
+            
+                if(arrUserList.length == 0 ){
+                options.push('<option selected="','selected','" value="',
+                             '', '">',
+                             '--All Assignees--', '</option>');  
+                  }
+                  else{
+                  
+                   options.push('<option value="',
+                             '', '">',
+                             '--All Assignees--', '</option>');  
+                 }
+                  
+                $("#cmbUser").html(options.join(''));
+            }
+            userDetItem.id = userDet.id;
+            userDetItem.title= userDet.name;
+            userList.push(userDetItem);
+            options.push('<option value="',
+                         userDet.id, '">',
+                         userDet.name, '</option>');
+            $("#cmbUser").html(options.join(''));
+        }
+    }
+    
+    $('select#cmbUser option').each(function () {    
+    var i =0;    
+    
+    for(i=0;i < arrUserList.length  ; i ++) {
+        if ($(this).val().toLowerCase() == arrUserList[i].toLowerCase()) 
+        {
+            $(this).prop('selected','selected');
+        }    
+    } });
+    
+    $('#loading').hide();
+}
+
+var acctList = [];
+function handleAcctList(result, acct) { 
+    var arrAcctList = sAcctId.split(',');
+    acctList = [];
+    $("#cmbAcct").empty();
+    var options = [];        
+    for(acctIndex in result) {
+        var acctDetItem = {};
+        var acctDet = result[acctIndex]; 
+        if (typeof acctDet.id != "undefined" ) { 
+            if(acctIndex == 0){
+               if(arrAcctList.length > 0){
+               options.push('<option value="',
+                             '', '">',
+                             '--All Hospitals--', '</option>');         
+                $("#cmbAcct").html(options.join(''));
+               
+               }
+               else{
+               options.push('<option selected="','selected','" value="',
+                             '', '">',
+                             '--All Hospitals--', '</option>');         
+                $("#cmbAcct").html(options.join(''));
+               
+               }
+            }
+            acctDetItem.id = acctDet.id;
+            acctDetItem.title= acctDet.name;
+            acctList.push(acctDetItem);
+            options.push('<option value="',
+                         acctDet.id, '">',
+                         acctDet.name, '</option>');
+            $("#cmbAcct").html(options.join(''));
+        }
+    }
+    
+    $('select#cmbAcct option').each(function () {    
+    var i =0;    
+    
+    for(i=0;i < arrAcctList.length  ; i ++) {
+        if ($(this).val().toLowerCase() == arrAcctList[i].toLowerCase()) 
+        {
+            $(this).prop('selected','selected');
+        }    
+    } });
+    $('#loading').hide();
+}
+
+var sRegion;
+var k =0;
+var calView;
+var startDate;
+var cancelled;
+var prevClicked = 'false';
+var nextClicked = 'false';
+
+var sCookieValue = '';
+var sCalendarCookieName = 'UserSelection';
+
+function getRemoteEvents() {
+    $('#loading').show();
+    cancelled = document.getElementById("cmbCancelled").value;
+    $('#calendar').fullCalendar( 'removeEvents');
+    $('#calendar').fullCalendar( 'removeEventSource');
+    calView = $('#calendar').fullCalendar('getView'); 
+    viewname = calView.name;
+    if(prevClicked == 'true' || nextClicked == 'true'){
+        startDate = calView.intervalStart.format();            
+    }else{
+        startDate = document.getElementById("sDate").value;
+        //startDate = moment(startDate, 'MM/DD/YYYY').format('YYYY-MM-DD');
+        prevClicked = 'false';
+        nextClicked = 'false';
+    }
+    $('#calendar').fullCalendar('gotoDate', startDate);
+    
+    sCookieValue = "sRegion@"+sRegion + "|sUserId@"+sUserId + "|sAcctId@"+sAcctId +"|startDate@"+startDate + "|" +
+          "viewname@"+viewname + "|cancelled@"+cancelled + "|userSession@" + "{!$Api.Session_ID}" ;
+    fnAddToCookie(sCalendarCookieName ,sCookieValue,false);
+    try {
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.SchedulerCalendar.getCalenderEvents}',                    
+            sRegion , 
+            sUserId ,
+            sAcctId ,
+            prevClicked,
+            nextClicked,
+            startDate ,
+            cancelled,
+            viewname,
+            handleResult
+        );
+        
+    } 
+    catch (e) {
+        console.log (e);
+    }
+}
+
+function resetClickevents()
+{
+    prevClicked = 'false';
+    nextClicked = 'false';
+    
+    if(((navigator.userAgent.match(/iPhone/i) != null)||(navigator.userAgent.match(/Android/i)!= null)) && ( navigator.userAgent.indexOf('(iPad') == -1) )
+    {
+        isHide = true;
+        $('#searchFiletsr').hide();
+        $('#divCalButtons').show();
+        $('#calendar').show();
+    }
+    
+}
+var userMap = {};
+
+function handleResult(result, event) { 
+    var cmbUser = document.getElementById("cmbUser");
+    $('#calendar').fullCalendar( 'refetchResources' );
+    myEvents = [];
+    users = {};
+    
+    for(eventIndex in result) {
+        var eventItem = {};
+        var event = result[eventIndex];        
+        
+        if (typeof event.SfId != "undefined" ) {
+            eventItem.id = event.SfId ;
+            
+            var userName = '';
+            var userClr = ''; 
+            
+            for (var i = 0; i < cmbUser.length; i++) 
+            {
+                if(cmbUser.options[i].value == event.UserId)
+                {
+                    userName = cmbUser.options[i].innerHTML;
+                    userClr  = cmbUser.options[i].className;
+                }
+            } 
+            if(event.IsUncoveredUser){
+                $('#calendar').fullCalendar('addResource', {
+                    id: event.UserId,                       
+                    title: 'Uncovered Events'
+                });
+            }
+            
+            /*if(event.IsIndependentUser){
+                        $('#calendar').fullCalendar('addResource', {
+                            id: event.UserId,                       
+                            title: 'Independent Events'
+                            });
+                        }*/   
+            eventItem.resourceId = event.UserId; 
+            eventItem.rcrdTypeName = event.RcrdTypeName;
+            eventItem.eventstatus = event.AssignmentStatus;
+            eventItem.start = new Date(parseInt(event.StartYear), parseInt(event.StartMonth), parseInt(event.StartDay), parseInt(event.StartHour), parseInt(event.StartMinute));
+            eventItem.end = new Date(parseInt(event.EndYear), parseInt(event.EndMonth), parseInt(event.EndDay), parseInt(event.EndHour), parseInt(event.EndMinute));
+            var starthours = event.StartHour;
+            var endhours = event.EndHour;
+            var ampm = (starthours < 12) ? 'AM' : 'PM';
+            var eampm = (endhours < 12) ? 'AM' : 'PM';
+            var eventStartHour ;
+            var eventStartMint ;
+            var eventEndHour;
+            var eventEndMint;
+            
+            if (starthours > 12)
+            {
+                starthours  = starthours - 12; 
+            }
+            if (endhours > 12)
+            {
+                endhours  = endhours - 12 ; 
+            }
+            
+            eventStartHour  = '' + starthours  ;
+            eventStartMint = '' + event.StartMinute;
+            eventEndHour = '' + endhours;
+            eventEndMint = '' + event.EndMinute;
+            var pad = '00';
+            var prmcase = '';
+            var prmdiagnosis = '';
+            var sNotes = '';
+            var sCallInDate = '';
+            
+            if (typeof event.PrmCasWillUse != "undefined" ) {
+                prmcase = event.PrmCasWillUse;
+            };
+            if (typeof event.PrmDiagonosis != "undefined" ) {
+                prmdiagnosis = event.PrmDiagonosis;
+            };
+            
+            //SUNIL-07/14/2016-To add Notes and CallIn Date field to the event box in Multi-user calendar
+            if (typeof event.Description != "undefined" ) {
+                sNotes = event.Description;
+            };
+            if (typeof event.CallInDate != "undefined" ) {
+                sCallInDate = event.CallInDate;
+            };
+            var accountname = event.AcctIdName; 
+            var contactname = event.ContIdName;
+            
+            eventItem.textColor = userClr;
+            if(event.RcrdTypeName != standardEvent)
+            {
+                if(sCallInDate != '')
+                    sCallInDate = 'CI:'+sCallInDate;
+                
+                var title =  (pad + eventStartHour).substring(eventStartHour.length) + ':'+ (pad + eventStartMint).substring(eventStartMint.length) + ' ' + ampm +  ' - ' + 
+                    (pad + eventEndHour).substring(eventEndHour.length) + ':'+ (pad + eventEndMint).substring(eventEndMint.length) + ' ' + eampm + '\n' 
+                + accountname + '\n' + prmcase + '-' + prmdiagnosis + '\n' + sCallInDate  ; 
+                
+                eventItem.title = title;
+                eventItem.description = sNotes;
+                eventItem.Physician = contactname;
+            }
+            else
+            {     
+                eventItem.title =(pad + eventStartHour).substring(eventStartHour.length) + ':'+ (pad + eventStartMint).substring(eventStartMint.length) + ' ' + ampm  +  ' - ' + 
+                    (pad + eventEndHour).substring(eventEndHour.length) + ':'+ (pad + eventEndMint).substring(eventEndMint.length) + ' ' + eampm + '\n' + event.title;
+            }
+            
+            if (event.HasEditAccess == false){
+                eventItem.url = 'javascript: showPanel("pnlNoAccess","You do not have access to the Account for this event!"); ';
+                eventItem.HasEditAccess = false;
+            }
+            else{
+                eventItem.url = 'javascript:sforce.one.navigateToSObject("' + event.SfId + '","details")';
+                eventItem.HasEditAccess = true;
+            }
+            myEvents.push(eventItem);
+        }
+    } 
+    for (var i = 0; i < cmbUser.length; i++) 
+    {
+        if(i != 0 && ('--All Assignees--')  )
+        { 
+            if( $('#cmbUser :selected').text() ==  '--All Assignees--'  || cmbUser.options[i].selected == true)
+            {
+                $('#calendar').fullCalendar('addResource', {
+                    id: cmbUser.options[i].value,                       
+                    title: cmbUser.options[i].innerHTML
+                });
+            }
+        }
+    }
+    $('#calendar').fullCalendar( 'addEventSource', {
+        events: myEvents
+    }) 
+    $('#loading').hide();    
+    
+}
+
+var sResourceWidth = '20%';
+$(function() {
+
+    if((navigator.userAgent.match(/iPad/i) != null) || (navigator.userAgent.match(/iPhone/i) != null)||(navigator.userAgent.match(/Android/i)!= null))
+    {
+       $('#exptexl').hide();
+       if(((navigator.userAgent.match(/iPhone/i) != null)||(navigator.userAgent.match(/Android/i)!= null)) && ( navigator.userAgent.indexOf('(iPad') == -1)){
+                    sResourceWidth = '32%';
+                }
+       
+    }
+    else 
+    {  
+       $('#exptexl').show();
+    }
+    
+    $('#loading').show();
+    rgn = $('.clsRegion :selected').text();
+    var curr = new Date(); 
+    var year = new Date().getFullYear();
+    var month = new Date().getMonth();
+    var day = new Date().getDate();
+    if (month<10){month = '0' + (month+1)}else{month = (month+1)}
+    CurrentDate = year  + "-" + month + "-" + day;         
+    var first = curr.getDate() - (curr.getDay()-1); // First day is the day of the month - the day of the week
+    var firstday = new Date(curr.setDate(first)).toUTCString();
+    formattedfday = (new Date(firstday)).toISOString().slice(0, 10);
+    //Checking the login Device
+    if((navigator.userAgent.match(/iPad/i) != null) || (navigator.userAgent.match(/iPhone/i) != null)||(navigator.userAgent.match(/Android/i)!= null)){
+        $( ".SelectValues" ).addClass('SelectValuesIPad');
+        $( ".clsRegion" ).addClass('SelectValuesIPad');
+    }
+    
+    document.getElementById("sDate").value = formattedfday;
+    $('#calendar').fullCalendar({ 
+        schedulerLicenseKey: '0503416538-fcs-1458326882',
+        theme: false,
+        new: CurrentDate,
+        editable: false, // enable draggable events
+        aspectRatio: 2,
+        weekends: true,
+        allDaySlot : false, 
+        slotDuration: '01:00:00',
+        allDay : false, 
+        displayEventTime: false, 
+        eventOverlap: false,
+        //contentHeight: 700,
+        height:'auto',
+        
+        buttonText: {
+        week:     'Week',
+        day:      'Day'
+    },
+        header: {
+        left: 'prev',
+        center: 'timelineDay ,timelineWeek , title',    
+        right: 'next'
+        }, 
+        firstDay: 8,            
+        defaultView: 'timelineWeek',
+        views: {
+        timelineDay: {
+        scrollTime: '07:00',
+        minTime: "07:00:00",
+        maxTime: "20:00:00"
+        },
+        timelineWeek: {
+        type: 'timeline',
+        slotDuration: { days: 1 },
+        slotLabelFormat: [             
+        'ddd-DD'
+        ]
+        }
+        },
+        
+        resourceAreaWidth: sResourceWidth,
+        resourceLabelText: 'Resources',     
+        eventRender: function (event, element) {
+        //element.css("height", "400px");
+        if(event.rcrdTypeName != standardEvent){
+            if(event.Physician !='')
+                element.append('<div style="white-space: normal;" class="fc-content fc-title">Dr:' + event.Physician + '</div>');
+            if(event.description !='')
+                element.append('<div style="white-space: normal;" class="fc-content fc-title">Notes:' + event.description + '</div>');
+            if (event.HasEditAccess == false){
+                element.append('<div style="white-space: normal;  position: absolute; top: 0px; right: 0px; background-color: wheat; z-index: 1000;" class="ui-icon ui-icon-locked">Lock Icon</div>');
+            }
+        }
+        
+        if (event.rcrdTypeName == standardEvent) {
+            
+            element.addClass('EventColorStndRecordType');
+        }
+        else
+        {
+            if(event.eventstatus == evestsuncoverd)
+            {
+                element.addClass('EventColorUncovered');
+            }
+            else if(event.eventstatus == evestsassigned)
+            {
+                element.addClass('EventColorAssignIndependent');
+            }
+                else if(event.eventstatus == evestsindipendent)
+                {
+                    element.addClass('EventColorAssignIndependent');
+                }
+                    else
+                    {
+                        element.addClass('EventColorUncovered');
+                    }
+        }
+    },
+        resources:[] ,
+            events: []
+});    
+
+sRegion = $('.clsRegion :selected').text();
+    $('.slds-buttongo').click(function(){
+    var selected = [ ];
+    var selectedOptions = $(".clsRegion option:selected");
+    for (var i = 0; i < selectedOptions.length; i++) {
+        selected.push($(selectedOptions[i]).val());
+    }
+    sRegion =  selected.join(",");
+    getCalendarUsers();
+    getCalendarAccts();
+}); 
+
+sAcctId = $('#cmbAcct :selected').text();
+$( "#cmbAcct" ).change(function(){
+    var selected = [ ];
+    for (var i = 0; i < this.length; i++) {
+        if (this.options[i].selected) selected.push(this.options[i].value);
+    }
+    sAcctId = selected.join(",");  
+    getAcctEvents();
+});
+
+sUserId = $('#cmbUser :selected').text();
+$( "#cmbUser" ).change(function(){
+    var selected = [ ];
+    for (var i = 0; i < this.length; i++) {
+        if (this.options[i].selected) selected.push(this.options[i].value);
+    }
+    sUserId = selected.join(",");
+    
+});  
+
+
+calView = $('#calendar').fullCalendar('getView');
+startDate = calView.intervalStart.format();
+endDate = calView.intervalEnd.format();
+
+   if(readCookie('UserSelection') != null)
+    {
+        //alert(readCookie('UserSelection'));
+        var cookieValue = readCookie('UserSelection');
+        var paramList = cookieValue.split('|');
+        var sSession = "{!$Api.Session_ID}" ; 
+
+    if(paramList[6].split('@')[1] == sSession )
+    {
+        $(".clsRegion :selected").prop("selected", false);
+        sRegion= paramList[0].split('@')[1];
+        //alert('sRegion ' + sRegion);
+        sUserId =  paramList[1].split('@')[1];
+        sAcctId = paramList[2].split('@')[1];
+        startDate = paramList[3].split('@')[1];
+        viewname = paramList[4].split('@')[1];
+        cancelled = paramList[5].split('@')[1];
+    
+        //document.getElementById("sDate").value = startDate ;
+        //document.getElementById("cmbCancelled").value = cancelled ;
+        $("#sDate").val(startDate) ;
+        $("#cmbCancelled").val(cancelled) ;
+        $('#calendar').fullCalendar( 'changeView', viewname )
+        var arrRegionList = sRegion.split(',');
+        $('select.clsRegion option').each(function () 
+        {    
+            var i =0;     
+            for(i=0;i < arrRegionList.length  ; i ++) 
+            {
+                if ($(this).val().toLowerCase() == arrRegionList[i].toLowerCase()) 
+                {
+                    $(this).prop('selected','selected');    
+                }    
+            } 
+        });
+    }
+    else
+    {
+        eraseCookie(sCalendarCookieName);
+    }
+
+    }
+    getCalendarUsers();
+    getCalendarAccts();
+    getRemoteEvents();
+});
+
+$('body').on('click', 'button.fc-timelineDay-button', function() {
+    calView = $('#calendar').fullCalendar('getView');
+    startDate = calView.intervalStart.format();
+    StartDateView = calView.name;
+    getRemoteEvents();         
+});
+$('body').on('click', 'button.fc-timelineWeek-button', function() {
+    calView = $('#calendar').fullCalendar('getView');
+    startDate = calView.intervalStart.format();
+    var strtDate = moment(startDate, 'YYYY/MM/DD').add('days', +0).format('YYYY-MM-DD');
+    document.getElementById("sDate").value = strtDate;
+    getRemoteEvents();
+});
+$('body').on('click', 'button.fc-prev-button', function() {
+    prevClicked = 'true';
+    calView = $('#calendar').fullCalendar('getView');
+    startDate = calView.intervalStart.format();
+    if (calView.name == StartDateView)
+    {
+        var strtDate = moment(startDate, 'YYYY/MM/DD').format('YYYY-MM-DD');
+        document.getElementById("sDate").value = strtDate;
+    }
+    else
+    {
+        var strtDate = moment(startDate, 'YYYY/MM/DD').add('days', +0).format('YYYY-MM-DD');
+        document.getElementById("sDate").value = strtDate;
+    }
+    getRemoteEvents();
+});
+$('body').on('click', 'button.fc-next-button', function() {
+    nextClicked = 'true';
+    calView = $('#calendar').fullCalendar('getView');
+    startDate = calView.intervalStart.format();
+    if (calView.name == StartDateView)
+    {
+        var strtDate = moment(startDate, 'YYYY/MM/DD').format('YYYY-MM-DD');
+        document.getElementById("sDate").value = strtDate;
+    }
+    else
+    {
+        var strtDate = moment(startDate, 'YYYY/MM/DD').add('days', +0).format('YYYY-MM-DD');
+        document.getElementById("sDate").value = strtDate;
+    }
+    getRemoteEvents();
+});
+
+function ResetCalendar()
+{
+    sUserId = '';
+    sAcctId = '';
+    //jQuery("select[id$=RegionId]").val(rgn);
+    $('.clsRegion').val(rgn);
+    sRegion  = rgn;
+    getCalendarAccts();
+    getCalendarUsers(); 
+    document.getElementById("sDate").value = formattedfday;
+    $('#calendar').fullCalendar('gotoDate', formattedfday);
+    document.getElementById("cmbCancelled").value = "No";
+    getRemoteEvents();
+};
+
+function refreshCalendar()
+{ 
+    getRemoteEvents();
+};
+
+function newEvent(){
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.SchedulerCalendar.getRecordId}', handleRecordTypeResult);
+};
+
+function handleRecordTypeResult(result, event) { 
+    sforce.one.createRecord('Event', result);
+}
+
+var isHide = true;
+function imageClick(){
+    if(isHide == false){
+        $('#searchFiletsr').hide("slide", {
+            direction: "left"
+        }, 10);
+        isHide = true;
+        if((navigator.userAgent.match(/iPad/i) != null) || (navigator.userAgent.match(/iPhone/i) != null)||(navigator.userAgent.match(/Android/i)!= null)){
+            getRemoteEvents();
+        }
+        
+       if((navigator.userAgent.match(/iPhone/i) != null)||(navigator.userAgent.match(/Android/i)!= null) && (navigator.userAgent.indexOf('(iPad') == -1)){
+         $('#divCalButtons').show();
+         $('#calendar').show();
+       } 
+        
+    }
+    else{
+    
+        if(((navigator.userAgent.match(/iPhone/i) != null)||(navigator.userAgent.match(/Android/i)!= null)) && ( navigator.userAgent.indexOf('(iPad') == -1)){
+            $('#divCalButtons').hide();
+            $('#calendar').hide();
+        }
+        isHide = false;
+        $('#searchFiletsr').show();
+    }
+    $('#image1').show(); 
+};
+
+
+function imageDatepicker()
+{
+    $('#sDate').datepicker('show');
+}
+
+function showPanel(panelId, message){
+    panelId = "#"+panelId;
+    $(panelId).dialog({
+        autoOpen: false, 
+        width: 220,  
+        minHeight:50,
+        maxHeight:300,                    
+        modal:true,
+        show: {
+            effect: "fade",
+            duration: 1000
+        },
+        hide: {
+            effect: "fade",
+            duration: 1000
+        },
+        open: function(event, ui){
+        setTimeout("$('"+panelId+"').dialog('close')",2000);
+    }
+                      });
+    $(panelId +" #body").html(message);
+    $(".ui-dialog-titlebar").hide();
+    $(panelId).dialog('open'); 
+}
+
+function readCookie(name) 
+{
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) 
+    {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function fnAddToCookie(name,value,days) 
+{
+    if (days) 
+    {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+";";
+}
+
+function readCookie(name) 
+{
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) 
+    {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) 
+{
+    fnAddToCookie(name,"",-1);
+}
+
+</script>
+</body> 
+</apex:page>

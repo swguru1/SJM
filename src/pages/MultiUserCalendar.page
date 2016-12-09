@@ -1,0 +1,676 @@
+<apex:page standardController="Event" docType="html-5.0" standardStylesheets="false" showHeader="false" extensions="SJM_CalendarViewportCC" >
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <apex:stylesheet value="{!URLFOR($Resource.jQuery_Calendar, 'calendar/libs/css/smoothness/jquery-ui-1.8.11.custom.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.jQuery_Calendar, 'calendar/jquery.weekcalendar.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SF1_Support_Styling,'sf1support/sf1support.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery_Calendar, 'calendar/libs/jquery-1.4.4.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery_Calendar, 'calendar/libs/jquery-ui-1.8.11.custom.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery_Calendar, 'calendar/libs/date.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery_Calendar, 'calendar/jquery.weekcalendar.js')}"/>
+    <style>
+     
+    </style>
+
+<script type='text/javascript'>
+
+window.onload=function()      
+{        
+    refreshCalendar1(this);
+};
+
+
+    var year = new Date().getFullYear();
+    var month = new Date().getMonth();
+    var day = new Date().getDate();
+    var myEvents = { events: [] }; 
+    var users = []; 
+    var currentUserText = '{!$Label.CalendarShowPersonalCalendar}';
+    var allUsersText = '{!$Label.CalendarShowAllUsersCalendars}';
+    var lastCount = 0;
+    var lastModifiedDate = Date();
+    var weekStartsOnDay = {!$Label.CalendarFirstDayOfTheWeek};
+    
+    Visualforce.remoting.timeout = 120000; // Set timeout at page level
+        
+      
+var sUserId ='';
+var sRegion ;
+var sacctId;
+
+function getCalendarUsers()
+{
+    try {
+            //sRegion =$('.clsRegion :selected').text();
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.SJM_CalendarViewportCC.getUsersList}',                    
+                    sRegion , 
+                    handleUserList
+                );            
+            } 
+            catch (e) {
+           alert (e);
+            }
+
+}
+
+function getCalendarAccounts()
+{
+    try {
+                //sRegion =$('.clsRegion :selected').text();
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.SJM_CalendarViewportCC.getAcctsList}',                    
+                    sRegion , 
+                    handleAccountList
+                ); 
+            } 
+            catch (e) {
+               alert (e);
+            }
+
+}
+
+function handleUserList(result, user) { 
+var options = [];
+       options.push('<option value="',
+           '', '">',
+          '--All Users--', '</option>');
+            $("#cmbUser").html(options.join(''));
+            for(userIndex in result) {             
+                var userDetItem = {};
+                var userDet = result[userIndex ]; 
+                if (typeof userDet.id != "undefined" ) {                
+                    userDetItem.id = userDet.id;
+                    userDetItem.name = userDet.name; 
+                    options.push('<option value="',
+                    userDet.id, '">',
+                    userDet.name, '</option>');
+                    $("#cmbUser").html(options.join(''));
+                   }
+                }
+                
+                 getRemoteEvents();
+            }    
+                       
+            
+       function handleAccountList(result, account) { 
+       var options1 = [];
+       options1.push('<option value="',
+           '', '">',
+              '--All Accounts--', '</option>');         
+           $("#cmbAccounts").html(options1.join(''));
+            for(accountIndex in result) {
+                  var acctDetItem = {};
+                  var acctDet = result[accountIndex];               
+                if (typeof acctDet.id != "undefined" ) { 
+                    acctDetItem.id = acctDet.id;
+                    acctDetItem.name = acctDet.name; 
+                    options1.push('<option value="',
+                      acctDet.id, '">',
+                      acctDet.name, '</option>');
+                    $("#cmbAccounts").html(options1.join(''));                   
+                   
+                   }
+                }
+                
+         getRemoteEvents();
+  }       
+                    
+            
+   function getUserEvents(userId){ 
+   if(userId == ''){  
+       sUserId = '';
+   }
+   else
+   {
+    sUserId = userId;
+   }
+       getRemoteEvents();
+   };
+   
+   
+   function getAcctEvents(acctId){ 
+       if(acctId == ''){  
+           sacctId = '';
+       }
+       else
+       {
+           sacctId = acctId;
+       }
+       getRemoteEvents();
+   };
+        
+        jQuery(document).ready (function() {           
+            sRegion = $('.clsRegion :selected').text();
+            $( ".clsRegion" ).change(function(){
+            var selected = [ ];
+            for (var i = 0; i < this.length; i++) {
+                if (this.options[i].selected) selected.push(this.options[i].value);
+            }
+            sRegion =  selected.join(",");
+            getCalendarUsers();
+            getCalendarAccounts();
+            });
+        
+             sacctId = $('#cmbAccounts :selected').text();
+             $( "#cmbAccounts" ).change(function(){
+                var selected = [ ];
+                for (var j = 0; j < this.length; j++) {
+                    if (this.options[j].selected) selected.push(this.options[j].value);
+                }
+                 sacctId = selected.join(",");
+                 getAcctEvents(sacctId);
+                 //alert(sacctId);
+             });
+             
+             sUserId = $('#cmbUser :selected').text();
+             $( "#cmbUser" ).change(function(){
+                var selected = [ ];
+                for (var k = 0; k < this.length; k++) {
+                    if (this.options[k].selected) selected.push(this.options[k].value);
+                }
+                 sUserId = selected.join(",");
+                 getUserEvents(sUserId);
+                 //alert(sUserId);
+             }); 
+                var shortDays = {!calendarDayNamesShort};
+                var longDays = {!calendarDayNamesLong};
+                var shortMonths = {!calendarMonthNamesShort};
+                var longMonths = {!calendarMonthNamesLong};
+                var timeSeparatorText = '{!$Label.CalendarItemTitleTimeSeparator}';
+                var buttonText = {};
+                
+                buttonText.today = '{!$Label.CalendarNavigationButtonToday}';
+                buttonText.lastWeek = '{!$Label.CalendarNavigationButtonPrevious}';
+                buttonText.nextWeek = '{!$Label.CalendarNavigationButtonNext}';
+
+                jQuery("#lastCount").val(lastCount);
+                jQuery("#lastModifiedDate").val(lastModifiedDate);
+
+                jQuery('#calendarToggle').attr('calendar','currentUser');
+                toggleCalendarAccess();
+                jQuery('#calendar').weekCalendar(
+                    {
+                        data: function (start, end, callback) { 
+                                            callback(myEvents); 
+                                        }, 
+                        timeslotsPerHour: 4,
+                        allowCalEventOverlap: true,
+                        allowEventCreation: false,
+                        allowEventDelete: false,
+                        resizable: function(calEvent, element) {
+                          return false;
+                        },
+                        daysToShow: 5,
+                        firstDayOfWeek: weekStartsOnDay,                        
+                        overlapEventsSeparate: true,
+                        shortDays: shortDays,
+                        longDays: shortDays,
+                        shortMonths: shortMonths,
+                        longMonths: longMonths,
+                        totalEventsWidthPercentInOneColumn : 95,
+                        buttonText: buttonText, 
+                        timeSeparator: ' ' + timeSeparatorText + ' ', 
+                        users: {},
+                        showAsSeparateUsers: false, 
+                        height: function($calendar) {
+                            return jQuery(window).height() - jQuery('h1').outerHeight(true);
+                        },
+                        // compute dynamic options based on other config values
+                        _computeOptions: function() {
+                            var options = this.options;
+                            if (options.businessHours.limitDisplay) {
+                                options.timeslotsPerDay = options.timeslotsPerHour * (options.businessHours.end - options.businessHours.start);
+                                options.millisToDisplay = (options.businessHours.end - options.businessHours.start) * 3600000; // 60 * 60 * 1000
+                                options.millisPerTimeslot = options.millisToDisplay / options.timeslotsPerDay;
+                            } else {
+                                options.timeslotsPerDay = options.timeslotsPerHour * 24;
+                                options.millisToDisplay = MILLIS_IN_DAY;
+                                options.millisPerTimeslot = MILLIS_IN_DAY / options.timeslotsPerDay;
+                            }
+                            
+                            // Bramus! fix for configurable first day of week: rotate day labels
+                            if (options.firstDayOfWeek != 0)
+                            {
+                                rotate = function(a, p){ 
+                                    for(var l = a.length, p = (Math.abs(p) >= l && (p %= l), p < 0 && (p += l), p), i, x; p; p = (Math.ceil(l / p) - 1) * p - l + (l = p))
+                                        for(i = l; i > p; x = a[--i], a[i] = a[i - p], a[i - p] = x);
+                                    return a;
+                                };
+                                
+                                options.shortDays = rotate(options.shortDays, (-1) * options.firstDayOfWeek);
+                                options.longDays = rotate(options.longDays, (-1) * options.firstDayOfWeek);
+                            }
+                        },
+                        
+                        eventRender: 
+                            function(calEvent, $event) {
+                                var userColor = jQuery('#calendar').weekCalendar.users[calEvent.userId].userColor;
+                                var userLightColor = jQuery('#calendar').weekCalendar.users[calEvent.userId].userLightColor;
+                                userLightColor = 'white';
+                                if (calEvent.userId == jQuery('#currentUserId').val()) {
+                                    //userLightColor = '#EBF5FF';
+                                    userColor = '#1b62c0';
+                                    userLightColor = 'white';
+                                    //userColor = '#344A5F';
+                                }
+
+                                if (calEvent.end.getTime() < new Date().getTime()) {
+                                    $event.css('backgroundColor', '#bbb');
+                                    $event.find('.time').css({
+                                        backgroundColor: '#999',
+                                        border:'1px solid #888'
+                                    });
+                                }
+                                else {
+                                    if (calEvent.userId != jQuery('#currentUserId').val()) {
+                                        $event.css('backgroundColor', userLightColor ).css('border-color', userColor)
+                                        jQuery("div.wc-title",$event).css('color',userColor);
+                                    }
+                                }
+
+                                //$event.css('backgroundColor', userLightColor ).css('border-color', userColor).css('border','1px solid ' + userColor ).css('font-family','\'ProximaNovaSoft-Bold\',\'Lucida Grande\',Helvetica,Arial,Verdana,sans-serif');
+                                
+                                if(calEvent.rcrdTypeName == 'SJM Standard Event')
+                                {
+                                    $event.css('backgroundColor', '#545454').css('border-color', '#545454').css('border','1px solid ' + '#545454').css('font-family','\'ProximaNovaSoft-Bold\',\'Lucida Grande\',Helvetica,Arial,Verdana,sans-serif');
+                                }
+                                else
+                                {
+                                    if(calEvent.eventstatus == 'Uncovered')
+                                    {
+                                        $event.css('backgroundColor', userLightColor).css('border-color', '#ff9933').css('border','2px solid ' + '#ff9933').css('font-family','\'ProximaNovaSoft-Bold\',\'Lucida Grande\',Helvetica,Arial,Verdana,sans-serif');
+                                    }
+                                    else if(calEvent.eventstatus == 'Assigned')
+                                    {
+                                        $event.css('backgroundColor', userLightColor).css('border-color', '#009900').css('border','2px solid ' + '#009900').css('font-family','\'ProximaNovaSoft-Bold\',\'Lucida Grande\',Helvetica,Arial,Verdana,sans-serif');
+                                    }
+                                    else if(calEvent.eventstatus == 'Independent')
+                                    {
+                                        $event.css('backgroundColor', userLightColor).css('border-color', '#FFFF00').css('border','2px solid ' + '#FFFF00').css('font-family','\'ProximaNovaSoft-Bold\',\'Lucida Grande\',Helvetica,Arial,Verdana,sans-serif');
+                                    }
+                                    else
+                                    {
+                                        $event.css('backgroundColor', userLightColor).css('border-color', '#ff9933').css('border','2px solid ' + '#ff9933').css('font-family','\'ProximaNovaSoft-Bold\',\'Lucida Grande\',Helvetica,Arial,Verdana,sans-serif');  
+                                    }
+                                    
+                                }
+                                jQuery(":first-child" ,$event).css('backgroundColor', userColor ).css('border-color', userColor);
+                              
+                                jQuery("div.wc-title",$event).css('color',userColor);
+                                
+                            },
+                        eventNew: function(calEvent, $event) {
+                            
+                        },
+                        eventDrop: function(calEvent, $event) {
+                            //displayMessage('<strong>Moved Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+                        },
+                        eventResize: function(calEvent, $event) {
+                            //displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+                        },
+                        eventClick: function(calEvent, $event) {
+                            //displayMessage('<strong>Clicked Event</strong><br/>Start: ' + calEvent.start + ' - ' + calEvent.sfId + '<br/>End: ' + calEvent.end);
+                            sforce.one.navigateToSObject(calEvent.sfId,'detail');
+                        },
+                        eventMouseover: function(calEvent, $event) {
+                            //displayMessage('<strong>Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end + '<br/>' +calEvent.title);
+                        },
+                        eventMouseout: function(calEvent, $event) {
+                            //displayMessage('<strong>Mouseout Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+                            //displayMessage('Mouseout');
+                        },
+                        noEvents: function() {
+                            //displayMessage('There are no events for this week');
+                            refreshCalendar(false);
+                        }
+                       
+                    }
+                );
+                
+                function displayMessage(message) {                
+           
+                
+                if(message != 'Mouseout'){
+                jQuery('#message').show();
+                jQuery('#message').html(message).fadeIn();}
+                else{
+                jQuery('#message').hide();
+                }
+                    
+                }
+               
+                jQuery('<div id="message" class="ui-corner-all"></div>').prependTo(jQuery('body'));
+                updateEventsCountChanged();
+                setInterval("updateEventsCountChanged();",30000);
+            }
+        );
+        
+        function updateEventsCountChanged() {
+            var fromDate = jQuery('#calendar').weekCalendar("getCurrentFirstDay");
+            var toDate = jQuery('#calendar').weekCalendar("getCurrentLastDay");
+            var $hyperLink = jQuery('#calendarToggle');
+            var showCurrentUserCalendar = 'true';
+            var lastModifiedDate = new Date(jQuery('#lastModifiedDate').val());
+            var lastModifiedDate_utc = new Date(lastModifiedDate.getUTCFullYear(), lastModifiedDate.getUTCMonth(), lastModifiedDate.getUTCDate(),  lastModifiedDate.getUTCHours(), lastModifiedDate.getUTCMinutes(), lastModifiedDate.getUTCSeconds());            
+            
+            if ($hyperLink.attr('calendar') == 'allUsers') {
+                showCurrentUserCalendar = 'false';
+            }
+            
+            try {
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.SJM_CalendarViewportCC.getCalendarEventsCount4}', 
+                    fromDate.toISOString().replace('T',' ').replace('.000Z', ''),
+                    toDate.toISOString().replace('T',' ').replace('.000Z', ''),
+                    lastModifiedDate.toISOString().replace('T',' ').replace('.000Z', ''),
+                    showCurrentUserCalendar, 
+                    handleCountResult
+                );
+            }
+            catch (ex) {
+                alert(ex);
+            }
+        }
+        
+        function handleCountResult (result, event) {
+            var count = parseInt(result);
+            lastCount = jQuery("#lastCount").val();
+            if ( lastCount != count ) {
+                lastModifiedDate = Date();
+                jQuery("#lastModifiedDate").val(lastModifiedDate);
+                refreshCalendar();
+            }
+            jQuery("#lastCount").val(count);
+            
+            if (weekStartsOnDay == 0) {
+                jQuery("td.day-1").addClass('weekend-day');
+                jQuery("td.day-7").addClass('weekend-day');
+            } 
+            else {
+                if (weekStartsOnDay == 1) {
+                    jQuery("td.day-6").addClass('weekend-day');
+                    jQuery("td.day-7").addClass('weekend-day');
+                } 
+            }               
+        }
+
+        function refreshCalendar(control) {
+        
+            if (control) {
+                
+            }
+            getRemoteEvents();
+        }
+        
+        function createCalendarEvent() {
+            sforce.one.createRecord('Event','{!defaultRecordTypeId}');
+        }
+
+        function getRemoteEvents() {
+            var fromDate = jQuery('#calendar').weekCalendar("getCurrentFirstDay");
+            var toDate = jQuery('#calendar').weekCalendar("getCurrentLastDay");
+            var $hyperLink = jQuery('#calendarToggle');
+            var showCurrentUserCalendar = 'true';
+            
+            if ($hyperLink.attr('calendar') == 'allUsers') {
+                showCurrentUserCalendar = 'false';
+            }
+           //sRegion =$('.clsRegion :selected').text();
+            try {
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.SJM_CalendarViewportCC.getCalendarEvents3}', 
+                    fromDate.toISOString().replace('T',' ').replace('.000Z', ''),
+                    toDate.toISOString().replace('T',' ').replace('.000Z', ''),
+                    showCurrentUserCalendar,
+                    sRegion, 
+                    sUserId,
+                    sacctId,
+                    handleResult
+                );
+            } 
+            catch (e) {
+            }
+        }
+    
+        function handleResult(result, event) { 
+            myEvents.events = [];
+            users = {};
+            userMap = {};
+            for(eventIndex in result) {
+                var eventItem = {};
+                var event = result[eventIndex];
+                if (typeof event.Id != "undefined" ) {
+                    eventItem.id = event.Id;
+                    eventItem.start = new Date(parseInt(event.StartYear), parseInt(event.StartMonth), parseInt(event.StartDay), parseInt(event.StartHour), parseInt(event.StartMinute));
+                    eventItem.end = new Date(parseInt(event.EndYear), parseInt(event.EndMonth), parseInt(event.EndDay), parseInt(event.EndHour), parseInt(event.EndMinute));
+                    //eventItem.title = event.UserIdName; //event.Title;
+                    var eventBody = '';
+                    var prmcase = '';
+                    var prmdiagnosis = '';
+                    var physicianname = '';
+                    
+                    if (typeof event.Title != "undefined" ) {
+                        eventBody = event.Title ;
+                    };
+                    
+                    if (typeof event.PrmCasWillUse != "undefined" ) {
+                        prmcase = event.PrmCasWillUse;
+                    };
+                    if (typeof event.PrmDiagonosis != "undefined" ) {
+                        prmdiagnosis = event.PrmDiagonosis;
+                    };
+                    
+                    if (typeof event.ContIdName != "undefined" ) {
+                        physicianname = event.ContIdName;
+                    };
+                    
+                    //eventBody = eventBody  + '</br><b>' +event.UserIdName + '</b>';
+                    //eventItem.title = eventBody ;
+                    var starthours = event.StartHour;
+                    var ampm = (starthours < 12) ? 'AM' : 'PM';
+                    
+                    var eventStartHour ;
+                    var eventStartMint ;
+                    
+                    if (starthours > 12)
+                    {
+                        starthours  = starthours - 12 ; 
+                    }
+                    
+                   eventStartHour  = '' + starthours  ;
+                   eventStartMint = '' + event.StartMinute;
+                   var pad = '00';
+                                       
+                   if(event.RcrdTypeName != "SJM Standard Event")
+                    {
+                        eventItem.title = '<font color="black">' + (pad + eventStartHour).substring(eventStartHour.length) + ':'+ (pad + eventStartMint).substring(eventStartMint.length) + ' ' + ampm + '</font>' + '</br>' + event.AcctIdName + '</br>' + physicianname + '</br>' + prmcase + ' - ' + prmdiagnosis + '</br>' + event.UserIdName;
+                    } 
+                                       
+                    else
+                    {
+                        eventItem.title = '<font color="white">' + (pad + eventStartHour).substring(eventStartHour.length) + ':'+ (pad + eventStartMint).substring(eventStartMint.length) + ' ' + ampm + '</br>' + eventBody + '</br>' + event.AcctIdName + '</br>' + physicianname + '</br>' + prmcase + ' - ' + prmdiagnosis + '</br>' + event.UserIdName + '</font>';
+                    }
+                     
+                    //eventItem.title = '<font color="black">' + (pad + eventStartHour).substring(eventStartHour.length) + ':'+ (pad + eventStartMint).substring(eventStartMint.length) + ' ' + ampm + '</font>' + '</br>' + event.AcctIdName + '</br>' + physicianname + '</br>' + prmcase + ' - ' + prmdiagnosis + '</br>' + event.UserIdName;
+
+                       
+                    eventItem.sfId = event.SfId;
+                    eventItem.userId = event.UserId;
+                    eventItem.userIdName = event.UserIdName;
+                    eventItem.rcrdTypeName = event.RcrdTypeName;
+                    eventItem.eventstatus = event.EventStatus;
+                    userMap[event.UserId] = event.UserIdName;
+        
+                    myEvents.events.push(eventItem);
+                }
+            }
+            var colorIndex = 0;
+            for ( var userId in userMap ) {
+                users[userId] = ({userId: userId, userName : userMap[userId], userColor: getCalendarItemColor(colorIndex), userLightColor: getCalendarItemLightColor(colorIndex)});
+                //users[userId] = ({userId: userId, userName : userMap[userId],  userColor : '#1b62c0', userLightColor : '#1b62c0' });
+                colorIndex++;
+            }
+            jQuery('#calendar').weekCalendar.users = users;
+            jQuery('#calendar').weekCalendar("refresh");
+            jQuery('#lastModifiedDate').val(Date());
+            
+        }
+        
+        function getCalendarItemColor (colorIndex) {
+            var colors = {!calendarColors};
+            var length = colors.length;
+            var coloritem = colorIndex % length; 
+
+            return colors[coloritem];
+        }
+
+        function getCalendarItemLightColor (colorIndex) {
+            var colors = {!calendarLightColors};
+            var length = colors.length;
+            var coloritem = colorIndex % length; 
+
+            return colors[coloritem];
+        }
+                
+        function toggleCalendarAccess(IsdialogOpen) {
+        
+        var DialogOpt = {height: 90,
+                        width : 200,
+                        resizable: false,
+                         dialogClass:"alert",
+                         closeText: "hide"};
+          var sDialogText = '';              
+            var $hyperLink = jQuery('#calendarToggle');
+            var $label = jQuery('span',$hyperLink);
+            var $image = jQuery('img',$hyperLink);
+
+            if ($hyperLink.attr('calendar') == 'allUsers') {
+                $hyperLink.attr('calendar','currentUser');
+                
+            }
+            else {
+                $hyperLink.attr('calendar','allUsers');
+            }
+
+            if ($hyperLink.attr('calendar') == 'allUsers') {
+                //$label.text(currentUserText);
+                //$hyperLink.attr('title',currentUserText);
+                $hyperLink.parent().css('background',"linear-gradient(#2a93d5,#107abb)");
+                $image.attr('src','{!URLFOR($Resource.SF1_Support_Styling,'sf1support/images/User.png')}')
+                           // alert('Single User');
+                         
+               sDialogText = 'Switch to CurrentUser' ;           
+            }
+            else {
+                //$label.text(allUsersText);
+                //$hyperLink.attr('title',allUsersText);
+                $hyperLink.parent().css('background',"linear-gradient(#107abb,#2a93d5)");
+                $image.attr('src','{!URLFOR($Resource.SF1_Support_Styling,'sf1support/images/Users.png')}')
+                 //alert('Multiple Users');
+                                sDialogText = 'Switch to MultiUsers' ;
+            }
+                       if (IsdialogOpen =='Y'){
+                        $(".ui-dialog-titlebar").show();
+             $("#p").html('<font size="2">'+ sDialogText + '</font)' );
+             $('#p').dialog(DialogOpt );
+              $(".ui-dialog-titlebar").hide();
+
+            }
+               setTimeout(function(){  $("#p").dialog("close"); }, 2000);
+            refreshCalendar(false);
+        }
+        
+        function refreshCalendar1(e){
+        //sUserId = '';
+         getCalendarAccounts();
+         getCalendarUsers();
+         refreshCalendar(false);
+         
+        };
+    </script>
+    
+    <apex:outputText rendered="false">{!CalendarSQLStatement}</apex:outputText>
+    <input type="text" id="currentUserId" value="{!$User.Id}" style="display:none" />
+    <input type="text" id="lastCount" style="display:none" />
+    <input type="text" id="lastModifiedDate" style="display:none" />
+    <apex:form >
+       
+     <table width="100%" height="50px"><tr><td align="left">
+     <apex:outputlabel value="Region: " style="font:bold 14px normal"/>&nbsp;
+    <!--<apex:selectList styleClass="clsRegion" value="{!selectedCountry2}" multiselect="false" size="1" onchange="refreshCalendar1(this);" >
+      <apex:selectOptions value="{!UserRegions}" />           
+     </apex:selectList>-->
+      <apex:selectList size="4" styleClass="clsRegion" value="{!selectedCountry2}" multiselect="true" >
+        <apex:selectOptions value="{!UserRegions}" />   
+     </apex:selectList>
+     </td>
+     <td align="left"> 
+     <apex:outputlabel value="Accounts: " style="font:bold 14px normal"/>&nbsp;
+     <select id="cmbAccounts" >
+     </select>&nbsp;
+     <apex:outputlabel value="Users: " style="font:bold 14px normal"/>&nbsp;&nbsp;
+     <select id="cmbUser" >
+     </select></td>
+     
+     <td > <div align="right" >
+    <table style="width: 50px ; background: linear-gradient(rgb(42, 147, 213), rgb(16, 122, 187));"><tr>
+    <td align="center" style="width:50px;display:none;" >
+        <b><a title="{!$Label.CalendarCreateItem}" href="javascript:void(0);" style="color:white;text-decoration:none;" onclick="createCalendarEvent();" >
+            <span class="assistiveText">
+   
+            </span>
+                + 
+        </a></b>
+    </td>
+    <td align="center" >
+        <a class="publisherActivator" title="{!$Label.CalendarReloadData}" href="javascript:void(0);" onclick="refreshCalendar(this);" >
+            <span class="assistiveText">
+                
+           
+                
+            </span>
+            <apex:image url="{!URLFOR($Resource.SF1_Support_Styling,'sf1support/images/Refresh.png')}" width="25" height="25"  />
+        </a>
+    </td>
+    <td align="center" style="display:none;">
+        <a id="calendarToggle"  title="{!$Label.CalendarShowPersonalCalendar}" calendar="allUsers" href="javascript:void(0);" onclick="toggleCalendarAccess('Y');" >
+            <span class="assistiveText">
+                
+              
+                 </span>
+            <apex:image url="{!URLFOR($Resource.SF1_Support_Styling,'sf1support/images/User.png')}" id="imgUser" width="15" height="15" style="display:none;"/>
+        </a>
+     </td></tr></table>
+    </div>
+ </td>
+ </tr>
+ <tr>
+ <td align="left" style="font:normal 11px normal" >
+ (Hold Ctrl+Select Multiple Regions)
+ </td>
+ <!--<div align="left" >
+ <table><tr><td align="left" style="font:normal 10px normal">
+ (Hold Ctrl+Select to select multiple Regions)
+ </td></tr></table></div>-->
+ </tr> 
+ </table>
+   
+    
+  
+</apex:form>
+  
+
+    <div id="calendar"></div>    
+       
+   <div id="p" ><p  ></p></div>
+    
+    <div id="calendarUsers" style="display:none;">
+             <br></br>
+               <table style="width:100%;" id="tblUsers">
+                 <tr>
+                 <td></td>
+                 </tr>
+               </table>
+              </div>
+</apex:page>

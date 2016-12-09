@@ -1,0 +1,138 @@
+<apex:page standardController="Candidate__c" docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false" readOnly="true" extensions="candidateViewExtension" action="{!refreshPII_Info}">  
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />           
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system.css')}" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            
+            <!-- Loading all assets including stylesheet for page, bootstrap, font-awesome and date-picker -->        
+            <!--
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Assets, '/css/bootstrap.min.css')}" />
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Procedure, '/css/style.css')}" /> 
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_FontAwesome, 'css/font-awesome.min.css')}" />
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Datepicker, 'css/bootstrap-datepicker3.min.css')}" />
+-->
+            
+        </head>
+        <!--<body> -->
+        
+        <!--<apex:form > -->
+        <apex:outputText value="{!ErrorMessage}" styleClass="alert alert-danger" rendered="{!ErrorMessage!=null}"/>
+        <Apex:pageMessages />
+        <output type="hidden" id="externalId" value="{!Candidate__c.External_System_Id__c}" />
+        
+        <div class="slds-panel__section" >
+            <div class="slds-form-element slds-hint-parent">
+                <ul class="slds-list--horizontal">
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">First Name</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!FirstName}</span>
+                        </div>
+                    </li>
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">Last Name</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!LastName}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="slds-form-element slds-hint-parent">
+                <ul class="slds-list--horizontal">
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">Date Of Birth</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static"><apex:outputText value="{0,date,MM/dd/yyyy}"><apex:param value="{!DateOfBirth}"/></apex:outputText></span>
+                        </div>
+                    </li>
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">Gender</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!Gender}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="slds-form-element slds-hint-parent">
+                <ul class="slds-list--horizontal">
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">Address Line1</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!AddressLine1}</span>
+                        </div>
+                    </li>
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">Address Line2</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!AddressLine2}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="slds-form-element slds-hint-parent">
+                <ul class="slds-list--horizontal">
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">City</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!AddressCity}</span>
+                        </div>
+                    </li>
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">State/Province</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!AddressState}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="slds-form-element slds-hint-parent">
+                <ul class="slds-list--horizontal">
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">Country</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!AddressCountry}</span>
+                        </div>
+                    </li>
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">Email</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!Candidate__c.Email__c}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="slds-form-element slds-hint-parent">
+                <ul class="slds-list--horizontal">
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">Cell Phone</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!CellPhone}</span>
+                        </div>
+                    </li>
+                    <li class="slds-size--1-of-2 slds-has-divider--bottom">
+                        <span class="slds-form-element__label">Home Phone</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">{!HomePhone}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>                     
+        <!--</apex:form> -->
+        
+        <!--</body> -->
+        <script type="text/javascript" src="{!URLFOR($Resource.SJM_Assets, 'js/jquery-1.11.3.min.js')}">  </script>
+        <script>
+            $(function(){
+                $("body").css("padding", "0px");
+            });
+        </script>
+    </html>
+</apex:page>

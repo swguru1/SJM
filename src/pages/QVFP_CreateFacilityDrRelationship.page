@@ -1,0 +1,160 @@
+<apex:page controller="QCreateFacilityDrRelationship" action="{!Init}" >
+
+<apex:form >
+    <apex:pageMessages />
+    <apex:outputPanel id="Relation360Panel">
+    
+    <apex:sectionHeader title="{!mp_strTitle}"  rendered="{!NOT(mp_bSelectRT)}"></apex:sectionHeader>
+         <apex:inputHidden id="HiddenDivision" value="{!mp_strDivision}" />
+    
+        <apex:pageblock rendered="{!NOT(mp_bSelectRT) && NOT(m_DisplayCallTypeField)}">
+            <apex:pageblockbuttons location="top">
+                <apex:commandButton action="{!UseForSystemAdmin}" value="Continue without Affiliation" rerender="Relation360Panel, CallRecordType" rendered="{!mp_bToCall && mp_bNoRecord && NOT(m_DisplayCallTypeField)}" />
+                <!-- <apex:commandButton action="{!Use}" value="Continue without Facility" rendered="{!mp_bToCall && mp_bNoRecord && NOT(mp_bIsSystemAdmin)}" /> -->
+                
+                <apex:commandButton action="{!CreateNewFacilityDrRelationship}" value="Create a new Affiliation" rendered="{!mp_bNoRecord}" />
+                <apex:commandButton action="{!Back}" value="Back" />
+            </apex:pageblockbuttons>
+            <apex:dataTable var="relation" value="{!liRelations}" rendered="{!NOT(mp_bNoRecord)}" styleClass="list AccoutTable" headerClass="headerRow" rowClasses="odd,even">
+                <apex:column >
+                    <apex:facet name="header"></apex:facet>
+                    <apex:commandButton action="{!Save}" value="Use" styleClass="btnImportant" rerender="Relation360Panel" rendered="{!NOT(mp_bToCall)}">
+                        <apex:param value="{!relation.Id}" name="relalionid" />
+                    </apex:commandButton>
+
+                    <apex:commandButton action="{!UserUse}" value="Use" styleClass="btnImportant" rerender="Relation360Panel, CallRecordType" rendered="{!mp_bToCall && NOT(mp_bIsSystemAdmin)}">
+                        <apex:param value="{!relation.Account__c}" name="acctid" assignto="{!mp_strAcctId}"/>
+                        <apex:param value="{!relation.Contact__c}" name="conid" assignto="{!mp_strConId}"/>
+                    </apex:commandButton>
+                    <apex:commandButton action="{!UseForSystemAdmin}" value="Use" styleClass="btnImportant" rerender="Relation360Panel, CallRecordType" rendered="{!mp_bToCall && mp_bIsSystemAdmin}">
+                        <apex:param value="{!relation.Account__c}" name="acctid" assignto="{!mp_strAcctId}"/>
+                        <apex:param value="{!relation.Contact__c}" name="conid" assignto="{!mp_strConId}"/>
+                    </apex:commandButton>
+                </apex:column>
+                
+                <apex:column width="5%">
+                    <apex:facet name="header">Primary Relationship?</apex:facet>
+                    <apex:outputField value="{!relation.Primary__c}" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Facility</apex:facet>
+                    <apex:outputField value="{!relation.Account__c}" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Doctor</apex:facet>
+                    <apex:outputField value="{!relation.Contact__c}" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Job Title</apex:facet>
+                    <apex:outputField value="{!relation.Role__c}" />
+                </apex:column>
+                
+            </apex:dataTable>
+        </apex:pageblock>
+    </apex:outputPanel> 
+    
+    <apex:outputPanel id="CallRecordType">
+        <apex:sectionHeader title="New Call Record" subtitle="Select Call Record Type" rendered="{!mp_bSelectRT}"></apex:sectionHeader>
+        <apex:pageblock rendered="{!mp_bSelectRT}" title="Select Call Record Type">
+            <apex:pageblockbuttons location="bottom">
+                <apex:commandButton action="{!UseCallTypeField}" value="Continue"  rerender="CallRecordType, SelectCallRecordTypeField"/>
+                <apex:commandButton action="{!Back}" value="Cancel" />
+            </apex:pageblockbuttons>
+            <apex:pageBlockSection columns="2">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Record Type of new record" for="rtlist" />
+                    <apex:selectlist id="rtlist" value="{!mp_strRTid}" size="1">
+                        <apex:selectOptions value="{!mp_liCallRecordType}" />
+                    </apex:selectlist>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+        
+        <apex:outputPanel rendered="{!mp_bSelectRT}">
+            <apex:pageblock >
+                <div style="width:400px">
+                    <h3>Available Call Record Record Types</h3><br/><br/> 
+                    <apex:pageBlockTable value="{!mp_liCallDescript}" var="rt" styleClass="list" headerClass="headerRow" rowClasses="odd,even">
+                        <apex:column >
+                            <apex:facet name="header">Record Type Name</apex:facet>
+                            <apex:outputText value="{!rt.Name}" />
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Description</apex:facet>
+                            <apex:outputText value="{!rt.Description}" />
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </div>
+            </apex:pageblock>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="SelectCallRecordTypeField">
+        <apex:sectionHeader title="Call Type" subtitle="Select Call Type" rendered="{!m_DisplayCallTypeField}"></apex:sectionHeader>
+        <apex:pageblock rendered="{!m_DisplayCallTypeField}" title="Select Call Type">
+             <apex:pageblockbuttons location="bottom">
+                <apex:commandButton id="DisplayExecutionPlan" action="{!DisplayExecutionPlan}" value="Continue" styleClass="btnImportant" rerender="SelectCallRecordTypeField, SelectBPO"/>
+                <apex:commandButton action="{!Back}" value="Cancel" />
+            </apex:pageblockbuttons>
+            <apex:pageBlockSection columns="2">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Division" for="rtlist3" />
+                    <apex:inputField value="{!sCallRecord.Division__c}" required="true"/>                    
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Call Type" for="rtlist" />
+                    <apex:inputField value="{!sCallRecord.Call_Type__c}" />                    
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Product Group / Procedure / Therapy" for="rtlist1" />
+                    <apex:inputField value="{!sCallRecord.Product_Group_Proced_Therapy__c}" />                    
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Product" for="rtlist4" />
+                    <apex:inputField value="{!sCallRecord.Product__c}" />                    
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Campaign" for="rtlist2" />
+                    <apex:inputField value="{!sCallRecord.Campaign__c}" />                    
+                </apex:pageBlockSectionItem>
+              </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="SelectBPO">
+        <apex:pageblock rendered="{!mp_bBPO}" title="Relate this record to execution plan">
+            <apex:pageblockbuttons location="top">
+                <apex:commandButton action="{!Use}" value="Do Not Relate" styleClass="btnImportant" rerender="SelectBPO" />
+            </apex:pageblockbuttons>
+            <apex:dataTable var="BPO" value="{!mp_liExecutionPlanActivity}" styleClass="list AccoutTable" headerClass="headerRow" rowClasses="odd,even">
+                <apex:column >
+                    <apex:facet name="header"></apex:facet>
+                    <apex:commandButton action="{!Use}" value="Use" styleClass="btnImportant" rerender="SelectBPO">
+                        <apex:param value="{!BPO.Name}" name="bporelalionid" />
+                    </apex:commandButton>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Name</apex:facet>
+                    <apex:outputField value="{!BPO.ExecutionPlan__r.Name}" />
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Description</apex:facet>
+                    <apex:outputField value="{!BPO.Description__c}" />
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Quantity</apex:facet>
+                    <apex:outputField value="{!BPO.Quantity__c}" />
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Type</apex:facet>
+                    <apex:outputField value="{!BPO.Type__c}" />
+                </apex:column>
+            </apex:dataTable>
+        </apex:pageblock>
+    </apex:outputPanel>
+    
+</apex:form>
+</apex:page>

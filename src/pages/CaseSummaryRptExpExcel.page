@@ -1,0 +1,46 @@
+<apex:page showHeader="false" cache="true" standardStylesheets="false" sidebar="true"  controller="CaseSummaryRpt" contentType="application/vnd.ms-excel#Case Summary Report.xls">  
+<!-- contentType="application/vnd.ms-excel#Case Summary Report.xls" renderAs="PDF" -->
+<table>
+<tr>
+<td style="background-color:#40B070; color: #ffffff; font-weight: bold;">Assignee </td>
+<td style="background-color:#40B070;color: #ffffff; font-weight: bold;">Event Details</td>
+</tr>
+<apex:repeat value="{!eventsM}" var="vlistEvents">
+<tr>
+<td>
+<p><div>{!vlistEvents.UserIdName}</div></p></td>
+<td>
+<p>
+<span style="display:block;">{!vlistEvents.EvtStartDate}</span>
+<br style="mso-data-placement:same-cell;" />
+<span style="display:block;">{!vlistEvents.title}</span>
+<br style="mso-data-placement:same-cell;" />
+<span style="display:block;">{!vlistEvents.AcctIdName}</span>
+<br style="mso-data-placement:same-cell;" />
+<span style="display:block;">{!vlistEvents.PrmDiagonosis}</span>
+<br style="mso-data-placement:same-cell;" />
+<span style="display:block;">{!vlistEvents.ContIdName}</span>
+<br style="mso-data-placement:same-cell;" />
+<span style="display:block;">{!vlistEvents.Description}</span>
+</p>
+</td>
+</tr>
+</apex:repeat>
+</table>
+<!--<apex:pageBlock id="ThePage">
+   <apex:pageBlockSection >
+     <apex:pageBlockTable value="{!eventsM}" var="vlistEvents">
+         <apex:column headerValue="FCE Name" value="{!vlistEvents.UserIdName}"/>
+         <apex:column headerValue="Case Date" value="{!vlistEvents.EvtStartDate}"/>
+         <apex:column headerValue="Hospital Name" value="{!vlistEvents.AcctIdName}"/>
+         <apex:column headerValue="Physician Name" value="{!vlistEvents.ContIdName}"/>
+         <apex:column headerValue="Primary Case" value="{!vlistEvents.PrmCasWillUse}"/>
+         <apex:column headerValue="Primary Diagnosis" value="{!vlistEvents.PrmDiagonosis}"/>
+         <apex:column headerValue="Case Title" value="{!vlistEvents.title}"/>
+         <apex:column headerValue="Call in Date" value="{!vlistEvents.CallInDate}"/>
+         <apex:column headerValue="Comments" value="{!vlistEvents.Description}"/>
+         
+      </apex:pageBlockTable>
+   </apex:pageBlockSection>   
+</apex:pageBlock> -->  
+</apex:page>

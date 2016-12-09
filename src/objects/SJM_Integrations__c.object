@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Holds Salesforce to SJM webservice credentials and endpoints</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Web_Service_Endpoint__c</fullName>
+        <description>URL endpoint of webserivce</description>
+        <externalId>false</externalId>
+        <label>Web Service Endpoint</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Web_Service_Name__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>General name of the webservice.</description>
+        <externalId>false</externalId>
+        <label>Web Service Name</label>
+        <length>50</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Web_Service_Password__c</fullName>
+        <description>Webservice password</description>
+        <externalId>false</externalId>
+        <label>Web Service Password</label>
+        <length>50</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Web_Service_User__c</fullName>
+        <description>Webservice user name</description>
+        <externalId>false</externalId>
+        <label>Web_Service_User</label>
+        <length>50</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>SJM Integrations</label>
+    <visibility>Protected</visibility>
+</CustomObject>

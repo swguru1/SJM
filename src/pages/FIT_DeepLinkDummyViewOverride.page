@@ -1,0 +1,17 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" standardController="FIT_DeepLinkDummy__c">
+    <script type="text/javascript">
+    function isLightningExperienceOrSalesforce1() {
+        return((typeof sforce != 'undefined') && sforce && (!!sforce.one));
+    }
+
+    alert("query: " + window.location.search);
+    //alert("window.location: " + window.location);
+    //alert("document.referrer: " + document.referrer);
+    //is this SF1 or Lightning Experience?
+    if( isLightningExperienceOrSalesforce1() ) {
+        sforce.one.navigateToURL("{!URLFOR($Page.FIT_FieldInventoryTracking & "?id=" & FIT_DeepLinkDummy__c.Id)}", true);
+    } else {
+        window.location = "{!URLFOR($Action.FIT_DeepLinkDummy__c.View, FIT_DeepLinkDummy__c.id, null, true)}";
+    }
+    </script>
+</apex:page>

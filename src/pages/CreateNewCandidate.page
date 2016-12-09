@@ -1,0 +1,383 @@
+<apex:page standardController="Candidate__c" extensions="candidateControllerExtension" showHeader="false" standardStylesheets="true" sidebar="true" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" id="createNew">  
+    <!-- Loading all assets including stylesheet for page, bootstrap, font-awesome and date-picker -->
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Assets, '/css/bootstrap.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Procedure, '/css/style.css')}" /> 
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_FontAwesome, 'css/font-awesome.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Datepicker, 'css/bootstrap-datepicker3.min.css')}" />
+    
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />           
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system.css')}" /> 
+    
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:includeScript value="/canvas/sdk/js/publisher.js"/>
+        </head>
+        <body>
+            <apex:form id="createNewForm" >
+                <Apex:pageMessages />
+                <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap slds-is-editing">
+                    <div class="slds-form--stacked slds-grow slds-scrollable--y"></div>
+                    
+                    <div class="container">    
+                        <div class="row">
+                            <div class="col-lg-18 col-md-18 col-sm-18 col-xs-18 div-heading div-heading-padding">New Candidate</div>  
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <input type="hidden" value="{!Candidate__c.Name}" id="candName" />
+                            <input type="hidden" value="{!Candidate__c.External_System_Id__c}" id="extSysId" />
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Stage Name</label>
+                                <apex:inputField value="{!Candidate__c.Stage_Name__c}" styleClass="form-control Stage_Name__c" />
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Source</label>
+                                <apex:inputField value="{!Candidate__c.Source__c}" styleClass="form-control Source__c" />
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Opt-Out Reason</label>
+                                <div id="selectContainer">
+                                    <apex:inputField value="{!Candidate__c.Opt_Out_Reason__c}" styleClass="form-control Opt_Out_Reason__c" />
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Referred By<apex:outputPanel layout="inline" styleClass="asterik" >*</apex:outputPanel></label>
+                                
+                                <apex:inputField value="{!Candidate__c.Referred_By__c}" styleClass="form-control Referred_By__c" id="ReferredBy" required="true">
+                                    <c:SJM_AutoComplete objectname="Contact" autocomplete_textbox="{!$Component.ReferredBy}" showAllContacts="true" id="t1"/>
+                                </apex:inputField>
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Referred To<apex:outputPanel layout="inline" styleClass="asterik" >*</apex:outputPanel></label>
+                                
+                                <apex:inputField value="{!Candidate__c.Referred_To__c}" styleClass="form-control Referred_To__c" id="ReferredTo" required="true">
+                                    <c:SJM_AutoComplete objectname="Contact" autocomplete_textbox="{!$Component.ReferredTo}" showAllContacts="true" id="t2"/>
+                                </apex:inputField>
+                            </div>                             
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">Candidate Profile</div>  
+                            <div id="divErrorMsg" style="display:none; font-weight: bold; color: #DC143C "></div>  
+                        </div>    
+                        
+                        
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">First Name<apex:outputPanel layout="inline" styleClass="asterik" >*</apex:outputPanel></label>
+                                <apex:inputText id="fname" value="{!FirstName}" maxlength="40" styleClass="form-control First_Name__c" required="true"  onkeypress="return funcName(event);" onblur="fnHideMsg();"/>
+                                <!--<div id="error-message" class="slds-form-element__help">Enter Alpha Numaric only</div>-->
+                            </div> 
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Last Name<apex:outputPanel layout="inline" styleClass="asterik" >*</apex:outputPanel></label>
+                                <apex:inputText id="lname" value="{!LastName}" maxlength="80" styleClass="form-control Last_Name__c" required="true" onkeypress="return funcName(event);" onblur="fnHideMsg();"/>
+                            </div> 
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Date Of Birth</label>
+                                <apex:inputText value="{!DateOfBirth}" id="DateOfBirth" styleClass="form-control Date_Of_Birth__c" style="cursor: pointer;" onfocus="DatePicker.pickDate(false, 'createNew:createNewForm:DateOfBirth', false);" onblur="validateDate(this);" /> 
+                            </div> 
+                            
+                
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Gender</label>
+                                <apex:selectList styleClass="form-control" value="{!Gender}" multiselect="false" size="1">
+                                    <apex:selectOptions value="{!genderOptions}" />
+                                </apex:selectList>
+                            </div>
+                           
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Address Line1</label>
+                                <apex:inputText id="adres1" value="{!AddressLine1}" maxlength="255" styleClass="form-control Address_Line1__c" onkeypress="return funcName(event);" onblur="fnHideMsg();"/>
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Address Line2</label>
+                                <apex:inputText id="adres2" value="{!AddressLine2}" maxlength="255" styleClass="form-control Address_Line2__c" onkeypress="return funcName(event);" onblur="fnHideMsg();"/>
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">City</label>
+                                <apex:inputText id="Addcity" value="{!AddressCity}" maxlength="40" styleClass="form-control City__c" onkeypress="return funcName(event);" onblur="fnHideMsg();"/>
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">State/Province</label>
+                                <apex:inputText id="Addstate" value="{!AddressState}" maxlength="20" styleClass="form-control State_Province__c" onkeypress="return funcName(event);" onblur="fnHideMsg();"/>
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Country</label>
+                                <apex:inputText id="Addcountry" value="{!AddressCountry}" maxlength="40" styleClass="form-control Country__c" onkeypress="return funcName(event);" onblur="fnHideMsg();"/>
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Email</label>
+                                <apex:inputText id="Addemail" value="{!Candidate__c.Email__c}" styleClass="form-control Email__c" onkeypress="return funcName(event);" onblur="fnHideMsg();"/>
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Cell Phone</label>
+                                <apex:inputText id="celphone" value="{!CellPhone}" styleClass="form-control Cell_Phone__c" onkeypress="return funcPhone(event);" onblur="fnHideMsg();"/>
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Home Phone</label>
+                                <apex:inputText id="hmphone" value="{!HomePhone}" styleClass="form-control Home_Phone__c" onkeypress="return funcPhone(event);" onblur="fnHideMsg();" />
+                            </div>                            
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">Schedule Info</div>  
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Schedule Date</label>
+                                <apex:inputField value="{!Candidate__c.Schedule_Date__c}" styleClass="form-control Schedule_Date__c" />
+                            </div> 
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Case Id</label>
+                                <apex:inputField value="{!Candidate__c.Case_Id__c}" styleClass="form-control Case_Id__c" />
+                            </div> 
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Procedure Covered By</label>
+                                <input type="hidden" value="{!Candidate__c.Procedure_Covered_By__r.Name}" id="coveredById" />
+                                <apex:inputField value="{!Candidate__c.Procedure_Covered_By__c}" styleClass="form-control Procedure_Covered_By__c" id="coveredBy">
+                                    <c:SJM_AutoComplete objectname="User" autocomplete_textbox="{!$Component.coveredBy}"/>
+                                </apex:inputField>
+                            </div> 
+                            
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Other Authorization Options</label>
+                                <apex:inputField value="{!Candidate__c.Other_Authorization_Options__c}" styleClass="form-control Other_Authorization_Options__c" />
+                            </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Account</label>
+                                <input type="hidden" value="{!Candidate__c.Account__r.Name}" id="accountId" />
+                                <apex:inputField value="{!Candidate__c.Account__c}" styleClass="form-control Account__c" id="account" >
+                                    <c:SJM_AutoComplete objectname="Account" autocomplete_textbox="{!$Component.account}"/>
+                                </apex:inputField>
+                            </div>                            
+                        </div>
+                        
+                        
+                        <!-- <apex:pageBlock rendered="{!Candidate__c.Name!=null}"> -->
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">Other Info</div>  
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Comments</label>
+                                <apex:inputTextarea value="{!Candidate__c.Comments__c}" styleClass="form-control" />
+                            </div>                                                                 
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">System Information</div>  
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                                <label class="no-margin label-new">Owner</label>
+                                <input type="hidden" value="{!Candidate__c.Owner.Name}" id="ownerId" />
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">{!UserId_Name}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- </apex:pageBlock> -->
+                        <div class="slds-panel__actions slds-has-divider--top">
+                            <br/>
+                            <div class="slds-grid slds-grid--align-center x-small-buttons--horizontal">
+                                <apex:commandButton id="cancelBtn" value="Cancel"  styleClass="btn btn-primary" action="{!Cancel}"  immediate="true" html-formnovalidate="formnovalidate"/>
+                                <apex:commandButton id="saveBtn" value="Save" styleClass="btn btn-primary" action="{!SaveRecord}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </apex:form>
+        </body> 
+        <script type="text/javascript" src="{!URLFOR($Resource.SJM_Datepicker, 'js/bootstrap-datepicker.min.js')}"></script>
+        <script type="text/javascript" src="{!URLFOR($Resource.SJM_Assets, 'js/jquery-1.11.3.min.js')}">  </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+        <script>
+        $(function(){
+            $('#divErrorMsg').hide();
+            $("select[size='1']").removeAttr("size");
+            
+            fixCalendar();
+             
+        });
+        
+        function fixCalendar(){
+            var select = document.getElementById('calYearPicker');
+            if (!select) return;
+            
+            select.innerHTML = '';
+            var startYear = new Date().getFullYear() - 95;
+            for (var year = startYear; year < startYear + 105; year++) {
+                select.options[select.options.length] = new Option(year, year);
+            }
+        }
+        
+        
+        // It is just a fix for iphone, cant find better that that
+    // This is known issue in sf1 that on some of inputs, it redirects to top in iphone
+    var a = navigator.userAgent;
+    if ((a.indexOf('Salesforce') != -1) && (a.indexOf('iPhone') != -1 || a.indexOf('iPad') != -1) && (a.indexOf('Safari') == -1)) {
+        var s = document.createElement('style');
+        if ((a.indexOf('OS/8') != -1 || a.indexOf('OS 8') != -1)) {
+            s.innerHTML = "html,html body{overflow:auto;-webkit-overflow-scrolling:touch;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        } else if ((a.indexOf('OS/9') != -1 || a.indexOf('OS 9') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        else if ((a.indexOf('OS/10') != -1 || a.indexOf('OS 10') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        else if ((a.indexOf('OS/11') != -1 || a.indexOf('OS 11') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        else if ((a.indexOf('OS/12') != -1 || a.indexOf('OS 12') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        document.getElementsByTagName('head')[0].appendChild(s);
+
+        //fix for freezing input fields on iOS
+        window.onkeydown=function(){window.focus();}
+    } 
+        
+        </script>
+        
+        <!-- This script should be added AFTER picklists on the page -->
+        <!-- This script restores the dependant picklist styling -->
+        <script>
+        // Mutation object
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+        
+        // Defining observer 
+        var observer = new MutationObserver(function(mutations) { 
+            // If the myListClass was removed from the list - re-assign it
+            if(!$('#selectContainer select').first().hasClass('form-control')){
+                $('#selectContainer select').first().addClass('form-control');
+            }
+        });
+        
+        // A target object fot the observer
+        var myNode = document.querySelector('#selectContainer'); 
+        
+        // Assigning observer to the dependent picklist
+        observer.observe(myNode, {
+            childList: true,
+            subtree: true,
+            attributes: true
+        });
+        </script>
+        
+        <script>
+        
+        function funcPhone(evt)
+        {
+            var nameRegxp1 = /^([0-9_.]+)$/;
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            var val= String.fromCharCode(charCode);
+            if (nameRegxp1.test(val) == true)
+            {
+               fnHideMsg() 
+               return true;     
+            }
+            else
+            {
+              $('#divErrorMsg').html( '* Enter Numbers only ');
+              $('#divErrorMsg').show();   
+              return false; 
+            }
+        }
+        
+        
+        function funcName(evt)
+        {
+            var nameRegxp1 = /^[A-Za-z0-9 _()^$!#@*?;,.:'"]$/;
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            var val= String.fromCharCode(charCode);
+           
+            if (nameRegxp1.test(val) == true)
+            {
+               fnHideMsg()
+               return true;     
+            }
+             $('#divErrorMsg').show();
+             $('#divErrorMsg').html( '* Special characters (- < > & % ) are not allowed');
+           return false; 
+        }
+        
+        var sPrevDate ;
+        
+        function validateDate(elm)
+        {
+            val= elm.value;
+            if(val != '' && sPrevDate != val)
+            {
+                 var dateEntered = val; 
+                 var  ddtArr = val.split('/');
+                 var month  = ddtArr[0];
+                 var date= ddtArr[1];
+                 var year = ddtArr[2];
+ 
+                 var dateToCompare = new Date(year, month - 1, date);
+
+                 var dte = new Date();
+                 var d = dte.getDate();
+                 var m = dte.getMonth() ;
+                 var y = dte.getFullYear();
+  
+                 var currentDate = new Date(y,m,d);
+   
+ 
+                if (dateToCompare > currentDate) 
+                {
+                      $('#divErrorMsg').html( '* Date Entered is greater than Current Date');
+                      $('#divErrorMsg').show();
+                      elm.focus();
+                      elm.value='';
+                }
+                else 
+                {
+                       fnHideMsg();
+                }
+        
+                sPrevDate = val ;
+            };
+        
+        }
+  
+          function fnHideMsg()
+          {   
+              $('#divErrorMsg').html(''); 
+              $('#divErrorMsg').hide(); 
+          };
+          
+        </script>
+    </html>
+</apex:page>

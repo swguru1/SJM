@@ -1,0 +1,15 @@
+<apex:page standardController="Account" standardStylesheets="false">
+
+<!--
+
+    <script>
+        setTimeout(function() {
+            sforce.one.navigateToURL('/apex/SJM_ProcedureEdit?accountId={!$CurrentPage.parameters.id}');
+        }, 1000);
+    </script>
+    <div style="text-align:center;vertical-align:middle;">
+        <img src="{!URLFOR($Resource.slds092, 'assets/images/spinners/slds_spinner_brand.gif')}" class="slds-spinner--large" align="center" /><br/>Loading Create Procedure...
+    </div>
+    
+    -->
+</apex:page>

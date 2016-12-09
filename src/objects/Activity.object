@@ -1,0 +1,1387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ComposeGmail</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>LogCall</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>MailMerge</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SendEmail</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewAll</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>ACTION__c</fullName>
+        <externalId>false</externalId>
+        <label>ACTION</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>AF_interests__c</fullName>
+        <externalId>false</externalId>
+        <label>AF - interests</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Access</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Diagnostics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ablation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Capital</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ANZ_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>ANZ ID</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASD__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>ASD</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Ablation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Ablation</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Access__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Access</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AccountREgion__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.USD_AF_Region__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Region</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_City__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.BillingCity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account City</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Country__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.BillingCountry</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Country</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_State__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.BillingState</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account State</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>SJM Customer, Prospective</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Sub_Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Sub Type of Activity</inlineHelpText>
+        <label>Activity Sub Type</label>
+        <picklist>
+            <controllingField>Activity_Type__c</controllingField>
+            <picklistValues>
+                <fullName>Congress</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer engagement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer engagement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Phone</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer engagement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Text</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer engagement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In-office meeting</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer engagement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Case coverage</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer engagement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customized education visit (Meeting with VIP customer at SJM facility)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer engagement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executive meeting (Meeting with customer and SJM executive outside of SJM)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer engagement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer dinner (Dinner meeting with no P2P education)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Customer engagement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grand rounds</fullName>
+                <default>false</default>
+                <controllingFieldValues>HCP Education</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product training</fullName>
+                <default>false</default>
+                <controllingFieldValues>HCP Education</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Programming support</fullName>
+                <default>false</default>
+                <controllingFieldValues>HCP Education</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peer-to-peer event (Dinner talk, webinar, symposium, lunch &amp; learn, preceptorship)</fullName>
+                <default>false</default>
+                <controllingFieldValues>HCP Education</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proctorship (Procedure support provided on site by experienced DBS surgeon)</fullName>
+                <default>false</default>
+                <controllingFieldValues>HCP Education</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peer-to-peer referral program (Local events designed to generate referrals for speaker)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Referral development</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient education event</fullName>
+                <default>false</default>
+                <controllingFieldValues>Referral development</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <controllingFieldValues>Referral development</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+                <controllingFieldValues>Referral development</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web search results</fullName>
+                <default>false</default>
+                <controllingFieldValues>Referral development</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient support page</fullName>
+                <default>false</default>
+                <controllingFieldValues>Referral development</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Press release</fullName>
+                <default>false</default>
+                <controllingFieldValues>Referral development</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Call center</fullName>
+                <default>false</default>
+                <controllingFieldValues>Patient Education</controllingFieldValues>
+                <controllingFieldValues>Referral development</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Community awareness day</fullName>
+                <default>false</default>
+                <controllingFieldValues>Referral development</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In-person (by rep/office)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Patient Education</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient website</fullName>
+                <default>false</default>
+                <controllingFieldValues>Patient Education</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DVD</fullName>
+                <default>false</default>
+                <controllingFieldValues>Patient Education</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brochure</fullName>
+                <default>false</default>
+                <controllingFieldValues>Patient Education</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient Ambassador</fullName>
+                <default>false</default>
+                <controllingFieldValues>Patient Education</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Activity Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Customer engagement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HCP Education</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Referral development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient Education</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DBS Implant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DBS Follow Up</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Revision</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Physician Training</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Assignment_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Assignment Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Uncovered</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Independent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CRM__c</fullName>
+        <externalId>false</externalId>
+        <label>CRM-interests</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Low Voltage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Heart Failure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Connectivity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Call_in_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Call in Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Caller_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Caller Name</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Caller_Phone__c</fullName>
+        <externalId>false</externalId>
+        <label>Caller Phone</label>
+        <required>false</required>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Candidate_Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Candidate Stage</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Capital__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Capital</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Connectivity__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Connectivity</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Diagnostic__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Diagnostic</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>End_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>ActivityDateTime + (DurationInMinutes / 1440)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>End Time</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Event_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Event Completed</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Event_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;Procedure&quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Event Type</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Event_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))</formula>
+        <label>Event URL</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Executive_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Executive Details</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Executive_Team_Notes_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Executive Team Notes 2</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Executive_Team_Notes_3__c</fullName>
+        <externalId>false</externalId>
+        <label>Executive Team Notes 3</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Executive_Team_Notes__c</fullName>
+        <description>This field is only visible to the executive team</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is only visible to the executive team</inlineHelpText>
+        <label>Executive Team Notes</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FFR__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>FFR</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Heart_Failure__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Heart Failure</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>LAA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>LAA</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Legacy__c</fullName>
+        <externalId>true</externalId>
+        <label>Legacy AppntID</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Low_Voltage__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Low Voltage</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>NEED__c</fullName>
+        <externalId>false</externalId>
+        <label>NEED</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>OCT__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>OCT</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OpportunityStage__c</fullName>
+        <externalId>false</externalId>
+        <label>OpportunityStage</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owner_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName &amp; &quot; &quot; &amp; Owner:User.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Owner Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PDA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>PDA</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PFO__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>PFO</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PS_Modified__c</fullName>
+        <externalId>false</externalId>
+        <label>PS_Modified</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Patient_Last_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Patient Last Name</label>
+        <length>30</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary_Case_Will_Use__c</fullName>
+        <externalId>false</externalId>
+        <label>Primary Case Will Use</label>
+        <picklist>
+            <controllingField>Primary_Diagnosis__c</controllingField>
+            <picklistValues>
+                <fullName>NavX</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>Unknown</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Array</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>Unknown</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Catheter Eval</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Agilis Eval</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PTO</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In-Service</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Install</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Conference</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unavailable</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vacation</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sick Day</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Holiday</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Research</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Preventative Maintenance</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Travel</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AV Node</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>Device Clinic</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>Unknown</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Appointment</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM Coverage</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Diagnosis__c</fullName>
+        <externalId>false</externalId>
+        <label>Primary Diagnosis</label>
+        <picklist>
+            <picklistValues>
+                <fullName>AFIB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AFL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ATACH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AV Node</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AVNRT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Device Clinic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IST</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PVC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PVI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RVOT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sinus Node</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SVT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WPW</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Procedure__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Procedure</label>
+        <referenceTo>Procedure__c</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_Call_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Call ID</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Renal_D__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Renal D</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SI_interests__c</fullName>
+        <externalId>false</externalId>
+        <label>SI - interests</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ASD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LAA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PDA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PFO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VSD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SJM_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.SJM_ID__c</formula>
+        <label>SJM Id</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SMART_GOAL_OVERVIEW__c</fullName>
+        <defaultValue>&quot;&lt;ENTER YOUR SMART GOAL HERE&gt;&quot;</defaultValue>
+        <description>This is one sentence that encapsulates your SMART GOAL</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is one sentence that encapsulates your SMART GOAL</inlineHelpText>
+        <label>SMART GOAL OVERVIEW</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Search_Terms__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.Search_2__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Search Terms</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Secondary_Case_Will_Use__c</fullName>
+        <externalId>false</externalId>
+        <label>Secondary Case Will Use</label>
+        <picklist>
+            <controllingField>Secondary_Diagnosis__c</controllingField>
+            <picklistValues>
+                <fullName>NavX</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>Unknown</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Array</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>Unknown</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Catheter Eval</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Agilis Eval</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PTO</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In-Service</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Install</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Conference</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unavailable</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vacation</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sick Day</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Holiday</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Research</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Preventative Maintenance</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Travel</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <controllingFieldValues>AFIB</controllingFieldValues>
+                <controllingFieldValues>AFL</controllingFieldValues>
+                <controllingFieldValues>ATACH</controllingFieldValues>
+                <controllingFieldValues>AV Node</controllingFieldValues>
+                <controllingFieldValues>AVNRT</controllingFieldValues>
+                <controllingFieldValues>Device Clinic</controllingFieldValues>
+                <controllingFieldValues>IST</controllingFieldValues>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+                <controllingFieldValues>PVC</controllingFieldValues>
+                <controllingFieldValues>PVI</controllingFieldValues>
+                <controllingFieldValues>RVOT</controllingFieldValues>
+                <controllingFieldValues>SVT</controllingFieldValues>
+                <controllingFieldValues>Sinus Node</controllingFieldValues>
+                <controllingFieldValues>Unknown</controllingFieldValues>
+                <controllingFieldValues>VT</controllingFieldValues>
+                <controllingFieldValues>WPW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Appointment</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM Coverage</fullName>
+                <default>false</default>
+                <controllingFieldValues>OTHER</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Secondary_Diagnosis__c</fullName>
+        <externalId>false</externalId>
+        <label>Secondary Diagnosis</label>
+        <picklist>
+            <picklistValues>
+                <fullName>AFIB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AFL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ATACH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AV Node</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AVNRT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Device Clinic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IST</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PVC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PVI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RVOT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sinus Node</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SVT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WPW</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SortByUncovered__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(CONTAINS(Owner:User.LastName , &apos;Uncovered&apos;), &apos;True&apos;,&apos;False&apos;)</formula>
+        <label>SortByUncovered</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>ActivityDateTime</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Start Time</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Confirmed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>User_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.User_Category__c</formula>
+        <label>User Category</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VSD__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>VSD</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Vascular_Closure__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Vascular Closure</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Vascular_Interests__c</fullName>
+        <externalId>false</externalId>
+        <label>Vascular - Interests</label>
+        <picklist>
+            <picklistValues>
+                <fullName>OCT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FFR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VCD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RENAL D</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>fceEmail__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.Email</formula>
+        <label>fceEmail</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fcePhone__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.Phone</formula>
+        <label>fcePhone</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fceRegion__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.Region__c</formula>
+        <label>fceRegion</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <listViews>
+        <fullName>MyActivities</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Activities</label>
+    </listViews>
+    <listViews>
+        <fullName>MyDelegatedActivities</fullName>
+        <filterScope>Delegated</filterScope>
+        <label>My Delegated Activities</label>
+    </listViews>
+    <listViews>
+        <fullName>MyTeamsActivities</fullName>
+        <filterScope>Team</filterScope>
+        <label>My Team&apos;s Activities</label>
+    </listViews>
+    <listViews>
+        <fullName>TodaysTasks</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>TASK.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>ACTIVITY.TASK</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>TASK.DUE_DATE</field>
+            <operation>lessThan</operation>
+            <value>TOMORROW</value>
+        </filters>
+        <label>Today&apos;s Tasks</label>
+    </listViews>
+    <listViews>
+        <fullName>UpcomingEvents</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACTIVITY.TASK</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>TASK.DUE_DATE</field>
+            <operation>greaterThan</operation>
+            <value>YESTERDAY</value>
+        </filters>
+        <label>Upcoming Events</label>
+    </listViews>
+    <searchLayouts>
+        <searchResultsAdditionalFields>TASK.SUBJECT</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.WHO_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.WHAT_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.DUE_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

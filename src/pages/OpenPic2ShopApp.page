@@ -1,0 +1,23 @@
+<apex:page standardController="Transactions__c"   >
+
+    <apex:includeScript value="/canvas/sdk/js/publisher.js" />
+
+    <script>
+
+        window.top.location = 'p2spro://scan?callback={!URLEncode($Setup.Field_Inventory_Tracking_Settings__c.FIT_Pic2Shop_Callback_URL__c)}%3FscanValue%3DCODE%26Id%3D{!Transactions__c.Id}';
+
+        Sfdc.canvas.publisher.publish({ name : "publisher.close", payload : { refresh:"false" }});   
+        
+    </script>
+
+    <apex:form >
+        You should be redirected to the barcode scanning screen in a few moments. If you are not redirected, please click the "Scan Barcode..." button on this page." 
+        <apex:pageBlock >
+            <a id="openLink" target="_blank" href="p2spro://scan?callback={!URLEncode($Setup.Field_Inventory_Tracking_Settings__c.FIT_Pic2Shop_Callback_URL__c)}%3FscanValue%3DCODE%26Id%3D{!Transactions__c.Id}" >  
+                <input type="button" value="Scan Barcode..." />
+            </a>
+        </apex:pageBlock>
+        
+    </apex:form>
+
+</apex:page>

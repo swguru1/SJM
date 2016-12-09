@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ANZ_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>ANZ ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approved__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ExecutionPlan__r.Approved__c=TRUE,&apos;Approved&apos;, &apos;Not Approved&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Approved</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign__c</fullName>
+        <externalId>false</externalId>
+        <label>Campaign</label>
+        <picklist>
+            <controllingField>Division__c</controllingField>
+            <picklistValues>
+                <fullName>AF - Agilis</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Ampere</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Capital Equipment Generic Campaign</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Claris</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Coolpoint Pump</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AFCRM - Mediguide Discovery</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AFCRM - Mediguide Negotiation</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AFCRM - Mediguide Presentation</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Diagnostics Generic Campaign</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Flexible Tip Technology</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Introducers Generic Campaign</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Irrigated Ablation Generic Campaign</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Precision 2.0 Launch</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Segmentation Discovery</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF - Tacticath Launch</fullName>
+                <default>false</default>
+                <controllingFieldValues>AF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - 10/10/10</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - 8F ICD Lead Family</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - AF MANAGEMENT</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - Heart Failure Market Development</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - HF Leadership</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - HV MRI Ready - AU Launch</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - HV MRI Ready-CE Mark</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - Merlin @ Home Priv Reimburse</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - MORE CRT MPP</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - MPP</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - MPP 12 Month Data</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - MRI</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - MRI Tested</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - NZ launch of Assurity MRI</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - RF</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - ShockGuard</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - Size and Shape</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM - Therapy Assurance</fullName>
+                <default>false</default>
+                <controllingFieldValues>CRM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - 20 Years of Durability</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - ATS attack pack</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Exceptional hemodynamics</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Full 3D ring</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - INR PST education</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Meet the challenge of the small aortic root</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Optimal Implantability</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Proven Durability</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Sakwa Follow Up</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Sakwa Tour</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Superior Hemodynamics</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Tailor It!</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Trifecta Global Prospective Clinical Study</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Trifecta Head to Head Comparisons</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - True to Size</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD - Valved Grafts</fullName>
+                <default>false</default>
+                <controllingFieldValues>CSD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Neuropathic Groin Pain</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - CRPS Hand</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD CRPS Knee</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - CRPS - Post Surgical Pain</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - DBS Dystonia</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - DBS - eXtend Technology</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - DBS- Guardain Burr Hole Cover</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - DBS rechargable</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - DBS Replacement Campaign</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - Kath Hertz</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - Kel Hertz</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD Neuropathic Foot Pain</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - Peripheral</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - Post Amputation Pain</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - Post Surgical</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - Prodigy Launch, Complete Pain Management</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - Prodigy Launch Discovery</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - Prodigy Launch Nevro Implanter</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD - Prodigy Launch Tonic Implanter</fullName>
+                <default>false</default>
+                <controllingFieldValues>NMD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SI - Circules II</fullName>
+                <default>false</default>
+                <controllingFieldValues>SI</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - ACIST Reactive Campaign</fullName>
+                <default>false</default>
+                <controllingFieldValues>SI</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - Active Closure Certification</fullName>
+                <default>false</default>
+                <controllingFieldValues>SI</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - OCT Certification Campaign</fullName>
+                <default>false</default>
+                <controllingFieldValues>SI</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - OCT in BVS Campaign</fullName>
+                <default>false</default>
+                <controllingFieldValues>SI</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - OCT Left Main Campiagn</fullName>
+                <default>false</default>
+                <controllingFieldValues>SI</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - OPTISi Launch</fullName>
+                <default>false</default>
+                <controllingFieldValues>SI</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - BSX Comet Reactive Campaign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - FFR in ACS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - Ilumien Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - OCT vs IVUS Campaign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - OPTIS Mobile Launch</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - OPTIS Service Plan Upgrade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V - Urgent and Unexpected compression</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Completed__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Completed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Division__c</fullName>
+        <externalId>false</externalId>
+        <label>Division</label>
+        <picklist>
+            <picklistValues>
+                <fullName>AF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NMD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vascular</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ExecutionPlan__c</fullName>
+        <externalId>false</externalId>
+        <label>Execution Plan</label>
+        <referenceTo>ExecutionPlan__c</referenceTo>
+        <relationshipLabel>Execution Plan Activities</relationshipLabel>
+        <relationshipName>Bespoke_Plan_Objectives</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Remaining__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quantity__c - Completed__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Remaining</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Scheduled__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Scheduled</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Case Support</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Certification</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Conference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Device Check</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dinner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Service</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Journal Club</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient Programming</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Notification</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Implant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinical Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Execution Plan Activity</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>EPA - {000000000}</displayFormat>
+        <label>Execution Plan Activity Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Execution Plan Activities</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupFilterFields>NAME</lookupFilterFields>
+        <lookupFilterFields>Type__c</lookupFilterFields>
+        <lookupFilterFields>Description__c</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>Type__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Type__c</searchFilterFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Approved_EP</fullName>
+        <active>true</active>
+        <description>You can not change fields once the Execution Plan is Approved</description>
+        <errorConditionFormula>(  Approved__c  =&apos;Approved&apos;) 
+&amp;&amp;
+(OR( ISCHANGED( Description__c ) , ISCHANGED( Quantity__c ) , ISCHANGED( Type__c ) ))</errorConditionFormula>
+        <errorMessage>The Execution Plan is Approved and the Objectives can not be changed.
+Please see the Plan&apos;s Territory Manager if a change is required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cannot_add_EP_events_if_its_not_approved</fullName>
+        <active>true</active>
+        <description>Users cannot add Execution Plan objectives events/task if Execution Plan has not been approved</description>
+        <errorConditionFormula>AND(
+ExecutionPlan__r.Approved__c &lt;&gt; TRUE,
+Scheduled__c &gt;0
+)</errorConditionFormula>
+        <errorMessage>Events/Tasks cannot be created as Execution Plan has not been approved</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>New</fullName>
+        <availability>online</availability>
+        <description>Custom New button to populate name</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/a0D/e?CF00N90000003VzVC={!ExecutionPlan__c.Name}&amp;CF01I90000000xKDn_lkid={!ExecutionPlan__c.Id}&amp;Name={!ExecutionPlan__c.Name}&amp;retURL=%2F{!ExecutionPlan__c.Id}</url>
+    </webLinks>
+</CustomObject>

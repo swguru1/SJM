@@ -1,0 +1,2256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>St. Jude Medcial Equipment</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account_Name_VF__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Name VF</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Account Name</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Equipment</relationshipLabel>
+        <relationshipName>Equipment</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Account_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.SJM_ID__c</formula>
+        <label>Account Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Acquisition_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Acquisition Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Leverage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lease / Rental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evaluation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Add_Ons__c</fullName>
+        <externalId>false</externalId>
+        <label>Add Ons</label>
+        <picklist>
+            <controllingField>Product_Category__c</controllingField>
+            <picklistValues>
+                <fullName>Contact Force</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Precision</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Verismo</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Derexi</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Courier</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EP4 Stimulator</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MicroPace Stimulator</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bloom Stimulator</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Image integration</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ultrasound control integration</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vitals monitoring</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nurses notes</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Recording</fullName>
+                <default>false</default>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Streaming</fullName>
+                <default>false</default>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Online Storage</fullName>
+                <default>false</default>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Audio integration</fullName>
+                <default>false</default>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Video integration</fullName>
+                <default>false</default>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Secondary Monitor</fullName>
+                <default>false</default>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web Clients</fullName>
+                <default>false</default>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <length>16</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DHR__c</fullName>
+        <externalId>true</externalId>
+        <label>Device History Record</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Days_To_Warranty_Expiry__c</fullName>
+        <description>Days To Warranty Expiry</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Warranty_End__c), &quot;N/A&quot;,
+IF(Warranty_End__c - TODAY() &lt;= 0, &quot;Expired&quot;,
+IF(Warranty_End__c - TODAY() &lt;= 30, &quot;30 days&quot;,
+IF(Warranty_End__c - TODAY() &gt; 30 &amp;&amp; Warranty_End__c - TODAY() &lt;= 60, &quot;60 days&quot;,
+IF(Warranty_End__c - TODAY() &gt; 60 &amp;&amp; Warranty_End__c - TODAY() &lt;= 90, &quot;90 days&quot;,
+&quot;More than 90 Days&quot;
+
+)
+)
+)
+)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many days are left for Warranty Expiry</inlineHelpText>
+        <label>Days To Warranty Expiry</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Detector_Size__c</fullName>
+        <externalId>false</externalId>
+        <label>Detector Size</label>
+        <picklist>
+            <controllingField>Product_Category__c</controllingField>
+            <picklistValues>
+                <fullName>Small Square (20 cm x 20 cm)</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium Rectangle (20 cm x 30 cm)</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Large Rectangle (30 cm x 40 cm)</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Device_Count__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Device Count from SAP</inlineHelpText>
+        <label>Device Count</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EquipmentOne__c</fullName>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>EquipmentOne</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HMS_Other__c</fullName>
+        <externalId>false</externalId>
+        <label>Other</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hemo_Monitoring_System__c</fullName>
+        <externalId>false</externalId>
+        <label>Hemo Monitoring System</label>
+        <picklist>
+            <controllingField>Product_Category__c</controllingField>
+            <picklistValues>
+                <fullName>GE - Mac-Lab</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Siemens - Sensis</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philips - Xper</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>McKesson</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mennon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IB_Component__c</fullName>
+        <externalId>false</externalId>
+        <label>IB Component</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ibase_Product_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Model</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Installed_Product_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Installed Product ID</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Installed_Product_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Material Description</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Installed__c</fullName>
+        <externalId>false</externalId>
+        <label>Installed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>LIST_PRICER__c</fullName>
+        <externalId>false</externalId>
+        <formula>List_Price__c</formula>
+        <label>LIST PRICE $</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lab_Name_VF__c</fullName>
+        <externalId>false</externalId>
+        <formula>Lab__c</formula>
+        <label>Lab Name VF</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lab__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Lab</label>
+        <referenceTo>Lab__c</referenceTo>
+        <relationshipLabel>Equipment</relationshipLabel>
+        <relationshipName>Equipment</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Created_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Created By</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Data_Indicator__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Data Indicator</label>
+        <length>5</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Modified_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Modified By</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Row_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Row Id</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>List_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>List Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Material_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Material Number</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Model</label>
+        <picklist>
+            <controllingField>Product_Category__c</controllingField>
+            <picklistValues>
+                <fullName>ARTIS Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ARTIS Q</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ARTIS Q ZEN</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ALLURA FD10</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ALLURA FD20</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ALLURA FD10/10</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ALLURA FD10/20</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INNOVA 2000</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INNOVA 3100</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INNOVA 4100</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INNOVA 20/20</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IGS510</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IGS620</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Mount__c</fullName>
+        <externalId>false</externalId>
+        <label>Mount</label>
+        <picklist>
+            <controllingField>Product_Category__c</controllingField>
+            <picklistValues>
+                <fullName>Floor Mount</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ceiling Mount</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Oppty_Product_Model__c</fullName>
+        <description>Opportunity Product Model</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Opportunity Product Model</inlineHelpText>
+        <label>Oppty Product Model</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>(IF(ISBLANK(Parent_Installbase__c), &apos;Y&apos;,&apos;N&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Installbase__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent Installbase</label>
+        <referenceTo>Equipment__c</referenceTo>
+        <relationshipLabel>Equipment</relationshipLabel>
+        <relationshipName>Equipment</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>3D Mapping Systems</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EP Recording System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ICE Systems</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X-Ray System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Large Screen HD Display System Manufacturer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Generator/Pump</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Description</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Line__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Line</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Model</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SJM_EQ_Record__c</fullName>
+        <externalId>false</externalId>
+        <label>SJM EQ Record</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SJM_Owned__c</fullName>
+        <externalId>false</externalId>
+        <label>SJM Owned</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sale_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Sale Type</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Serial_Lot_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Serial Number</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Contract_Specialist__c</fullName>
+        <description>Service Contract Specialist Name</description>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.Service_Contract_Specialist__r.FirstName &amp; &quot; &quot; &amp; Account_Name__r.Service_Contract_Specialist__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Service Contract Specialist Name</inlineHelpText>
+        <label>Service Contract Specialist</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Software_Version__c</fullName>
+        <externalId>false</externalId>
+        <label>Software Version</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <controllingField>Product_Category__c</controllingField>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In-Active</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>System_ID__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Functional Location Number - FL#</inlineHelpText>
+        <label>System ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>System_Manufacturer__c</fullName>
+        <externalId>false</externalId>
+        <label>System Manufacturer</label>
+        <picklist>
+            <controllingField>Product_Category__c</controllingField>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SJM</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Biosense Webster</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Boston Scientific</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medtronic</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GE/Prucka</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Boston Scientific/Bard</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GE</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philips</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Siemens - MediGuide</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stereotaxis/Biosense Webster</fullName>
+                <default>false</default>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Carrot/Boston Scientific</fullName>
+                <default>false</default>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+                <controllingFieldValues>Large Screen HD Display System Manufacturer</controllingFieldValues>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>USD_AF_Area__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.USD_AF_Area__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_AF_Division__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.USD_AF_Division__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>USD AF Division</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_AF_Region__c</fullName>
+        <description>USD AF Region</description>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.USD_AF_Region__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>AF Region</inlineHelpText>
+        <label>Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Accounting_Group__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Accounting Group</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Executive_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Executive Detail</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Forecast_Level_2__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Forecast Level 2</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Manager_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Manager Detail</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Product Category</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Product_Family__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Product Family</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Product_Group_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Product Group Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Product_Hierarchy_Level_2__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Product Hierarchy Level 2</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Product_Hierarchy_Level_3__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Product Hierarchy Level 3</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Product_Sub_Division__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Product Sub - Division</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Product_Type_Abbrev__c</fullName>
+        <description>Changing the &quot;USD Product Type&quot; categories to the abbreviations</description>
+        <externalId>false</externalId>
+        <formula>CASE(USD_Product_Type__c,
+&quot;MAPPING AND VISUALIZ&quot;,&quot;MG&quot;,
+&quot;HD DISPLAY&quot;,&quot;VV&quot;,
+&quot;NAVIGATION AND GUIDA&quot;, &quot;AM&quot;,
+&quot;INTRACARDIAC IMAGING&quot;, &quot;ICE&quot;,
+&quot;RECORDING AND MONITO&quot;, &quot;CR&quot;,
+USD_Product_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The &quot;USD Product Type&quot; categories are, 
+1.	Mapping and Visualization to MG
+2.	HD Displays to VV
+3.	Navigation  and Guidance to AM
+4.	Intracardiac Imaging to ICE
+5.	Recording and Monitoring to CR</inlineHelpText>
+        <label>USD Product Type Abbrev</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Product_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Product Type</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USD_Selling_Division__c</fullName>
+        <externalId>false</externalId>
+        <label>USD Selling Division</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VIS_Other__c</fullName>
+        <externalId>false</externalId>
+        <label>Other</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Version_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Version/Type</label>
+        <picklist>
+            <controllingField>Product_Category__c</controllingField>
+            <picklistValues>
+                <fullName>EnSite Classic</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EnSite Velocity</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Carto XP</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Carto 3</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rhythmia</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Localisa</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WorkMate Claris</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WorkMate v4</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WorkMate v3</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CardioLab v6</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CardioLab v5</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LabPro</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ViewMate (Zonare)</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ViewMate (Philips CX-50)</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Acuson SC2000</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Acuson X300</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Acuson CV70</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Acuson Cypress</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Acuson Sequoia</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vivid q</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vivid i</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Galaxy / iLab</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE Systems</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>3D Mapping Systems</controllingFieldValues>
+                <controllingFieldValues>EP Recording System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Single Plane</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bi-Pane</fullName>
+                <default>false</default>
+                <controllingFieldValues>X-Ray System</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Warranty_End__c</fullName>
+        <externalId>false</externalId>
+        <label>Warranty End</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Warranty_Expiration_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>Warranty_End__c - TODAY()</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Warranty Expiration Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Warranty_Expired__c</fullName>
+        <externalId>false</externalId>
+        <formula>$Label.Warranty_Expiration_Days = TEXT(Warranty_Expiration_Days__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Warranty Expired?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Warranty_Start__c</fullName>
+        <externalId>false</externalId>
+        <label>Warranty Start</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Warranty_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Warranty Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Under Warranty</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Under Extended Service Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Covered/Expired</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Warranty_Type_Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Warranty_Type__c ,&apos;OMW_PM&apos;, &apos;Original Manufacturer Warranty&apos;, &apos;OMW_PM_UPG&apos;,&apos;Assurance Plus Coverage&apos;, &apos;EXW_PM&apos;,&apos;Basic coverage&apos;, &apos;EXW_PM_UPGRADE&apos;, &apos;Assurance Plus Coverage&apos;, &apos;RENT_TERM&apos;, &apos;Rental Term&apos;,&apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Warranty Type Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Warranty_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Warranty Type</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>iBase_Product_Line_and_Model__c</fullName>
+        <description>Concatenation of iBase Product Line and Model</description>
+        <externalId>false</externalId>
+        <formula>Product_Line__c  &amp; &quot;  &quot; &amp; Ibase_Product_Model__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>iBase Product Line and Model</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Equipment</label>
+    <listViews>
+        <fullName>All_Equipment</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Product_Category__c</columns>
+        <columns>System_Manufacturer__c</columns>
+        <columns>Warranty_End__c</columns>
+        <columns>Days_To_Warranty_Expiry__c</columns>
+        <columns>USD_AF_Region__c</columns>
+        <columns>USD_AF_Area__c</columns>
+        <columns>Lab__c</columns>
+        <columns>Warranty_Expiration_Days__c</columns>
+        <columns>Warranty_Expired__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Equipment</label>
+    </listViews>
+    <listViews>
+        <fullName>All_SJM_Equipment</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Installed_Product_Name__c</columns>
+        <columns>Product_Category__c</columns>
+        <columns>Software_Version__c</columns>
+        <columns>System_Manufacturer__c</columns>
+        <columns>Warranty_End__c</columns>
+        <columns>Warranty_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Equipment__c.SJM_Capital</value>
+        </filters>
+        <label>All SJM Equipment</label>
+    </listViews>
+    <nameField>
+        <displayFormat>EQ-{000000}</displayFormat>
+        <label>Equipment Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Equipment</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Non_SJM</fullName>
+        <active>true</active>
+        <label>Non SJM</label>
+        <picklistValues>
+            <picklist>Acquisition_Type__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease %2F Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leverage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Add_Ons__c</picklist>
+            <values>
+                <fullName>Audio integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bloom Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contact Force</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Courier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Derexi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP4 Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Image integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MicroPace Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nurses notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Storage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Precision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recording</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary Monitor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Streaming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ultrasound control integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verismo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vitals monitoring</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Clients</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Detector_Size__c</picklist>
+            <values>
+                <fullName>Large Rectangle %2830 cm x 40 cm%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium Rectangle %2820 cm x 30 cm%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Square %2820 cm x 20 cm%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Hemo_Monitoring_System__c</picklist>
+            <values>
+                <fullName>GE - Mac-Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>McKesson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mennon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips - Xper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens - Sensis</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Model__c</picklist>
+            <values>
+                <fullName>ALLURA FD10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ALLURA FD10%2F10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ALLURA FD10%2F20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ALLURA FD20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ARTIS Q</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ARTIS Q ZEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ARTIS Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IGS510</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IGS620</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INNOVA 20%2F20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INNOVA 2000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INNOVA 3100</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INNOVA 4100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Mount__c</picklist>
+            <values>
+                <fullName>Ceiling Mount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floor Mount</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Product_Category__c</picklist>
+            <values>
+                <fullName>3D Mapping Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP Recording System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ICE Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large Screen HD Display System Manufacturer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X-Ray System</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Active</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>System_Manufacturer__c</picklist>
+            <values>
+                <fullName>Biosense Webster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boston Scientific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boston Scientific%2FBard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carrot%2FBoston Scientific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GE%2FPrucka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medtronic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens - MediGuide</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stereotaxis%2FBiosense Webster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Version_Type__c</picklist>
+            <values>
+                <fullName>Bi-Pane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carto 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carto XP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Classic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Localisa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rhythmia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single Plane</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Warranty_Status__c</picklist>
+            <values>
+                <fullName>Not Covered%2FExpired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Extended Service Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Warranty</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SJM_Capital</fullName>
+        <active>true</active>
+        <description>SJM Capital Equipment derived from SAP</description>
+        <label>SJM Capital</label>
+        <picklistValues>
+            <picklist>Acquisition_Type__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease %2F Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leverage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Add_Ons__c</picklist>
+            <values>
+                <fullName>Audio integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bloom Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contact Force</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Courier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Derexi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP4 Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Image integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MicroPace Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nurses notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Storage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Precision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recording</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary Monitor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Streaming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ultrasound control integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verismo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vitals monitoring</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Clients</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Detector_Size__c</picklist>
+            <values>
+                <fullName>Large Rectangle %2830 cm x 40 cm%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium Rectangle %2820 cm x 30 cm%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Square %2820 cm x 20 cm%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Hemo_Monitoring_System__c</picklist>
+            <values>
+                <fullName>GE - Mac-Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>McKesson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mennon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips - Xper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens - Sensis</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Model__c</picklist>
+            <values>
+                <fullName>ALLURA FD10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ALLURA FD10%2F10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ALLURA FD10%2F20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ALLURA FD20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ARTIS Q</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ARTIS Q ZEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ARTIS Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IGS510</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IGS620</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INNOVA 20%2F20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INNOVA 2000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INNOVA 3100</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INNOVA 4100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Mount__c</picklist>
+            <values>
+                <fullName>Ceiling Mount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floor Mount</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Product_Category__c</picklist>
+            <values>
+                <fullName>3D Mapping Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP Recording System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ICE Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large Screen HD Display System Manufacturer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X-Ray System</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Active</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>System_Manufacturer__c</picklist>
+            <values>
+                <fullName>Biosense Webster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boston Scientific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boston Scientific%2FBard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carrot%2FBoston Scientific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GE%2FPrucka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medtronic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SJM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens - MediGuide</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stereotaxis%2FBiosense Webster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Version_Type__c</picklist>
+            <values>
+                <fullName>Acuson CV70</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acuson Cypress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acuson SC2000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acuson Sequoia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acuson X300</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CardioLab v5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CardioLab v6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carto 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carto XP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Classic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Galaxy %2F iLab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LabPro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Localisa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rhythmia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate %28Philips CX-50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate %28Zonare%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vivid i</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vivid q</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate v3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate v4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Warranty_Status__c</picklist>
+            <values>
+                <fullName>Not Covered%2FExpired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Extended Service Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Warranty</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Account_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Product_Category__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>System_Manufacturer__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Lab__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Warranty_End__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Days_To_Warranty_Expiry__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Account_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Product_Line__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Ibase_Product_Model__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Installed_Product_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Serial_Lot_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Warranty_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Warranty_Type_Description__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

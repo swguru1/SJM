@@ -1,0 +1,5 @@
+<apex:page standardController="Event" >
+    <script>
+        sforce.one.navigateToURL('/apex/SJM_ProcedureEdit?accountId={!Event.AccountId}&eventId={!Event.Id}');
+    </script>
+</apex:page>

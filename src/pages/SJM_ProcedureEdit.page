@@ -1,0 +1,1023 @@
+<!-- 
+*
+* Custom visualforce page creating procedure & Procedure item in sf1 & dekstop
+* This page is overridden to new and edit for Procedure creation & update
+* It is using bootstrap v.3 to make it responsive with small devices
+* Author: Adeel Ahmad
+* Email: adeel.ahmad@magnet360.com
+* Date : 11/23/2015
+*
+--> 
+<apex:page standardController="Procedure__c" docType="html-5.0" showHeader="true" standardStylesheets="true" sidebar="false" extensions="SJM_ProcedureEditController" >     
+    <!-- Loading all assets including stylesheet for page, bootstrap, font-awesome and date-picker -->
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Assets, '/css/bootstrap.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Procedure, '/css/style.css')}" /> 
+    <!--
+    <link rel="stylesheet" type="text/css" href="{!$Page.SJM_Style}" /> 
+    -->
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_FontAwesome, 'css/font-awesome.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Datepicker, 'css/bootstrap-datepicker3.min.css')}" />  
+    
+    
+    <!-- 
+        Here is the initialization of apex form, It contains all of the information that is going to be displayed on page
+        Form is rendered from apex for the first time as data is populated from apex, after that ajax toolkit is used to save/delete/addition of items. 
+    -->
+    <apex:form Id="frm"> 
+        <!-- Hidden input created for specific purposes to get the recordIs in functions -->
+        <input type="hidden" id="procedureId" value="{!currentProcedure.Id}" />
+        <input type="hidden" value="{!eventId}" id="eventId" />
+        
+        <input type="hidden" id="isUpdate" value="{!currentProcedure.Id}" />
+        <input id="focusedHiddenInput" type="hidden" style="position: fixed;z-index: -1;"/>
+        <input id="saveAndNewProcedure" type="hidden" value= "0"/>
+        <!--<input id="eventId" type="hidden" value="{!eventId}" />-->
+        <div class="container-fluid">
+           <div class="row">
+                <div class="col-xs-12 text-right">
+                    <!-- Primary Button to save procedure & Procedure Items -->
+                    <input type="button" class="btn btn-primary" value="Save Procedure" onclick="removeFocus(); saveProcedure();" />
+                     <input type="button" class="btn btn-primary" value="Save & New" onclick="removeFocus(); saveNewProcedure(); saveProcedure();" />
+                </div>
+            </div>
+
+            <!-- Including Page Messages -->
+            <div class="row custom-msg hide">
+                <div class="col-xs-12">
+                    <div class="alert">
+                    </div>
+                </div>  
+            </div>
+            <!-- Page Messages : ENDS -->
+
+           <!-- Procedure details section, It contains all the information related to procedure -->
+             <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">Procedure Detail</div>  
+            </div>
+            
+            <div class="row procedure_section">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Account
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['account__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <!-- Hidden input that will contains account when account is selected from autocomplete -->
+                    <input type="hidden" value="{!accountId}" id="accountId" />
+                    <input type="hidden" value="{!contID}" id="contID" />
+                    <apex:inputField value="{! currentProcedure.Account__c }" 
+                                     styleClass="form-control Account__c {!requiredFieldsMap['account__c']}" id="account" >
+                        <!-- Calling the autoComplete component -->
+                        <c:SJM_AutoComplete objectname="Account" autocomplete_textbox="{!$Component.account}"/>
+                    </apex:inputField>
+                </div>
+
+                <!-- This block represent that how you can add new field in detail section
+                     Outer div is necessary to wrap the input fields 
+                -->
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">
+                        <!-- Label of the input field -->
+                        Procedure Covered By 
+                        <!-- This panel will only be generated when field is required and added in custom settings -->
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['rep__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <!-- Actual input field, Attributes are:
+                         Value          : Represent the salesforce id for field
+                         styleClass     : class for input field, form-control is added for styling, 
+                                      Rep__c is the actual name of field as this name will be used when saving data
+                        {!requiredFieldsMap['rep__c']} : This will return required if field is added in custom settings, otherwise it
+                                     wont add any class 
+                        Id              : Inpt Id
+                        html-disabled   : As this is disabled input that is why mark as disabled, you have to add html as prefix if want to use 
+                                          html attributes
+                    -->
+                    <apex:inputField value="{! currentProcedure.Rep__c }" 
+                                    styleClass="form-control Rep__c {!requiredFieldsMap['rep__c']}" id="rep" 
+                                    html-disabled="true">
+                    </apex:inputField>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Procedure
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['procedure__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <apex:inputField value="{! currentProcedure.Procedure__c }" 
+                                    styleClass="form-control Procedure__c {!requiredFieldsMap['procedure__c']}" />
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Procedure Type
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['procedure_type__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <apex:inputField value="{! currentProcedure.Procedure_Type__c }" 
+                                    styleClass="form-control Procedure_Type__c {!requiredFieldsMap['procedure_type__c']}" />
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Procedure Physician
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['procedure_physician__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <apex:inputField value="{! currentProcedure.Procedure_Physician__c }" styleClass="form-control Procedure_Physician__c {!requiredFieldsMap['procedure_physician__c']}" id="physician" html-placeHolder="Enter text to search...">
+                        <c:SJM_AutoComplete objectname="Contact" autocomplete_textbox="{!$Component.physician}"  />
+                    </apex:inputField>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Procedure Date
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['procedure_date__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <div class="input-group date">
+                      <input type="text" readonly="true" value="{!procedureDate}"  id="procedureDate" class="procedure_date__c form-control date_input {!requiredFieldsMap['procedure_date__c']}" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>                          
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Physician Begins Vascular Access
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['physician_begins_vascular_access__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <apex:inputField value="{! currentProcedure.Physician_Begins_Vascular_Access__c }" 
+                                        styleClass="form-control Physician_Begins_Vascular_Access__c {!requiredFieldsMap['physician_begins_vascular_access__c']}"  />
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Physician Declares End of Procedure
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['physician_declares_end_of_procedure__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <apex:inputField value="{! currentProcedure.Physician_Declares_End_of_Procedure__c }" 
+                                        styleClass="form-control Physician_Declares_End_of_Procedure__c {!requiredFieldsMap['physician_declares_end_of_procedure__c']}"  />
+                </div>
+                
+                <!-- Wrap xray time and its respective fields in a div so it will not be on next line -->
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <div class="row">
+                        <div class="{! IF(currentProcedure.X_Ray_Time__c == 'Recorded','col-xs-6','col-xs-12') } xray-wrapper">
+                            <label class="no-margin label-new">X-Ray Time</label>
+                            <apex:inputField value="{! currentProcedure.X_Ray_Time__c }" 
+                                        styleClass="form-control X_Ray_Time__c {!requiredFieldsMap['x_ray_time__c']}" onchange="showXrayFields(this.value);" />             
+                        </div>
+
+                        <div class="col-xs-3 {! IF(currentProcedure.X_Ray_Time__c == 'Recorded','show','hide') } xray-dependent-fields">
+                            <label class="no-margin label-new">Hours</label>
+                            <apex:inputField value="{! currentProcedure.X_Ray_Hours__c }" 
+                                        styleClass="form-control X_Ray_Hours__c {!requiredFieldsMap['x_ray_hours__c']}"  />
+                        </div>
+                        
+                        <div class="col-xs-3 {! IF(currentProcedure.X_Ray_Time__c == 'Recorded','show','hide') } xray-dependent-fields">
+                            <label class="no-margin label-new">Minutes</label>
+                            <apex:inputField value="{! currentProcedure.X_Ray_Minutes__c }" 
+                                        styleClass="form-control X_Ray_Minutes__c {!requiredFieldsMap['x_ray_minutes__c']}"  />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="no-margin label-new">Dose Amount</label>
+                        </div>
+
+                        <div class="col-xs-12 ">
+                            <apex:inputField value="{! currentProcedure.Dose_Amount__c }" 
+                                            styleClass="form-control Dose_Amount__c {!requiredFieldsMap['dose_amount__c']}" onchange="showDoseAmountFields(this.value);" />
+                        </div>
+
+                        <div class="col-xs-12 dose-amount-wrapper">
+                            <div class="dose-amt">
+
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 {! IF(currentProcedure.Dose_Amount__c == 'Recorded','show','hide') } dose-dependent-fields">
+                                    <apex:inputField value="{! currentProcedure.Dose_1__c }" 
+                                            styleClass="form-control Dose_1__c dose-number {!requiredFieldsMap['dose_1__c']}"  />
+                                </div>
+
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 {! IF(currentProcedure.Dose_Amount__c == 'Recorded','show','hide') } dose-dependent-fields">
+                                    <apex:inputField value="{! currentProcedure.Dose_2__c }" 
+                                            styleClass="form-control Dose_2__c dose-number {!requiredFieldsMap['dose_2__c']}"  />
+                                </div>
+
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 {! IF(currentProcedure.Dose_Amount__c == 'Recorded','show','hide') } dose-dependent-fields">
+                                    <apex:inputField value="{! currentProcedure.Dose_3__c }" 
+                                            styleClass="form-control Dose_3__c dose-number {!requiredFieldsMap['dose_3__c']}"  />
+                                </div>
+
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 {! IF(currentProcedure.Dose_Amount__c == 'Recorded','show','hide') } dose-dependent-fields">
+                                    <apex:inputField value="{! currentProcedure.Dose_4__c }" 
+                                            styleClass="form-control Dose_4__c dose-number {!requiredFieldsMap['dose_4__c']}"  />
+                                </div>
+
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 {! IF(currentProcedure.Dose_Amount__c == 'Recorded','show','hide') } dose-dependent-fields">
+                                    <label class="no-margin label-new decimal-placeholder">   .</label>
+                                </div>
+
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 {! IF(currentProcedure.Dose_Amount__c == 'Recorded','show','hide') } dose-dependent-fields">
+                                    <apex:inputField value="{! currentProcedure.Dose_5__c }" 
+                                            styleClass="form-control Dose_5__c dose-number {!requiredFieldsMap['dose_5__c']}"  />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Dose Unit of Measurement
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['dose_unit_of_measurement__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <apex:inputField value="{! currentProcedure.Dose_Unit_of_Measurement__c }" 
+                                styleClass="form-control unitOfMeasure Dose_Unit_of_Measurement__c {!requiredFieldsMap['dose_unit_of_measurement__c']}"  />
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Dose</label>
+                    <input type="text" disabled="true" class="form-control doseFormula" />
+                </div>                
+            </div>     <!-- procedure detail ends-->
+       
+            <!-- procedure items detail-->
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">Procedure Items
+                    <a href="javascript:void(0);" onclick="expandAll(event);" class="expand-all-btn pull-right">Expand All</a>
+                    <a href="javascript:void(0);" onclick="collapseAll(event);" class="expand-all-btn collapse-all pull-right hide">Collapse All</a>
+               </div>  
+            </div>
+
+           <!-- 
+                Procedure items will be starts from here
+                Procedure items are being populated from apex, you dn't have to add new section here to show new section
+                If you want to add new section just add picklist value in item type picklist, new section will be automatically populated
+            --> 
+           <apex:outputPanel id="pItemsPanel">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="accordion">
+                        <!-- Declaring variable to keep the index value -->
+                        <apex:variable var="index" value="{!1}"/>
+                        <!-- Iterating over procedure item types -->
+                        <apex:repeat value="{!procedureItemPicklistLabels}" var="type">
+                        <li class="parent_li index_{!index}">
+                            <!-- Generating header row for procedure item -->
+                            <a class="toggle toggle_parent" onclick="expandItem(this)" >{!type} <i class="fa collapse-icon fa-angle-right"></i>
+                                <span class="tip_section parent">
+                                    &nbsp;&nbsp;
+                                </span>
+                            </a>
+                            <ul class="inner">
+                                <apex:variable var="counter" value="{!1}" />
+                                <!-- Iterating over each procedure item type -->
+                                <apex:repeat value="{!typeToProcedureItems[type]}" var="p">
+                                   <li class="item_type_li"> 
+                                        <a class="toggle" onclick="expandItem(this)">
+                                            <span class="stepno"> 
+                                                <apex:outputText value="{!type}"/>
+                                                - <span class="stepno-counter">{! counter }</span>
+                                            </span>   
+                                            <i class="fa collapse-icon fa-angle-right"></i>
+                                            
+                                            <span class="tip_section_child">
+                                                <i class="fa fa-trash-o" onClick="deleteProcedureItem(this, '{!p.Id}');"></i>
+                                            </span>
+                                            
+                                        </a>
+                                        <ul class="inner steps_ul">
+                                            <!-- Hidden input, to get the procedure item id -->
+                                            <li class="hide">
+                                                <span class="question">Procedure Item</span>
+                                                <span class="question_option">
+                                                 <input type="hidden" value="{!p.Id}" class="pItemId" />
+                                                 <apex:inputField value="{!p.Procedure_Item__c}" id="Procedure_Item__c" styleClass="form-control"/>
+                                                </span> 
+                                            </li>
+                                            
+                                            <li>
+                                                <span class="question">Manufacturer</span>
+                                                <span class="question_option">
+                                                 <apex:inputField value="{!p.Manufacturer__c}" id="Manufacturer__c" styleClass="form-control" onchange="countNumberOfItems()"/>
+                                                </span> 
+                                            </li>
+                                            
+                                            <!-- This panel will only be rendered when procedure item type will be 'Ablation Catheter',
+                                                 It did not do anything with the sorting/ordering of procedure item
+                                                 If this panel moves to the bottom, Resterilized field will be on the bottom of 'Ablation Catheter' item type
+                                            -->
+                                            <apex:outputPanel layout="none" rendered="{!type!='Ablation Catheter'}">
+                                            <li>
+                                                <span class="question">Resterilized?</span>
+                                                <span class="question_option">
+                                                 <apex:inputField value="{!p.Resterilized__c}" id="Resterilized__c" styleClass="form-control"  onchange="countNumberOfItems()"/>
+                                                </span> 
+                                            </li>
+                                            </apex:outputPanel>
+
+                                            <!-- Panel will be only generated when item type will be 'EP Study - Diagnostic EP Catheters' -->
+                                            <apex:outputPanel layout="none" rendered="{!type=='EP Study - Diagnostic EP Catheters'}">
+                                                <li>
+                                                    <span class="question">Location</span>
+                                                    <span class="question_option">
+                                                     <apex:inputField value="{!p.Location__c}" id="Location__c" styleClass="form-control" onchange="countNumberOfItems()"/>
+                                                    </span> 
+                                                </li>
+
+                                                <li>
+                                                    <span class="question">Catheter Type</span>
+                                                    <span class="question_option">
+                                                     <apex:inputField value="{!p.Catheter_Type__c}" id="Catheter_Type__c" styleClass="form-control" onchange="countNumberOfItems()"/>
+                                                    </span> 
+                                                </li>
+                                                <li>
+                                                    <span class="question">Number of Electrodes</span>
+                                                    <span class="question_option">
+                                                     <apex:inputField value="{!p.Number_of_Electrodes__c}" id="Number_of_Electrodes__c" styleClass="form-control" onchange="countNumberOfItems()"/>
+                                                    </span> 
+                                                </li>
+                                            </apex:outputPanel>
+                                            
+                                            <!-- Panel will be only generated when item type will be 'Ablation Catheter' -->
+                                            <apex:outputPanel layout="none" rendered="{!type == 'Ablation Catheter'}">
+                                            <li>
+                                                <span class="question">Tip Size</span>
+                                                <span class="question_option">
+                                                 <apex:inputField value="{!p.Tip_Size__c}" id="Tip_Size__c" styleClass="form-control"  onchange="countNumberOfItems()"/>
+                                                </span> 
+                                            </li>
+                                            </apex:outputPanel>
+
+                                            <li>
+                                                <span class="question">Notes</span>
+                                                <span class="question_option">
+                                                 <apex:inputField value="{!p.Notes__c}" id="Notes__c" styleClass="form-control"  onchange="countNumberOfItems()"/>
+                                                </span> 
+                                            </li>
+                                            
+                                        </ul>
+                                    </li>
+                                     <apex:variable var="counter" value="{!counter+1}"/> 
+                               </apex:repeat> 
+                                <li class="text-right buttonLi">
+                                    <!-- Button to add new procedure items -->
+                                    <input type="button" onClick="blurInputs();return addProcedureItem(this,'{!type}', 'index_{!index}', event);" value="+ Add Item" />     
+                                </li> 
+                            </ul>    
+                        </li> 
+                        <apex:variable value="{!index+1}" var="index"/>    
+                        </apex:repeat>
+                    </ul>
+                        
+                </div>
+            </div>
+            </apex:outputPanel>
+            <!-- procedure items detail ends-->
+
+            <!-- Save procedure button that displays on the bottom of page -->
+           <div class="row">
+                <div class="col-xs-12 text-right" style="margin-bottom:15px;">
+                    <input type="button" class="btn btn-primary" value="Save Procedure" onclick="removeFocus(); saveProcedure();" />
+                     <input type="button" class="btn btn-primary" value="Save & New" onclick="removeFocus(); saveNewProcedure(); saveProcedure();" />                    
+                </div>
+            </div>
+        </div>  <!-- @Ends container -->
+        
+     </apex:form>
+ 
+
+    <!-- Loading-Status -->
+    <div class="search_loading hide" >
+        <div class="waitingSearchDiv loadindMain" id="el_loading" >
+            <div class="loadind-background">
+                <!-- background color div -->
+            </div>
+            
+            <div class="waitingHolder loading-image" >
+                <img class="waitingImage" src="/img/loading.gif" />
+                <span class="waitingDescription">Saving....</span>
+            </div>
+        </div>
+    </div> 
+    <!-- Loading Status : ENDS -->
+
+    <!-- Adding Scripts -->
+   <script type="text/javascript" src="{!URLFOR($Resource.SJM_Assets, 'js/jquery-1.11.3.min.js')}">  </script>
+   <script type="text/javascript" src="{!URLFOR($Resource.SJM_Datepicker, 'js/bootstrap-datepicker.min.js')}"></script>
+   <script type="text/javascript">
+   $(document).ready(function(){
+       
+
+       //Initializing date picker on document ready
+       initDatePicker(); 
+       
+       // Calculate dose on dom ready because already saved procedure should have value
+       calculateDoseFormula();
+       recalculateFormula();
+       countNumberOfItems();
+       $('.input-group input, .input-group i').click(function(){
+            $('#procedureDate').datepicker('hide');
+            $('#procedureDate').datepicker('show');
+       });
+    });
+    
+    function initDatePicker(){
+        $('#procedureDate').datepicker({
+            orientation: "bottom auto",
+            todayHighlight: true,
+            autoclose: true,
+            format: 'mm/dd/yyyy',
+            disableTouchKeyboard: true
+        }); 
+    }
+
+    //Binding and event that if touchStart event calls, it will add focus on hidden input
+    //resulting the closing of keyboard if open in iphone
+    $('body').bind('touchstart', function(e) { 
+           $("#focusedHiddenInput").focus();
+    });
+
+    // Function that is called when user clicked on expand all link
+    // It will add class on all inner ul, resulting in opening of all section
+    function expandAll(e){
+        $('ul.inner').addClass('show');
+        $('a.toggle .collapse-icon').removeClass('fa-angle-right').addClass('fa-angle-down');
+        $('a.expand-all-btn').addClass('hide').removeClass('show');
+        $('a.collapse-all').addClass('show').removeClass('hide');
+        e.preventDefault(); 
+        e.stopPropagation();
+    }
+
+    // CollapseAll function will collapse all section at once
+    // It will remove class on all inner ul, resulting in closing/collapsing of all section    
+    function collapseAll(e){
+        $('ul.inner').removeClass('show');
+        $('a.toggle .collapse-icon').removeClass('fa-angle-down').addClass('fa-angle-right');        
+        $('a.expand-all-btn').removeClass('hide').addClass('show');
+        $('a.collapse-all').addClass('hide').removeClass('show'); 
+        e.preventDefault(); 
+        e.stopPropagation();
+    }
+    
+    // Function that will check if all section are collapsed or any one is opened
+    // If any one of section is expanded, it will update the 'Expand All' link to 'Collapse All'
+    function checkAccountExpand(){
+        checkState= $('li.parent_li > ul.show').length;
+        if(checkState > 1 ){
+            $('a.expand-all-btn').removeClass('show').addClass('hide');
+            $('a.collapse-all').addClass('show').removeClass('hide'); 
+        }
+        else{
+            $('a.expand-all-btn').removeClass('hide').addClass('show');
+            $('a.collapse-all').removeClass('show').addClass('hide'); 
+        }
+    }
+    
+    // Function to hide keyboard
+    function blurInputs(){
+        hideKeyboard();
+    }
+
+    // Actual function that will hide keyboard
+    // Spent lot of time in searching, and found that you have to call blur two time to make it work
+    var hideKeyboard = function() {
+        document.activeElement.blur();
+        $("input").blur();
+    };
+
+    // Prevent focus of first input on page; override Salesforce script
+    function setFocusOnLoad() {};
+    
+    // Remove focus    
+    function removeFocus(){
+        $('select, input, textarea').blur();
+        return true;
+    }
+
+    // Initialize inputs, If any of input value changes, if counts the number of items in item section
+    function initInputs(){
+        $('ul.accordion select, ul.accordion textarea, ul.accordion input').on('change', function(){
+            countNumberOfItems();
+        });    
+    }
+    
+    // Expand single Procedure item 
+    function expandItem(el){
+        //Check if there is already expanded items
+        checkAccountExpand();
+        var $this = $(el);
+
+        // Expand only one section at the same time except for expan all
+        // If the clicked item is alredy expanded, it will be collapsed otherwise expanded
+        if ($this.next().hasClass('show')) {
+            $this.next().removeClass('show').addClass('hide');
+            if($this.hasClass('toggle_parent')){
+                $('a.toggle .collapse-icon').removeClass('fa-angle-down').addClass('fa-angle-right');
+            }else{
+                $this.find('.collapse-icon').removeClass('fa-angle-down').addClass('fa-angle-right');                
+            }
+        } else {
+            if($this.hasClass('toggle_parent')){
+                $('ul.inner').removeClass('show').addClass('hide');
+                $this.next().find('li .inner').addClass('show').removeClass('hide');
+                $('a.toggle .collapse-icon').removeClass('fa-angle-down').addClass('fa-angle-right');
+                $this.find('.collapse-icon').addClass('fa-angle-down').removeClass('fa-angle-right');
+            }
+            $this.next().removeClass('hide').addClass('show');
+            $this.next().find('.collapse-icon').addClass('fa-angle-down').removeClass('fa-angle-right');
+        }
+        //Hide keyboard when item is being expanded/collapsed
+        hideKeyboard();
+    }
+
+    // Function that will construct wheter xray fields will be displayed or not
+    // Xray fields will only be display if its values is selected as Recorded
+    function showXrayFields(obj){
+        if(obj == 'Recorded'){
+            $('.xray-wrapper').removeClass('col-xs-12').addClass('col-xs-6');
+            $('.xray-dependent-fields').removeClass('hide').addClass('show');
+        }else{
+            $('.xray-wrapper').addClass('col-xs-12').removeClass('col-xs-6');
+            $('.xray-dependent-fields').addClass('hide').removeClass('show');
+        }
+    }
+
+    // Function that will construct wheter Dose Amount fields will be displayed or not
+    // Dose Amount fields will only be display if its values is selected as Recorded
+    function showDoseAmountFields(obj){
+        if(obj == 'Recorded'){
+            $('.dose-amount-wrapper').removeClass('col-xs-12').addClass('col-xs-12');
+            $('.dose-dependent-fields').removeClass('hide').addClass('show');
+        }else{
+            $('.dose-amount-wrapper').addClass('col-xs-12').removeClass('col-xs-12');
+            $('.dose-dependent-fields').addClass('hide').removeClass('show');
+        }
+    }
+    
+    // Recall the formula if any of input values are changes
+    function calculateDoseFormula(){
+        $('.dose-dependent-fields select, .unitOfMeasure').change(function(){
+            recalculateFormula();
+        });
+    }
+    
+    // Method will return the Dose amount formula
+    // After calculating the dose amount, set it in a readOnly input to show it on page
+    function recalculateFormula(){
+        var doseFormula = '';
+        $('.dose-dependent-fields select').each(function(index){
+            doseFormula += $(this).val();
+            if(index == 3){
+                doseFormula += '.';
+            }
+        });
+        doseFormula += ' ' + $(".unitOfMeasure").val();
+        $('.doseFormula').val(doseFormula);
+    }
+    
+    // Method will count number of items for each item type
+    // If there is any input that has value then it counts otherwise it wont count that item
+    function countNumberOfItems(){
+        $('ul.accordion li.parent_li').each(function(){
+            
+            var items= 0;
+            $(this).find('li.item_type_li').not('.hide').each(function(){
+                $(this).find('ul.steps_ul').each(function(){
+                    
+                    var filledout = false;
+                    $(this).find('li').not('.hide').find('select, textarea, input').each(function(){                  
+                        if($(this).val() != '' && $(this).val() != null){
+                            filledout = true;       
+                        }
+                    });
+                    // Getting only valid filled inputs
+                    if(filledout){
+                        items++;    
+                    }
+                });
+            });    
+            if(items > 0){
+                $(this).find('span.tip_section.parent').html('('+ items +')');                
+            }else{
+                $(this).find('span.tip_section.parent').html('&nbsp;&nbsp;');
+            }
+        });
+    }
+    </script>  
+
+    <script type="text/javascript">
+    var __sfdcSessionId = '{!GETSESSIONID()}';
+    </script>
+    <script src="../../soap/ajax/35.0/connection.js"
+          type="text/javascript"></script>
+    <script type='text/javascript' src='/canvas/sdk/js/publisher.js'/>       
+    
+    <script type="text/javascript"> 
+    var procedureDeletedItem = [];
+    var itemIndex = 0;
+    // Validation function, it includes the frontend validation of form
+    // IF any input has class required and it did not contains any value then error is beign thrown
+    // Incase of success, it return true and incase of failure it returns false and form wont be submitted
+   
+    function validateRequiredFields(){
+        var msg = '';
+        $('.procedure_section input.required, .procedure_section select.required').each(function(){
+            if($(this).val() == ''){
+                
+                msg += $(this).parents('.col-lg-6').find('label.label-new').text()
+                msg = msg.replace("*", "");
+                msg += ' is required. <br />';
+                $(this).addClass('error-input');
+            }else{
+                $(this).removeClass('error-input');
+            }
+        });
+        if(msg != ''){
+            $('.custom-msg').removeClass('hide');
+            $('.custom-msg .alert').addClass('alert-danger');
+            $('.custom-msg .alert').html('<strong>Error! Required fields are missing:</strong><br />'+msg);
+            return false;
+        }else{
+            $('.custom-msg').addClass('hide');
+            $('.custom-msg .alert').removeClass('alert-danger');
+            $('.custom-msg .alert').html('');
+            return true;
+        }
+    }
+    // set Save&new input field value
+    function saveNewProcedure(){
+        $('#saveAndNewProcedure').val('1');
+    
+    }
+    $('#procedureDate').change(function(){
+        //alert($(this).val());
+    });
+    // Primary function for saving the procedure
+    function saveProcedure(){
+        // If all required fields are filled, then it will going to save otherwise it wont
+        if(validateRequiredFields()){
+            $('.search_loading').removeClass('hide');        
+
+            // Preparing the data for procedure
+            // Getting all input values by their name as class
+            var procedure =  new sforce.SObject( "Procedure__c" );
+            procedure.Account__c = $('input#accountId').val(); 
+            if($('input#contID').val() != '')
+            {
+               procedure.Procedure_Physician__c = $('input#contID').val(); 
+            }
+            else
+            {
+               procedure.Procedure_Physician__c = $('input[id$="physician_lkid"]').val(); 
+            }
+            
+            procedure.Rep__c = $('input[id$="rep_lkid"]').val();
+            procedure.Procedure__c = $('.Procedure__c').val();
+            procedure.Procedure_Type__c = $('.Procedure_Type__c').val();
+            //procedure.Procedure_Physician__c = $('input[id$="physician_lkid"]').val(); 
+            if($('#procedureDate').val() != ''){    
+                $('#procedureDate').datepicker('update');
+                  procedure.Procedure_Date__c =  $('#procedureDate').datepicker('getDate');
+            }
+            procedure.Physician_Begins_Vascular_Access__c = $('.Physician_Begins_Vascular_Access__c').val();
+            procedure.Physician_Declares_End_of_Procedure__c = $('.Physician_Declares_End_of_Procedure__c').val();
+            procedure.X_Ray_Time__c = $('.X_Ray_Time__c').val();
+            procedure.X_Ray_Hours__c = $('.X_Ray_Hours__c').val();
+            procedure.X_Ray_Minutes__c = $('.X_Ray_Minutes__c').val();
+            procedure.Dose_Amount__c = $('.Dose_Amount__c').val();
+            procedure.Dose_1__c = $('.Dose_1__c').val();
+            procedure.Dose_2__c = $('.Dose_2__c').val();
+            procedure.Dose_3__c = $('.Dose_3__c').val();
+            procedure.Dose_4__c = $('.Dose_4__c').val();
+            procedure.Dose_5__c = $('.Dose_5__c').val();
+            procedure.Dose_Unit_of_Measurement__c = $('.Dose_Unit_of_Measurement__c').val();
+            
+            // Added to populate Event ID
+            procedure.Related_Event_ID__c = $('#eventId').val();
+            //procedure.Procedure_Physician__c = $('#contID').val();
+            
+            // This will returns the procedureId as i am saving that in html
+            procedureId = $('#procedureId').val();
+            
+            // If procedureId is present, it will call update otherwise it will call insert
+            if(procedureId != ''){
+                procedure.Id = procedureId;
+                sforce.connection.update([procedure],
+                {onSuccess : success, onFailure : failed});
+            }else{
+                sforce.connection.create([procedure],
+                {onSuccess : success, onFailure : failed});
+            }            
+        }
+
+    }
+
+    // Method to save procedure items, This will be only called if procedure is successfully been saved
+    function saveProcedureItems(pId){
+        // Preparing a list for procedure items that are going to insert/update
+        // If not spliting the list, it will insert a new procedure item rather than updating previous one
+        var insertableItems = [];
+        var updateableItems = [];
+
+        $('#procedureId').val(pId);
+        
+        // Iterating over each of procedure item
+        $('ul.steps_ul').each(function(index, item){
+          var item = new sforce.SObject("Procedure_Item__c");
+          item.Procedure_Item__c = $(this).find('select[id$="Procedure_Item__c"]').val();
+          var isInsertable = false;
+          var key = $(this).find('select[id$="Procedure_Item__c"]').val();
+          var manufacturer = $(this).find('select[id$="Manufacturer__c"]').val();
+          var resterilized = $(this).find('select[id$="Resterilized__c"]').val();
+          var tipSize = $(this).find('select[id$="Tip_Size__c"]').val();
+          var location = $(this).find('select[id$="Location__c"]').val();
+          var catheter = $(this).find('select[id$="Catheter_Type__c"]').val();
+          var noElectrodes = $(this).find('select[id$="Number_of_Electrodes__c"]').val();
+          var notes = $(this).find('textarea[id$="Notes__c"]').val();
+
+
+            //Check for all types and if any of field changes save the record to db
+            if(key == 'ICE' || key == 'Transseptal Needle' || key == 'EP Study - Introducers'){
+                if( manufacturer != '' || resterilized != '' || notes != '' ){
+                      isInsertable = true;
+                  }
+            }else if(key == 'EP Study - Diagnostic EP Catheters'){
+                if( manufacturer != '' || resterilized != '' || location != '' || catheter != '' ||  noElectrodes != '' || notes != '' ){
+                      isInsertable = true;
+                  }
+            }else if(key == 'Ablation Catheter'){
+                if( manufacturer != '' || tipSize != '' || notes != '' ){
+                      isInsertable = true;
+                  }
+            }
+            // Preparing the data to be saved to procedure items
+            item.Manufacturer__c = manufacturer;
+            item.Resterilized__c = resterilized;
+            item.Tip_Size__c = tipSize;
+            item.Location__c = location;
+            item.Catheter_Type__c = catheter;
+            item.Number_of_Electrodes__c = noElectrodes;
+            item.Notes__c = notes;
+            
+            // If procedure is already then it must have valid Id
+            // For already saved items, pItemId will contain the procedure item id
+            if($(this).find('.pItemId').val() != ''){
+                  item.Id = $(this).find('.pItemId').val(); 
+                  updateableItems.push(item);
+            }else{
+                    if(isInsertable == true){
+                        item.Procedure__c = pId;            
+                        insertableItems.push(item);
+                    }
+            }               
+        });
+
+        // Checking if there is any procedure items that are going to be inserted
+        if(insertableItems.length > 0){
+            sforce.connection.create(insertableItems,
+            {onSuccess : successOnItems, onFailure : failedOnItems});
+        }
+
+        // Checking if there is any procedure items that are going to be updated
+        if(updateableItems.length > 0){
+            sforce.connection.update(updateableItems,
+            {onSuccess : successOnItems, onFailure : failedOnItems});
+        }
+        
+        // If none of procedure item is changed/added, then it wond do anything and redirects to detail page
+        if(insertableItems.length == 0 && updateableItems.length == 0){
+            $('.search_loading').addClass('hide'); 
+            $('.custom-msg').removeClass('hide');
+            $('.custom-msg .alert').addClass('alert-success');
+            $('.custom-msg .alert').html('Record Successfully saved.');
+            checkForDeletedItems();
+            navigateToDetailPage($('#procedureId').val());
+        }       
+    }
+
+    // If procedure and Procedure items are being successfully saved
+    // Redirects to the detail page for newly created/modified procedure
+    function navigateToDetailPage(id){
+        // if save and new button is not clicked
+        if($('#saveAndNewProcedure').val() == 0){ 
+            //Incase of salesforce1/lightning, redirecting using sf methods
+            if( '{!isS1}' == 'true' ) {
+                if($('#isUpdate').val() == ''){
+                    sforce.one.navigateToURL('/'+id, true);                    
+                }else{
+                    sforce.one.back(true);
+                }
+            }else {
+                // Incase of desktop, just redirect window to detail page with id
+                window.location='/'+id;
+            }
+        }
+        else  // if save and new button is  clicked
+        {
+            var eventId = $("#eventId").val();
+            var eventParam = "";
+            if(eventId != ""){
+                eventParam += "&eventId="+eventId;
+            }
+            
+            var contId = $("#contID").val();
+            var eventcontParam = "";
+            if(contId != ""){
+                eventcontParam += "&contactId="+contId;
+            }
+            
+            //Incase of salesforce1/lightning, redirecting using sf methods
+            if( '{!isS1}' == 'true' ) {
+                var new_url =  '/apex/SJM_ProcedureEdit?accountid='+$('#accountId').val()+eventParam+eventcontParam; 
+                sforce.one.navigateToURL( new_url );
+            }else {
+                // Incase of desktop, just redirect window to detail page with id
+                window.location =  window.location.pathname + "?accountid="+$('#accountId').val()+eventParam+eventcontParam;
+            }
+        }
+    }
+
+    // Add new procedure item, This has offline capability
+    // Just clonned the hidden input from selected index where add item is clicked
+    // Show that selected clonned item as new item, It wont add it in database, it will only clone and adds html
+    
+    function addProcedureItem(el,type, index, ev){
+        var count = parseInt($(el).parent().parent().find('li.item_type_li').not('.hide').length) + 1;
+
+        var htmlToAppend = $(el).parent().parent().children().first().clone();
+        //var htmlToAppend = '<li class="item_type_li">'+$(el).parent().prev().clone()+'</li>';
+        $(htmlToAppend).find('ul.steps_ul').addClass('show');
+        $(htmlToAppend).find('textarea, select, input').val(''); 
+        $(htmlToAppend).find('textarea, select, input').attr('onchange', 'countNumberOfItems()');
+        
+        //Update the ID since clone will have the same ID
+        $(htmlToAppend).find('[id]').each(function () {
+                var $th = $(this);
+                var x = $th.attr('id');
+                var pos = x.lastIndexOf(':');
+                var newID = x.substring(0, pos) + ':' + count + x.substring(pos + 1);
+                $th.attr('id', newID);
+            });
+
+        //$(el).parent().before(htmlToAppend);
+        $(el).parent().before('<li class="item_type_li">' + htmlToAppend.html() +'</li>');
+        $(el).parent().prev().find('.stepno-counter').html(count);
+        $(el).parent().prev().find('textarea').val('');
+        $(el).parent().prev().find('.pItemId').val('');
+
+        countNumberOfItems();
+        initInputs();
+        
+        ev.preventDefault(); 
+        ev.stopPropagation();
+        return false;
+    }
+    
+    //checks the procedure deleted items stored in array to delete it from salesforce.
+    
+    function checkForDeletedItems(){
+    if(procedureDeletedItem.length > 0)
+        {
+            sforce.connection.deleteIds(procedureDeletedItem);
+        }
+    }
+    
+   
+     
+    // Function will delete procedure item
+    function deleteProcedureItem(el, pId){
+        hideKeyboard();
+        //Count procedure items so that if last one is going to delete, clone it for adding again.
+        var pItems = countProcedureItems(el);
+        
+        // If there is procedure id, meaning that if procedure item is already saved, then delete it from salesforce
+        if(pId != ''){
+            procedureDeletedItem[itemIndex++] = pId;
+            
+        }
+        
+        // If last item is going to be deleted, keep the html to clone before deleting the actual one
+        if(pItems == 1){
+            var htmlToAppend = '<li class="item_type_li hide">'+$(el).parent().parent().parent().html()+'</li>';
+            $(htmlToAppend).find('textarea, select, input').val('');
+            $(htmlToAppend).find('.pItemId').val('');
+            $(el).parent().parent().parent().before(htmlToAppend);
+        }
+        
+        // Update the procedure item counter
+        var totalItems = $(el).closest('li.parent_li').find('li.item_type_li').not('.hide').length - 1;
+        var totalItemsText = totalItems > 0 ? '('+totalItems+')' : '&nbsp;&nbsp;';
+        $(el).closest('li.parent_li').find('a.toggle_parent span.tip_section').html(totalItemsText);   
+        
+        var itemsparent = $(el).closest('li.parent_li');
+        
+        // Deleting the actual item
+        $(el).parent().parent().parent().remove();
+        
+        var itemnumber = 1;
+        
+        // Updating the item number counter for all item types
+        itemsparent.find('li.item_type_li').not('.hide').each(function(){
+            $(this).find('.stepno-counter').html(itemnumber);
+            itemnumber++;
+        });
+    }
+
+    // Count procedure items in specific procedure item type
+    function countProcedureItems(el){
+        return $(el).parent().parent().parent().parent().find('li.item_type_li').not('.hide').length;
+    }
+
+    //If procedure item save call is successfully execured
+    function successOnItems(result){
+      $('.search_loading').addClass('hide');     
+      if (result[0].getBoolean("success")) {
+          // If procedure items are successfully saved, show message on top and redirect to saved procedure
+          $('.custom-msg').removeClass('hide');
+          $('.custom-msg .alert').addClass('alert-success');
+          $('.custom-msg .alert').html('Record Successfully saved.');
+          checkForDeletedItems();
+          navigateToDetailPage($('#procedureId').val());
+      } else {
+          // If there is any error, show error message on top
+          $('.custom-msg').removeClass('hide');
+          $('.custom-msg .alert').addClass('alert-danger');
+          //$('.custom-msg .alert').html('<strong>Error!</strong> '+ result[0]['errors'].message);
+          var err = result[0].errors;
+          var errMessages = "";
+        
+            for ( var i = 0; i < err.length; i++ ) {
+                  errMessages += errors[i].message + '\n';
+            }
+           $('.custom-msg .alert').html('<strong>Error!</strong> '+ errMessages);  
+      }     
+    }
+
+    // If adding procedure query successfully executed
+    function success(result) {
+        //If update/insert call returns success then go for procedure item save 
+      if (result[0].getBoolean("success")) {
+          // If procedure is successfully saved/updated
+          $('#procedureId').val(result[0].id);
+          
+          // Save procedure items after procedure is successfully saved
+          saveProcedureItems(result[0].id);
+      }else{
+          
+          // If procedure is not able  to save then it wont go for procedure item save
+          // It shows error on screen which is returned
+          $('.search_loading').addClass('hide');       
+          $('.custom-msg').removeClass('hide');
+          $('.custom-msg .alert').addClass('alert-danger');
+          //$('.custom-msg .alert').html('<strong>Error!</strong> '+ result[0]['errors'].message);
+          
+          var errors = result[0].errors;
+          var errorMessages = "";
+        
+            for ( var i = 0; i < errors.length; i++ ) {
+                  errorMessages += errors[i].message + '\n';
+            }
+           $('.custom-msg .alert').html('<strong>Error!</strong> '+ errorMessages);
+            
+      }
+    }
+
+    // If procedure is failed to save, then it will stop loading and show error message on top
+    function failed(error) {
+        //Re-initialize date picker
+        /*
+        $('#procedureDate').datepicker('remove');
+        initDatePicker();
+        */
+        
+        $('.search_loading').addClass('hide');
+        $('.custom-msg').removeClass('hide');
+        $('.custom-msg .alert').addClass('alert-danger').html('<strong>Error!</strong> '+error);
+    }
+
+    // If procedure items are failed to save, then it will stop loading and show error message on top 
+    function failedOnItems(error) {
+        $('.search_loading').addClass('hide');      
+        $('.custom-msg').removeClass('hide');
+        $('.custom-msg .alert').addClass('alert-danger').html('<strong>Error!</strong> '+error);
+    }   
+
+    // It is just a fix for iphone, cant find better that that
+    // This is known issue in sf1 that on some of inputs, it redirects to top in iphone
+    var a = navigator.userAgent;
+    if ((a.indexOf('Salesforce') != -1) && (a.indexOf('iPhone') != -1 || a.indexOf('iPad') != -1) && (a.indexOf('Safari') == -1)) {
+        var s = document.createElement('style');
+        if ((a.indexOf('OS/8') != -1 || a.indexOf('OS 8') != -1)) {
+            s.innerHTML = "html,html body{overflow:auto;-webkit-overflow-scrolling:touch;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        } else if ((a.indexOf('OS/9') != -1 || a.indexOf('OS 9') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        else if ((a.indexOf('OS/10') != -1 || a.indexOf('OS 10') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        else if ((a.indexOf('OS/11') != -1 || a.indexOf('OS 11') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        else if ((a.indexOf('OS/12') != -1 || a.indexOf('OS 12') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        
+        document.getElementsByTagName('head')[0].appendChild(s);
+ 
+        //fix for freezing input fields on iOS
+        window.onkeydown=function(){window.focus();}
+    } 
+
+  </script>
+</apex:page>

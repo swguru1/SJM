@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Single consolidated object used for SFDC external data reporting.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ANZ_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>ANZ ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer_ID__c</fullName>
+        <description>Customer ID</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer ID</inlineHelpText>
+        <label>Customer ID</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer_Name__c</fullName>
+        <description>Customer Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer Name</inlineHelpText>
+        <label>Customer Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer_PO__c</fullName>
+        <description>Customer PO. Also denotes if a PO is still pending</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer PO. Also denotes if a PO is still pending</inlineHelpText>
+        <label>Customer PO</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DateForQuarter__c</fullName>
+        <description>Take the current month and equates a date to being the 15th of that month. Use to evaluate which quarter we&apos;re in for reporting</description>
+        <externalId>false</externalId>
+        <formula>DATE(Year(today()),VALUE(TEXT(SJMMonth__c)),15)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DateForQuarter</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Day_Band__c</fullName>
+        <externalId>false</externalId>
+        <formula>if ((Exp_Date__c - today()) &gt;=0 &amp;&amp; (Exp_Date__c - today()) &lt;=30,&quot;0-30 DAYS&quot;,
+  if ((Exp_Date__c - today()) &gt;=31 &amp;&amp; (Exp_Date__c - today()) &lt;=60,&quot;31-60 DAYS&quot;,
+    if ((Exp_Date__c - today()) &gt;=61 &amp;&amp; (Exp_Date__c - today()) &lt;=90,&quot;61-90 DAYS&quot;,
+      &quot;EXPIRED&quot;)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Day Band</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Days_to_Expire_Calculated__c</fullName>
+        <externalId>false</externalId>
+        <formula>Exp_Date__c - today()</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days to Expire Calculated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Days_to_Expire_Display__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Exp_Date__c - today()) &amp; &quot; &quot; &amp; 
+IF (Exp_Date__c - today() &lt;=7,
+  IMAGE (&quot;/img/samples/color_red.gif&quot;,&quot;status colour&quot;,10,20),
+
+IF (Exp_Date__c - today() &lt;=30,
+  IMAGE (&quot;/img/samples/color_yellow.gif&quot;,&quot;status colour&quot;,10,20),
+
+IF (Exp_Date__c - today() &lt;=90,
+  IMAGE (&quot;/img/samples/color_green.gif&quot;,&quot;status colour&quot;,10,20),
+
+  &quot;&quot;)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days to Expire Display</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delivery_Date__c</fullName>
+        <description>Delivery Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Delivery Date</inlineHelpText>
+        <label>Delivery Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Description</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Description</inlineHelpText>
+        <label>Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Division__c</fullName>
+        <description>Division</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Division</inlineHelpText>
+        <label>Division</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Doctor__c</fullName>
+        <description>Doctor</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Doctor</inlineHelpText>
+        <label>Doctor</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EmailEqualsUserName__c</fullName>
+        <description>Checks to see if email is the same as username</description>
+        <externalId>false</externalId>
+        <formula>IF(upper(Email__c) =  upper($User.Username), &quot;True&quot;, &quot;False&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>EmailEqualsUserName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <description>Email</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email</inlineHelpText>
+        <label>Email</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Exp_Date__c</fullName>
+        <description>Expiry Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Expiry Date</inlineHelpText>
+        <label>Expiry Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Facility__c</fullName>
+        <description>Facility</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Facility</inlineHelpText>
+        <label>Facility</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Implant_Date__c</fullName>
+        <description>Date that implant occurred</description>
+        <externalId>false</externalId>
+        <label>Implant Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>InCurrentSJMMonth__c</fullName>
+        <externalId>false</externalId>
+        <formula>SJMMonth__c = Month__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>InCurrentSJMMonth</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Inventory_Status__c</fullName>
+        <description>Inventory Status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Inventory Status</inlineHelpText>
+        <label>Inventory Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Item_Number__c</fullName>
+        <description>Item Number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Item Number</inlineHelpText>
+        <label>Item Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>List_Price__c</fullName>
+        <description>List Price</description>
+        <externalId>false</externalId>
+        <inlineHelpText>List Price</inlineHelpText>
+        <label>List Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>List_Value__c</fullName>
+        <description>Total list value of ALL stock in this record (AUD)</description>
+        <externalId>false</externalId>
+        <formula>List_Price__c * Qty__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>List Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LocName__c</fullName>
+        <description>Location Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Location Name</inlineHelpText>
+        <label>Location Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LocationType__c</fullName>
+        <description>Location Type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Location Type</inlineHelpText>
+        <label>Location Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_ID__c</fullName>
+        <description>Location ID</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Location ID</inlineHelpText>
+        <label>Location ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LotSerNumber__c</fullName>
+        <description>Lot / Serial Number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lot / Serial Number</inlineHelpText>
+        <label>Lot / Serial Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <description>Model</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Model</inlineHelpText>
+        <label>Model</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Month__c</fullName>
+        <externalId>false</externalId>
+        <label>Month</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Patient__c</fullName>
+        <description>Patient</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Patient</inlineHelpText>
+        <label>Patient</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pending_Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF (Customer_PO__c = &quot;PO PENDING&quot;, 
+(&quot;PENDING &quot; &amp; IMAGE (&quot;/img/samples/flag_red.gif&quot;,&quot;status colour&quot;,10,10)), 
+&quot;INVOICED&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pending Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prod_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Prod Category</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prod_Seg_Key__c</fullName>
+        <description>Prod Seg Key</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Prod Seg Key</inlineHelpText>
+        <label>Prod Seg Key</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Segment_Code__c</fullName>
+        <description>Product Segment Code</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Product Segment Code</inlineHelpText>
+        <label>Product Segment Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Qty__c</fullName>
+        <externalId>false</externalId>
+        <label>Qty</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quota__c</fullName>
+        <externalId>false</externalId>
+        <label>Quota</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RepName__c</fullName>
+        <externalId>false</externalId>
+        <label>RepName</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rep_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Rep ID</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Report_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Report Type</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Revenue__c</fullName>
+        <externalId>false</externalId>
+        <label>Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SJMMonth__c</fullName>
+        <description>Looks at the date and returns the SJM Month</description>
+        <externalId>false</externalId>
+        <formula>if (today()=DATE(2015,3,1),2,
+if (today()=DATE(2015,3,2),2,
+if (today()=DATE(2015,3,3),2,
+if (today()=DATE(2015,3,4),2,
+if (today()=DATE(2015,3,5),2,
+if (today()=DATE(2015,3,6),2,
+if (today()=DATE(2015,3,7),2,
+
+if (today()=DATE(2015,4,1),3,
+if (today()=DATE(2015,4,2),3,
+if (today()=DATE(2015,4,3),3,
+if (today()=DATE(2015,4,4),3,
+
+
+if (today()=DATE(2015,5,1),4,
+if (today()=DATE(2015,5,2),4,
+
+if (today()=DATE(2015,6,1),5,
+if (today()=DATE(2015,6,2),5,
+if (today()=DATE(2015,6,3),5,
+if (today()=DATE(2015,6,4),5,
+if (today()=DATE(2015,6,5),5,
+if (today()=DATE(2015,6,6),5,
+
+
+if (today()=DATE(2015,7,1),6,
+if (today()=DATE(2015,7,2),6,
+if (today()=DATE(2015,7,3),6,
+if (today()=DATE(2015,7,4),6,
+
+if (today()=DATE(2015,8,1),7,
+
+if (today()=DATE(2015,9,1),8,
+if (today()=DATE(2015,9,2),8,
+if (today()=DATE(2015,9,3),8,
+if (today()=DATE(2015,9,4),8,
+if (today()=DATE(2015,9,5),8,
+
+if (today()=DATE(2015,10,1),9,
+if (today()=DATE(2015,10,2),9,
+if (today()=DATE(2015,10,3),9,
+
+
+if (today()=DATE(2015,12,1),11,
+if (today()=DATE(2015,12,2),11,
+if (today()=DATE(2015,12,3),11,
+if (today()=DATE(2015,12,4),11,
+if (today()=DATE(2015,12,5),11,
+
+if (today()=DATE(2016,1,1),12,
+if (today()=DATE(2016,1,2),12,
+
+MONTH(today()))))))))))))))))))))))))))))))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SJMMonth</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SJMQuarter__c</fullName>
+        <description>Returns 1,2,3 or 4 denoting quarter or 0 if an error</description>
+        <externalId>false</externalId>
+        <formula>if (AND(today()&gt;=DATE(2015,1,4), today()&lt;=DATE(2015,4,4)),1,
+if (AND(today()&gt;=DATE(2015,4,5), today()&lt;=DATE(2015,7,4)),2,
+if (AND(today()&gt;=DATE(2015,7,5), today()&lt;=DATE(2015,10,3)),3,
+if (AND(today()&gt;=DATE(2015,10,4), today()&lt;=DATE(2016,1,2)),4,0
+))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SJMQuarter</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Person__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Person</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <externalId>false</externalId>
+        <label>State</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UniqueKey__c</fullName>
+        <externalId>false</externalId>
+        <label>UniqueKey</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Value_AUD__c</fullName>
+        <externalId>false</externalId>
+        <formula>if (State__c=&quot;NZ&quot;, Value__c / 1.0929, Value__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Value AUD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Value LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>ANZ Reporting</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>REP-{000000000}</displayFormat>
+        <label>ANZ Reporting Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>ANZ Reporting</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+</CustomObject>

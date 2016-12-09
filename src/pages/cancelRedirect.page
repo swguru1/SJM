@@ -1,0 +1,7 @@
+<apex:page standardController="Event" extensions="cancelExtension" action="{!setCancel}" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+    <script src="/canvas/sdk/js/publisher.js"/>
+    <script>
+    Sfdc.canvas.publisher.publish({name: "publisher.refresh", payload:{ feed:true }});
+    Sfdc.canvas.publisher.publish({name: "publisher.close", payload:{ refresh:"true"}});
+    </script>
+</apex:page>

@@ -1,0 +1,3 @@
+<apex:page controller="FIT_ScanAppRedirectController" action="{!redirect}" showheader="false" sidebar="false" applybodytag="false">
+
+</apex:page>

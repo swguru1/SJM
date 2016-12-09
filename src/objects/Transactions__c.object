@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>FIT Project</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account_Name__c</fullName>
+        <description>Used within the Transaction Details for FIT mobile</description>
+        <externalId>false</externalId>
+        <formula>Account__r.Name</formula>
+        <label>Account Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>SJM Customer</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Commissionable_Sales_Rep_Name__c</fullName>
+        <description>Used within the Transaction Details for FIT mobile</description>
+        <externalId>false</externalId>
+        <formula>Commissionable_Sales_Rep__r.FirstName + &quot; &quot; + Commissionable_Sales_Rep__r.LastName</formula>
+        <label>Commissionable Sales Rep Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Commissionable_Sales_Rep__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Commissionable Sales Rep</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Transactions1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Implant_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Implant Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Inactive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When the user sets this field to TRUE, the Status will automatically update via workflow to &quot;Inactive&quot;</description>
+        <externalId>false</externalId>
+        <label>Inactive</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Items__c</fullName>
+        <externalId>false</externalId>
+        <label>Items</label>
+        <length>25000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Location_Name_Hyperlink__c</fullName>
+        <description>Defaults to either the First Name + Last Name fields from the User table or the link to the Account, depending on if the User or Account field is populated, respectively. Used for displaying in the &quot;My Consignment Requests&quot;, &quot;My Inventory Transfers&quot; and &quot;My Sales Orders&quot; list views.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c) , HYPERLINK(&quot;https://sjm--qa.cs17.my.salesforce.com/&quot; &amp; Account__r.Id , Account__r.Name , &apos;_self&apos;) , User__r.FirstName &amp;&apos; &apos;&amp; User__r.LastName)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_Name_for_Emails__c</fullName>
+        <description>Defaults to either the First Name + Last Name fields from the User table or the Account Name, depending on if the User or Account field is populated, respectively. Used for displaying in email alerts.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c) , Account__r.Name , User__r.FirstName &amp;&apos; &apos;&amp; User__r.LastName )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <description>Defaults to either the Business Partner # field from the User table or the SJM ID field from the Account table, depending on if the User or Account field is populated, respectively</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c),Account__r.SJM_ID__c,User__r.Business_Partner__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location #</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PO_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>PO Number</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Patient_First_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Patient First Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Patient_Last_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Patient Last Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAP_Order__c</fullName>
+        <externalId>false</externalId>
+        <label>SAP Order #</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ship_To_Address_Formula__c</fullName>
+        <description>Defaults to the concatenation of the Street 1 + Street 2 + Street 3 + City + State/Province + Country + Zip/Postal Code fields from the Ship To Address table</description>
+        <externalId>false</externalId>
+        <formula>Ship_To_Address__r.Street_1__c + &quot; &quot; + Ship_To_Address__r.Street_2__c + &quot; &quot; + Ship_To_Address__r.Street_3__c+ BR () + Ship_To_Address__r.City__c + &quot; &quot; + Ship_To_Address__r.State_Province__c + &quot; &quot; + Ship_To_Address__r.Country__c + &quot; &quot; + Ship_To_Address__r.Zip_Postal_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ship To Address</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ship_To_Address__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Ship To Address</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>(1 AND 2) OR (3 AND 4)</booleanFilter>
+            <filterItems>
+                <field>Ship_To_Address__c.Account__c</field>
+                <operation>equals</operation>
+                <valueField>$Source.Account__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>Ship_To_Address__c.User__c</field>
+                <operation>equals</operation>
+                <value></value>
+            </filterItems>
+            <filterItems>
+                <field>Ship_To_Address__c.User__c</field>
+                <operation>equals</operation>
+                <valueField>$Source.User__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>Ship_To_Address__c.Account__c</field>
+                <operation>equals</operation>
+                <value></value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Ship_To_Address__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Shipping_Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Shipping Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>FedEx Saver 3 Day</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FedEx Second Day</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fedex Standard Overnight</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Send</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Received</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Errors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PO Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Invoiced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Submit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to submit a Consignment Request or Inventory Transfer to SAP, or decrement the inventory quantity and update the Status for a Sales Order</description>
+        <externalId>false</externalId>
+        <label>Submit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Total_Price__c</fullName>
+        <description>Sums the &quot;Roll-Up Price&quot; field for all associated Transaction Items</description>
+        <externalId>false</externalId>
+        <label>Total Price</label>
+        <summarizedField>Transaction_Items__c.Roll_Up_Price__c</summarizedField>
+        <summaryForeignKey>Transaction_Items__c.Transaction_ID__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Transaction_Type__c</fullName>
+        <description>Defaults to Consignment Request, Inventory Transfer or Sales Order, depending on the Record Type. Used for display purposes since there can be multiple Record Types for the same type of transaction (e.g., Consignment Request, Consignment Request - Read Only)</description>
+        <externalId>false</externalId>
+        <formula>IF ( CONTAINS ( RecordType.Name, &quot;Consignment Request&quot; ), &quot;Consignment Request&quot;,
+IF ( CONTAINS ( RecordType.Name, &quot;Inventory Transfer&quot; ), &quot;Inventory Transfer&quot;,
+IF ( CONTAINS ( RecordType.Name, &quot;Sales Order&quot; ), &quot;Sales Order&quot;,
+NULL ) ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Transaction Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Transaction</label>
+    <listViews>
+        <fullName>My_Consignment_Requests</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Items__c</columns>
+        <columns>Location__c</columns>
+        <columns>Location_Name_Hyperlink__c</columns>
+        <columns>Shipping_Priority__c</columns>
+        <columns>Ship_To_Address__c</columns>
+        <columns>Ship_To_Address_Formula__c</columns>
+        <columns>PO_Number__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Transactions__c.Consignment_Request,Transactions__c.Consignment_Request_Read_Only</value>
+        </filters>
+        <label>My Consignment Requests</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Inventory_Transfers</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Items__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Transactions__c.Inventory_Transfer,Transactions__c.Inventory_Transfer_Read_Only</value>
+        </filters>
+        <label>My Inventory Transfers</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Sales_Orders</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Location__c</columns>
+        <columns>Location_Name_Hyperlink__c</columns>
+        <columns>PO_Number__c</columns>
+        <columns>Commissionable_Sales_Rep__c</columns>
+        <columns>Patient_First_Name__c</columns>
+        <columns>Patient_Last_Name__c</columns>
+        <columns>Implant_Date__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Transactions__c.Sales_Order,Transactions__c.Sales_Order_PO_Pending,Transactions__c.Sales_Order_Invoiced</value>
+        </filters>
+        <label>My Sales Orders</label>
+    </listViews>
+    <nameField>
+        <displayFormat>T-{00000}</displayFormat>
+        <label>Transaction ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Transactions</pluralLabel>
+    <recordTypes>
+        <fullName>Consignment_Request</fullName>
+        <active>true</active>
+        <label>Consignment Request</label>
+        <picklistValues>
+            <picklist>Shipping_Priority__c</picklist>
+            <values>
+                <fullName>FedEx Saver 3 Day</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>FedEx Second Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fedex Standard Overnight</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Errors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Consignment_Request_Read_Only</fullName>
+        <active>true</active>
+        <description>Record Type for Consignment Requests with a Status of Send or Received</description>
+        <label>Consignment Request - Read Only</label>
+        <picklistValues>
+            <picklist>Shipping_Priority__c</picklist>
+            <values>
+                <fullName>FedEx Saver 3 Day</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>FedEx Second Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fedex Standard Overnight</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Errors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Inventory_Transfer</fullName>
+        <active>true</active>
+        <label>Inventory Transfer</label>
+        <picklistValues>
+            <picklist>Shipping_Priority__c</picklist>
+            <values>
+                <fullName>FedEx Saver 3 Day</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>FedEx Second Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fedex Standard Overnight</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Errors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Inventory_Transfer_Read_Only</fullName>
+        <active>true</active>
+        <description>Record Type for Inventory Transfers with a Status of Send or Received</description>
+        <label>Inventory Transfer - Read Only</label>
+        <picklistValues>
+            <picklist>Shipping_Priority__c</picklist>
+            <values>
+                <fullName>FedEx Saver 3 Day</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>FedEx Second Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fedex Standard Overnight</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Errors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Sales_Order</fullName>
+        <active>true</active>
+        <label>Sales Order</label>
+        <picklistValues>
+            <picklist>Shipping_Priority__c</picklist>
+            <values>
+                <fullName>FedEx Saver 3 Day</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>FedEx Second Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fedex Standard Overnight</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoiced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PO Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Sales_Order_Invoiced</fullName>
+        <active>true</active>
+        <description>Record Type for a Sales Order with a Status of Invoiced</description>
+        <label>Sales Order - Invoiced</label>
+        <picklistValues>
+            <picklist>Shipping_Priority__c</picklist>
+            <values>
+                <fullName>FedEx Saver 3 Day</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>FedEx Second Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fedex Standard Overnight</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoiced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PO Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Sales_Order_PO_Pending</fullName>
+        <active>true</active>
+        <description>Record Type for a Sales Order with a Status of PO Pending</description>
+        <label>Sales Order - PO Pending</label>
+        <picklistValues>
+            <picklist>Shipping_Priority__c</picklist>
+            <values>
+                <fullName>FedEx Saver 3 Day</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>FedEx Second Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fedex Standard Overnight</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoiced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PO Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Location_Name_Hyperlink__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Ship_To_Address__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Ship_To_Address_Formula__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Shipping_Priority__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>PO_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Items__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>Both_User_And_Account_Cannot_Be_Entered</fullName>
+        <active>true</active>
+        <description>Only the User or the Account value can be entered, but not both</description>
+        <errorConditionFormula>NOT(ISBLANK(Account__c )) &amp;&amp; 
+NOT(ISBLANK(User__c ))</errorConditionFormula>
+        <errorMessage>The User and Account fields cannot both contain a value. Please indicate either a User OR an Account.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>User_Or_Account_Required</fullName>
+        <active>true</active>
+        <description>A User or Account value must be entered in order to save</description>
+        <errorConditionFormula>ISBLANK(Account__c ) &amp;&amp; 
+ISBLANK(User__c )</errorConditionFormula>
+        <errorMessage>You must enter a User or Account value</errorMessage>
+    </validationRules>
+</CustomObject>

@@ -1,0 +1,33 @@
+<apex:page standardController="Event" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" extensions="SJM_DBSProcedureEvent">
+ 
+<apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />           
+<apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system.css')}" /> 
+
+<apex:includeScript value="/soap/ajax/36.0/connection.js"/>
+<apex:includeScript value="/soap/ajax/36.0/apex.js"/>
+<script src="/canvas/sdk/js/publisher.js"/>
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <script>   
+         Sfdc.canvas.publisher.subscribe(
+             { name : "publisher.showPanel", onData:function(e) { remoteCallToGetId(); }}
+        );
+    
+        function remoteCallToGetId(){
+            SJM_DBSProcedureEvent.getRecordId(function(recordId){
+                //do somethign with the record id
+                sforce.one.createRecord('Procedure__c', recordId);
+                Sfdc.canvas.publisher.publish({name: "publisher.close", payload:{ refresh:"true"}});
+            });
+        }
+        
+    </script>
+
+
+<div class="slds-spinner_container">
+    <div class="slds-spinner--brand slds-spinner slds-spinner--large" aria-hidden="false" role="alert">
+      <div class="slds-spinner__dot-a"></div>
+      <div class="slds-spinner__dot-b"></div>
+    </div>
+  </div>
+</html>
+</apex:page>

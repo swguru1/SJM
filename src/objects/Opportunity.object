@@ -1,0 +1,5388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>AddInfluence</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <businessProcesses>
+        <fullName>HFM Re-order</fullName>
+        <description>HFM Re-order Opportunity</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Closed Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Final Negotiations</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <businessProcesses>
+        <fullName>SJM Sales Process</fullName>
+        <description>SJM Standardized Sales Process</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Closed Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Final Negotiations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handling Objections</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Qualifying</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Reorder_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>AccountId</fields>
+        <fields>HFM_Total__c</fields>
+        <fields>CloseDate</fields>
+        <fields>OwnerId</fields>
+        <label>Reorder Compact Layout</label>
+    </compactLayouts>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <fields>
+        <fullName>AMOUNT__c</fullName>
+        <externalId>false</externalId>
+        <formula>Amount</formula>
+        <label>AMOUNT $</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASP__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Price per unit</inlineHelpText>
+        <label>ASP</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AccountId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Acquisition_Mode__c</fullName>
+        <externalId>false</externalId>
+        <label>Acquisition Mode</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Capital Cash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Loan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Capital Alternative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Program (CAP)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TBD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quantity Purchase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Amount</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Area_VP__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Area VP</label>
+        <referenceTo>Employee__c</referenceTo>
+        <relationshipLabel>Opportunities (Area VP)</relationshipLabel>
+        <relationshipName>Opportunities_AreaVP</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Area__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( RecordType.DeveloperName , 
+&quot;SJM_Capital_Sales&quot;, Account.USD_AF_Area__c, 
+&quot;SJM_Service_Plan_Sales&quot;,Account.USD_AF_Area__c, 
+&quot;SJM_HFM_New_Opportunity&quot;,Account.USD_HFM_Area__c, 
+&quot;SJM_HFM_Re-order_Opportunity&quot;,Account.USD_HFM_Area__c, 
+NULL)</formula>
+        <label>Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Budget_Cycle__c</fullName>
+        <externalId>false</externalId>
+        <label>Budget Cycle</label>
+        <picklist>
+            <picklistValues>
+                <fullName>July to June</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oct to Sept</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Jan thru Dec</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Buying_process__c</fullName>
+        <externalId>false</externalId>
+        <label>Buying Process</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Board Approval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CFO Approval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CAP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>CAP</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CampaignId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cap_Term_Period__c</fullName>
+        <externalId>false</externalId>
+        <label>Cap Term Period</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Months</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quarters</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Capital_Cash__c</fullName>
+        <externalId>false</externalId>
+        <label>Capital Cash</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Capital__c</fullName>
+        <externalId>false</externalId>
+        <label>Capital $</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CardioMEMS_Account_Manager__c</fullName>
+        <externalId>false</externalId>
+        <label>CardioMEMS Account Manager</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloseDate</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Competitive_Product_Evaluated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Competitive Product Evaluated?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ContractId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contracts_Being_Presented__c</fullName>
+        <externalId>false</externalId>
+        <label>Contracts Being Presented?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Leveraged Deal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Days_To_Close__c</fullName>
+        <externalId>false</externalId>
+        <formula>CloseDate  -  TODAY()</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days To Close</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Division__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( RecordType.DeveloperName , 
+&quot;SJM_Capital_Sales&quot;, Account.USD_AF_Division__c, 
+&quot;SJM_Service_Plan_Sales&quot;,Account.USD_AF_Division__c, 
+&quot;SJM_HFM_New_Opportunity&quot;,Account.USD_HFM_Division__c,
+&quot;SJM_HFM_Re-order_Opportunity&quot;,Account.USD_HFM_Division__c,
+NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Division</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Evaluation_Competitor_Strength__c</fullName>
+        <externalId>false</externalId>
+        <label>Strength?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Evaluation_Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Evaluation Required?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Evaluation_Strength__c</fullName>
+        <externalId>false</externalId>
+        <label>Strength?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ExpectedRevenue</fullName>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Ext_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>Ext Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Negotiations_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Negotiations Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_Use_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>First Use Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Floor_Ceiling__c</fullName>
+        <externalId>false</externalId>
+        <label>Floor/Ceiling</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Celing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Floor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bi-Plane</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>HFMReorderProduct__c</fullName>
+        <externalId>false</externalId>
+        <label>Re-order Product</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CM2000: CardioMEMS™ PA Sensor and Delivery System</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CM1000: CardioMEMS™ Patient Electronics System (GSM)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CM1010: CardioMEMS™ Patient Electronics System (Land Line)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CM3000: CardioMEMS™ Hospital Electronics System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CM3040: WiFi Adaptor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CM2010: CardioMEMS™ Guidewire</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CM Assurance Plus: CardioMEMS Assurance Plus Plan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CMRENTALFEE: rental fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CM2000</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CM2010</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CardioMEMS Assurance Plus Plan</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>HFM_Total__c</fullName>
+        <description>HFM Total for ReOrder</description>
+        <externalId>false</externalId>
+        <label>HFM Re-order Amount</label>
+        <summarizedField>OpportunityLineItem.HFM_Total__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Handling_Objections_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Handling_Objections_Start_Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IDN__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Account.IDN__c)</formula>
+        <inlineHelpText>Integrated Delivery Network (IDN)</inlineHelpText>
+        <label>IDN</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Implant_Date__c</fullName>
+        <description>Implant Date for CardioMEMS</description>
+        <externalId>false</externalId>
+        <label>Implant Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Installed_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Installed Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Integrated_Lab_Manager__c</fullName>
+        <externalId>false</externalId>
+        <label>Integrated Lab Manager</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Alex Jimenez</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brad Campbell</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>John Mann</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tom Bollinger</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Integrated_Lab_or_MediGuide_Only__c</fullName>
+        <externalId>false</externalId>
+        <label>Integrated Lab or MediGuide Only</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Integrated Lab</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IsPrivate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Lab_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Lab Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Updated_By_Profile__c</fullName>
+        <externalId>false</externalId>
+        <formula>LastModifiedBy.Profile.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Last Updated By Profile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LeadSource</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Oppty_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Created to migrate the Inside sales legacy Opportunities</description>
+        <externalId>true</externalId>
+        <label>Legacy Oppty ID</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Source</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Level_of_Approval_Needed__c</fullName>
+        <externalId>false</externalId>
+        <label>Level of Approval Needed</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Departmental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executive Board level</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C Suite</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Board</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Leveraged_Deal__c</fullName>
+        <externalId>false</externalId>
+        <label>Strength?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Model</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>NextStep</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Next_Board_Meeting_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Next Board Meeting Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Next_VAC_Meeting_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Next VAC Meeting Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Objection_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Objection Details</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Clinical Evidence</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Economic Evidence</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Engagement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Equipment Demo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitive Blunting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>On_Contract__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>On Contract?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OpportunityOne__c</fullName>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OpportunityOne</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Sub_Type__c</fullName>
+        <description>IL - Opportunity Subtype</description>
+        <externalId>false</externalId>
+        <label>Opportunity Sub Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VantageView</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Large IDN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Lab</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Workmate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EnSite</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ViewMate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Networking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Owner_of_Next_Steps__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Who is responsible for next steps?</inlineHelpText>
+        <label>Owner of Next Steps</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owner_of_Next_Steps_lookup__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Owner of Next Steps</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Physician_Employed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Physician Employed?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Physician_Name_Lookup__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Physician Name</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Physician_Name__c</fullName>
+        <description>Implanting Physician</description>
+        <externalId>false</externalId>
+        <label>Physician Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Physician_Strength__c</fullName>
+        <externalId>false</externalId>
+        <label>Strength?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Pricebook2Id</fullName>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_GPO_Affiliation__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Account.Primary_GPO_Affiliation__c)</formula>
+        <inlineHelpText>Primary GPO Affiliation</inlineHelpText>
+        <label>Primary GPO Affiliation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PriorityIS__c</fullName>
+        <description>Inside Sales</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Priority</inlineHelpText>
+        <label>Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Days_To_Close__c &gt;15,
+
+IMAGE( &quot;/img/samples/flag_green.gif&quot;,&quot;Greater Than 15 Days&quot;),
+
+IF(Days_To_Close__c &gt;7,
+
+IMAGE(&quot;/img/samples/flag_yellow.gif&quot;,&quot;8-15 Days&quot;),
+
+IMAGE( &quot;/img/samples/flag_red.gif&quot;,&quot;Less than 7 Days&quot;) ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Priority</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Probability</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Product_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product Account</label>
+        <referenceTo>Product_Account__c</referenceTo>
+        <relationshipLabel>Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Products_To_Quote__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the product(s) to quote</inlineHelpText>
+        <label>Products To Quote</label>
+        <picklist>
+            <picklistValues>
+                <fullName>PA Sensor and Delivery System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hospital Electronics System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient Electronics System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EnSite Velocity System New</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EnSite Velocity System Upgrade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Precision</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Verismo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Fusion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Derexi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Courier</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Contact Force Module</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EnSite - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EnSite - Warranty Basic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WorkMate Claris - 120 System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WorkMate Claris - 56 System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WorkMate Claris - Upgrade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EP-4 Cardiac Stimulator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Unity HL7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Unity Review Modules</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Unity DICOM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - ImageSync</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software - Scribe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WorkMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WorkMate - Warranty Basic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ViewMate System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ViewMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ampere RF Generator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cool Point Irrigation Pump</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VantageView 16 inputs</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VantageView 12 inputs</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VantageView 8 inputs</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VantageView Boom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VantageView Track</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MediGuide System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MediGuide - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Projected_Duration_To_Purchase__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Projected Days to close Opportunity.</inlineHelpText>
+        <label>Projected Duration To Purchase</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0-30 Days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>0-90 Days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>0-180 Days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>0-360 Days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Proposal_Terms__c</fullName>
+        <externalId>false</externalId>
+        <label>Proposal Terms</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Proposing_a_Leveraged_Deal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Proposing a Leveraged Deal?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prospecting_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Prospecting Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Qualifying_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Qualifying Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Quoted__c</fullName>
+        <externalId>false</externalId>
+        <label>Quoted</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Budgetary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Final</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RSD__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the Regional Sales Director</inlineHelpText>
+        <label>RSD</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Opportunities_RSD</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reason_Lost_Desc__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Explain the Reason why the Opportunity was lost</inlineHelpText>
+        <label>Reason Lost Description</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Reason_Lost__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason Lost</label>
+        <picklist>
+            <controllingField>StageName</controllingField>
+            <picklistValues>
+                <fullName>Loss in funding</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitive Loss</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Programs offered</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In-house BioMed</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3rd party services</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Budget/Funding</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hospital policy</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Utilization</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Planned upgrade/EOL</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( RecordType.DeveloperName , 
+&quot;SJM_Capital_Sales&quot;, Account.USD_AF_Region__c, 
+&quot;SJM_Service_Plan_Sales&quot;,Account.USD_AF_Region__c, 
+&quot;SJM_HFM_New_Opportunity&quot;,Account.USD_HFM_Region__c,
+&quot;SJM_HFM_Re-order_Opportunity&quot;,Account.USD_HFM_Region__c,
+NULL)</formula>
+        <label>Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SJM_Divisions_Involved__c</fullName>
+        <externalId>false</externalId>
+        <label>St. Jude Medical Products Involved</label>
+        <picklist>
+            <picklistValues>
+                <fullName>EP Disposable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Structural Heart</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vascular</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SJM_Resources_Needed__c</fullName>
+        <externalId>false</externalId>
+        <label>SJM Resources Needed</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sales_Rep__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sales Rep</label>
+        <referenceTo>Employee__c</referenceTo>
+        <relationshipLabel>Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Service_Contract_Specialist__c</fullName>
+        <description>Service Contract Specialist Name</description>
+        <externalId>false</externalId>
+        <formula>Account.Service_Contract_Specialist__r.FirstName &amp; &quot; &quot; &amp; Account.Service_Contract_Specialist__r.LastName</formula>
+        <inlineHelpText>Service Contract Specialist Name</inlineHelpText>
+        <label>Service Contract Specialist</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StageName</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Prospecting</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>10</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Qualifying</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>25</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Handling Objections</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>50</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Final Negotiations</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>80</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed Won</fullName>
+                <default>false</default>
+                <closed>true</closed>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>100</probability>
+                <won>true</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed Lost</fullName>
+                <default>false</default>
+                <closed>true</closed>
+                <forecastCategory>Omitted</forecastCategory>
+                <probability>0</probability>
+                <won>false</won>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status</inlineHelpText>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>With Inside Sales</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>With Field Rep</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>With Enterprise Accounts</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Under Customer Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Under Contracts Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Strategic_Account__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Account.Strategic_Account__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Strategic Account</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SyncedQuoteId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>System_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>System ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Term_of_Cap__c</fullName>
+        <externalId>false</externalId>
+        <label>Term of Cap</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Term_of_Contract__c</fullName>
+        <externalId>false</externalId>
+        <label>Term of Contract(Quarters)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TotalOpportunityQuantity</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Total_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <formula>Capital__c + (ASP__c * Units__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Capital $ + (ASP * Quantity)</inlineHelpText>
+        <label>Total Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Units__c</fullName>
+        <description>Sum of Product Quantities.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of Product Quantities entered as the Product Line Items.</inlineHelpText>
+        <label>Total Units</label>
+        <summarizedField>OpportunityLineItem.Quantity</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_value_of_CAP__c</fullName>
+        <externalId>false</externalId>
+        <label>Total value of CAP</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Type</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Units__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText># of units</inlineHelpText>
+        <label>Units</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vendor_Xray__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Xray</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Philips</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Who_Signs_the_PO__c</fullName>
+        <externalId>false</externalId>
+        <label>Who Signs the PO?</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>isMyArea__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Area__c = $User.Area__c, 1,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>isMyArea</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>isMyDivision__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Division__c =  $User.Division, 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>isMyDivision</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>isMyRegion__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Region__c =  $User.Region__c, 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>isMyRegion</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <listViews>
+        <fullName>ALL_Opportunities</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>Division__c</columns>
+        <columns>Area__c</columns>
+        <columns>Region__c</columns>
+        <columns>OPPORTUNITY.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>ALL Opportunities</label>
+    </listViews>
+    <listViews>
+        <fullName>Capital_Sales_Opportunities</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Area__c</columns>
+        <columns>Region__c</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.PROBABILITY</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.SJM_Capital_Sales</value>
+        </filters>
+        <label>Capital Sales Opportunities</label>
+        <sharedTo>
+            <roleAndSubordinates>CEO</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ClosingNextMonth</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CLOSE_DATE</field>
+            <operation>equals</operation>
+            <value>NEXT_MONTH</value>
+        </filters>
+        <label>Closing Next Month</label>
+    </listViews>
+    <listViews>
+        <fullName>ClosingThisMonth</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CLOSE_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <label>Closing This Month</label>
+    </listViews>
+    <listViews>
+        <fullName>DBS_Opportunities_US</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.DBS</value>
+        </filters>
+        <label>DBS Opportunities - US</label>
+        <sharedTo>
+            <roleAndSubordinates>GM_Neuro</roleAndSubordinates>
+            <roleAndSubordinates>VP_Marketing_Neuro</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Default_Opportunity_Pipeline</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>OPPORTUNITY.CLOSE_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>LAST_N_MONTHS:3</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+        </filters>
+        <label>Opportunity Pipeline</label>
+    </listViews>
+    <listViews>
+        <fullName>HFM_New_Opportunities</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.QUANTITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.CardioMEMS</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>notEqual</operation>
+            <value>Closed Won,Closed Lost</value>
+        </filters>
+        <label>HFM New Opportunities</label>
+        <sharedTo>
+            <roleAndSubordinates>SVP_HFM</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>HFM_Re_orders_Opportunities</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>HFM_Total__c</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>CORE.USERS.FULL_NAME</columns>
+        <columns>OPPORTUNITY.QUANTITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.CardioMEMS_Reorder</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>notEqual</operation>
+            <value>Closed Won,Closed Lost</value>
+        </filters>
+        <label>HFM Re-orders Opportunities</label>
+        <sharedTo>
+            <roleAndSubordinates>SVP_HFM</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MyOpportunities</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.PROBABILITY</columns>
+        <columns>CORE.USERS.FULL_NAME</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Opportunities</label>
+    </listViews>
+    <listViews>
+        <fullName>NewThisWeek</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>New This Week</label>
+    </listViews>
+    <listViews>
+        <fullName>Service_Contract_Opportunities</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Area__c</columns>
+        <columns>Region__c</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.PROBABILITY</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.SJM_Service_Plan_Sales</value>
+        </filters>
+        <label>Service Contract Opportunities</label>
+        <sharedTo>
+            <role>Customer_Service_Inside_Sales</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Won</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.WON</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CLOSED</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Won</label>
+    </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>CardioMEMS</fullName>
+        <active>true</active>
+        <businessProcess>SJM Sales Process</businessProcess>
+        <description>CardioMEMS New Record Type</description>
+        <label>SJM HFM New Opportunity</label>
+        <picklistValues>
+            <picklist>Acquisition_Mode__c</picklist>
+            <values>
+                <fullName>Capital Alternative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Loan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TBD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cap_Term_Period__c</picklist>
+            <values>
+                <fullName>Months</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Floor_Ceiling__c</picklist>
+            <values>
+                <fullName>Bi-Plane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Celing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_Manager__c</picklist>
+            <values>
+                <fullName>Alex Jimenez</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brad Campbell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>John Mann</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tom Bollinger</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_or_MediGuide_Only__c</picklist>
+            <values>
+                <fullName>Integrated Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Opportunity_Sub_Type__c</picklist>
+            <values>
+                <fullName>EnSite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large IDN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Networking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workmate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Products_To_Quote__c</picklist>
+            <values>
+                <fullName>Hospital Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Sensor and Delivery System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient Electronics System</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Quoted__c</picklist>
+            <values>
+                <fullName>Budgetary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Final</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vendor_Xray__c</picklist>
+            <values>
+                <fullName>GE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CardioMEMS_Reorder</fullName>
+        <active>true</active>
+        <businessProcess>HFM Re-order</businessProcess>
+        <compactLayoutAssignment>Reorder_Compact_Layout</compactLayoutAssignment>
+        <description>CardioMEMS Re-order Record Type</description>
+        <label>SJM HFM Re-order Opportunity</label>
+        <picklistValues>
+            <picklist>Acquisition_Mode__c</picklist>
+            <values>
+                <fullName>Capital Alternative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Loan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quantity Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TBD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Budget_Cycle__c</picklist>
+            <values>
+                <fullName>Jan thru Dec</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>July to June</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oct to Sept</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Buying_process__c</picklist>
+            <values>
+                <fullName>Board Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CFO Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cap_Term_Period__c</picklist>
+            <values>
+                <fullName>Months</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Contracts_Being_Presented__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leveraged Deal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Competitor_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Floor_Ceiling__c</picklist>
+            <values>
+                <fullName>Bi-Plane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Celing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>HFMReorderProduct__c</picklist>
+            <values>
+                <fullName>CM Assurance Plus%3A CardioMEMS Assurance Plus Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CM1000%3A CardioMEMS%E2%84%A2 Patient Electronics System %28GSM%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CM1010%3A CardioMEMS%E2%84%A2 Patient Electronics System %28Land Line%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CM2000%3A CardioMEMS%E2%84%A2 PA Sensor and Delivery System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CM2010%3A CardioMEMS%E2%84%A2 Guidewire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CM3000%3A CardioMEMS%E2%84%A2 Hospital Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CM3040%3A WiFi Adaptor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CMRENTALFEE%3A rental fee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_Manager__c</picklist>
+            <values>
+                <fullName>Alex Jimenez</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brad Campbell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>John Mann</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tom Bollinger</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_or_MediGuide_Only__c</picklist>
+            <values>
+                <fullName>Integrated Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Level_of_Approval_Needed__c</picklist>
+            <values>
+                <fullName>Board</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C Suite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Departmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Board level</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Leveraged_Deal__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Objection_Details__c</picklist>
+            <values>
+                <fullName>Clinical Evidence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitive Blunting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Engagement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economic Evidence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Demo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Opportunity_Sub_Type__c</picklist>
+            <values>
+                <fullName>EnSite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large IDN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Networking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workmate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Physician_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Products_To_Quote__c</picklist>
+            <values>
+                <fullName>Ampere RF Generator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cool Point Irrigation Pump</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP-4 Cardiac Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System Upgrade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospital Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Sensor and Delivery System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Contact Force Module</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Courier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Derexi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - ImageSync</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Precision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Scribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity DICOM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity HL7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity Review Modules</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Verismo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 12 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 16 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 8 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Boom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Track</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 120 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 56 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - Upgrade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Projected_Duration_To_Purchase__c</picklist>
+            <values>
+                <fullName>0-180 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-30 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-360 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-90 Days</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Quoted__c</picklist>
+            <values>
+                <fullName>Budgetary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Final</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_Lost__c</picklist>
+            <values>
+                <fullName>3rd party services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Budget%2FFunding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitive Loss</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospital policy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-house BioMed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Loss in funding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planned upgrade%2FEOL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Programs offered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilization</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SJM_Divisions_Involved__c</picklist>
+            <values>
+                <fullName>CRM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP Disposable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Structural Heart</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vascular</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Term_of_Contract__c</picklist>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vendor_Xray__c</picklist>
+            <values>
+                <fullName>GE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>DBS</fullName>
+        <active>true</active>
+        <businessProcess>SJM Sales Process</businessProcess>
+        <description>Deep Brain Specific Opportunities</description>
+        <label>DBS</label>
+        <picklistValues>
+            <picklist>Acquisition_Mode__c</picklist>
+            <values>
+                <fullName>Capital Alternative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Loan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quantity Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TBD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Budget_Cycle__c</picklist>
+            <values>
+                <fullName>Jan thru Dec</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>July to June</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oct to Sept</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Buying_process__c</picklist>
+            <values>
+                <fullName>Board Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CFO Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cap_Term_Period__c</picklist>
+            <values>
+                <fullName>Months</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Competitor_Strength__c</picklist>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Floor_Ceiling__c</picklist>
+            <values>
+                <fullName>Bi-Plane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Celing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_Manager__c</picklist>
+            <values>
+                <fullName>Alex Jimenez</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brad Campbell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>John Mann</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tom Bollinger</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_or_MediGuide_Only__c</picklist>
+            <values>
+                <fullName>Integrated Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Level_of_Approval_Needed__c</picklist>
+            <values>
+                <fullName>Board</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C Suite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Departmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Board level</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Leveraged_Deal__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Opportunity_Sub_Type__c</picklist>
+            <values>
+                <fullName>EnSite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large IDN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Networking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workmate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Physician_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Products_To_Quote__c</picklist>
+            <values>
+                <fullName>Ampere RF Generator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cool Point Irrigation Pump</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP-4 Cardiac Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System Upgrade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospital Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Sensor and Delivery System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Contact Force Module</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Courier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Derexi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - ImageSync</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Precision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Scribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity DICOM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity HL7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity Review Modules</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Verismo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 12 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 16 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 8 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Boom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Track</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 120 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 56 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - Upgrade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Projected_Duration_To_Purchase__c</picklist>
+            <values>
+                <fullName>0-180 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-30 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-360 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-90 Days</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Quoted__c</picklist>
+            <values>
+                <fullName>Budgetary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Final</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vendor_Xray__c</picklist>
+            <values>
+                <fullName>GE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Integrated_Lab</fullName>
+        <active>true</active>
+        <businessProcess>SJM Sales Process</businessProcess>
+        <description>Integrated Lab Record Type</description>
+        <label>Integrated Lab</label>
+        <picklistValues>
+            <picklist>Acquisition_Mode__c</picklist>
+            <values>
+                <fullName>Capital Alternative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Loan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quantity Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TBD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cap_Term_Period__c</picklist>
+            <values>
+                <fullName>Months</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Floor_Ceiling__c</picklist>
+            <values>
+                <fullName>Bi-Plane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Celing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_Manager__c</picklist>
+            <values>
+                <fullName>Alex Jimenez</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brad Campbell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>John Mann</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tom Bollinger</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_or_MediGuide_Only__c</picklist>
+            <values>
+                <fullName>Integrated Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Opportunity_Sub_Type__c</picklist>
+            <values>
+                <fullName>EnSite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large IDN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Networking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workmate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Products_To_Quote__c</picklist>
+            <values>
+                <fullName>Ampere RF Generator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cool Point Irrigation Pump</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP-4 Cardiac Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System Upgrade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Contact Force Module</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Courier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Derexi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - ImageSync</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Precision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Scribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity DICOM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity HL7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity Review Modules</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Verismo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 12 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 16 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 8 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Boom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Track</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 120 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 56 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - Upgrade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Quoted__c</picklist>
+            <values>
+                <fullName>Budgetary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Final</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vendor_Xray__c</picklist>
+            <values>
+                <fullName>GE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SJM_Capital_Sales</fullName>
+        <active>true</active>
+        <businessProcess>SJM Sales Process</businessProcess>
+        <description>SJM Capital Sales</description>
+        <label>SJM Capital Sales</label>
+        <picklistValues>
+            <picklist>Acquisition_Mode__c</picklist>
+            <values>
+                <fullName>Capital Alternative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Loan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quantity Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TBD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Budget_Cycle__c</picklist>
+            <values>
+                <fullName>Jan thru Dec</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>July to June</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oct to Sept</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Buying_process__c</picklist>
+            <values>
+                <fullName>Board Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CFO Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cap_Term_Period__c</picklist>
+            <values>
+                <fullName>Months</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Competitor_Strength__c</picklist>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Floor_Ceiling__c</picklist>
+            <values>
+                <fullName>Bi-Plane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Celing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_Manager__c</picklist>
+            <values>
+                <fullName>Alex Jimenez</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brad Campbell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>John Mann</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tom Bollinger</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_or_MediGuide_Only__c</picklist>
+            <values>
+                <fullName>Integrated Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Level_of_Approval_Needed__c</picklist>
+            <values>
+                <fullName>Board</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C Suite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Departmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Board level</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Leveraged_Deal__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Opportunity_Sub_Type__c</picklist>
+            <values>
+                <fullName>EnSite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large IDN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Networking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workmate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Physician_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Products_To_Quote__c</picklist>
+            <values>
+                <fullName>Ampere RF Generator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cool Point Irrigation Pump</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP-4 Cardiac Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System Upgrade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospital Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Sensor and Delivery System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Contact Force Module</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Courier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Derexi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - ImageSync</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Precision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Scribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity DICOM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity HL7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity Review Modules</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Verismo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 12 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 16 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 8 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Boom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Track</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 120 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 56 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - Upgrade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Projected_Duration_To_Purchase__c</picklist>
+            <values>
+                <fullName>0-180 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-30 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-360 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-90 Days</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Quoted__c</picklist>
+            <values>
+                <fullName>Budgetary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Final</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vendor_Xray__c</picklist>
+            <values>
+                <fullName>GE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SJM_Service_Plan_Sales</fullName>
+        <active>true</active>
+        <businessProcess>SJM Sales Process</businessProcess>
+        <description>Record Type for Service Plan Sales</description>
+        <label>SJM Service Plan Sales</label>
+        <picklistValues>
+            <picklist>Acquisition_Mode__c</picklist>
+            <values>
+                <fullName>Capital Alternative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Loan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quantity Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TBD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Budget_Cycle__c</picklist>
+            <values>
+                <fullName>Jan thru Dec</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>July to June</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oct to Sept</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Buying_process__c</picklist>
+            <values>
+                <fullName>Board Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CFO Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cap_Term_Period__c</picklist>
+            <values>
+                <fullName>Months</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Contracts_Being_Presented__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leveraged Deal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Competitor_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Floor_Ceiling__c</picklist>
+            <values>
+                <fullName>Bi-Plane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Celing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Floor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_Manager__c</picklist>
+            <values>
+                <fullName>Alex Jimenez</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brad Campbell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>John Mann</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tom Bollinger</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Integrated_Lab_or_MediGuide_Only__c</picklist>
+            <values>
+                <fullName>Integrated Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Level_of_Approval_Needed__c</picklist>
+            <values>
+                <fullName>Board</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C Suite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Departmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Board level</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value Analysis Committee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Leveraged_Deal__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Objection_Details__c</picklist>
+            <values>
+                <fullName>Clinical Evidence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitive Blunting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Engagement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economic Evidence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Demo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Opportunity_Sub_Type__c</picklist>
+            <values>
+                <fullName>EnSite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Large IDN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Networking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workmate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Physician_Strength__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PriorityIS__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Products_To_Quote__c</picklist>
+            <values>
+                <fullName>Ampere RF Generator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cool Point Irrigation Pump</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP-4 Cardiac Stimulator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EnSite Velocity System Upgrade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospital Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Sensor and Delivery System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient Electronics System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Contact Force Module</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Courier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Derexi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - ImageSync</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Precision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Scribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity DICOM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity HL7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Unity Review Modules</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Software - Verismo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 12 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 16 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView 8 inputs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Boom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VantageView Track</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ViewMate System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Assurance Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate - Warranty Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 120 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - 56 System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WorkMate Claris - Upgrade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Projected_Duration_To_Purchase__c</picklist>
+            <values>
+                <fullName>0-180 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-30 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-360 Days</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0-90 Days</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Quoted__c</picklist>
+            <values>
+                <fullName>Budgetary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Final</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_Lost__c</picklist>
+            <values>
+                <fullName>3rd party services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Budget%2FFunding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospital policy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-house BioMed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planned upgrade%2FEOL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Programs offered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilization</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SJM_Divisions_Involved__c</picklist>
+            <values>
+                <fullName>CRM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP Disposable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Structural Heart</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vascular</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Under Contracts Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Customer Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>With Enterprise Accounts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>With Field Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>With Inside Sales</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Term_of_Contract__c</picklist>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Vendor_Xray__c</picklist>
+            <values>
+                <fullName>GE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philips</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toshiba</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>OPPORTUNITY.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Division__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Area__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Region__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OPPORTUNITY.AMOUNT</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OPPORTUNITY.STAGE_NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OPPORTUNITY.PROBABILITY</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OPPORTUNITY.CLOSE_DATE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CORE.USERS.ALIAS</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>OPPORTUNITY.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.SITE</lookupDialogsAdditionalFields>
+        <lookupFilterFields>OPPORTUNITY.NAME</lookupFilterFields>
+        <lookupFilterFields>ACCOUNT.NAME</lookupFilterFields>
+        <lookupFilterFields>ACCOUNT.SITE</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>OPPORTUNITY.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.SITE</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>OPPORTUNITY.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Division__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Region__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OPPORTUNITY.AMOUNT</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OPPORTUNITY.STAGE_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OPPORTUNITY.PROBABILITY</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OPPORTUNITY.CLOSE_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>IL_FirstUse_Install_Close_Date</fullName>
+        <active>true</active>
+        <description>If the Opportunity Type is Integrated Lab, then Close date &lt; installation date &lt; first use date</description>
+        <errorConditionFormula>AND($RecordType.Name = &quot;Integrated Lab&quot;,OR(First_Use_Date__c &lt; Installed_Date__c,Installed_Date__c &lt; CloseDate, First_Use_Date__c &lt; CloseDate))</errorConditionFormula>
+        <errorMessage>Please validate Close Date, Install Date and First Use Date. Install Date and First Use Date should be greater than Close Date. First Use Date should be greater than Install Date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>New_Opportunity_Prospecting</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( ISNEW() , NOT( ISPICKVAL( StageName  , &quot;Prospecting&quot;)), NOT($RecordType.DeveloperName= &quot;CardioMEMS_Reorder&quot;))</errorConditionFormula>
+        <errorMessage>Opportunity Created new should have a Stage as &quot;Prospecting&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Opportunity_Edit_Closed</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+ISPICKVAL(PRIORVALUE( StageName ), &quot;Closed Won&quot;),
+NOT(OR(
+ $Profile.Name = &apos;System Administrator&apos;
+)
+)
+)</errorConditionFormula>
+        <errorMessage>Opportunity closed  Won cannot be re-opened by a field representative. Please select Clone Option from Opportunity Detail screen.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Opportunity_Owner_Edit</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((Owner.Id  &lt;&gt;  $User.Id), ISCHANGED( StageName ), $UserRole.Name &lt;&gt; &apos;Customer Service - Inside Sales&apos;)</errorConditionFormula>
+        <errorMessage>Only Opportunity Owner Can update</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Product_Required</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( OR
+(ISPICKVAL(StageName,&quot;Qualifying&quot;),
+ISPICKVAL(StageName,&quot;Handling Objections&quot;),
+ISPICKVAL(StageName,&quot;Final Negotiations&quot;),
+ISPICKVAL(StageName,&quot;Closed Won&quot;)
+
+)
+
+
+,HasOpportunityLineItem=FALSE,
+$RecordType.Name = &quot;SJM Capital Sales&quot;
+)</errorConditionFormula>
+        <errorMessage>Products must be entered.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Reason_Lost_Required</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(IsClosed = TRUE,
+IsWon = FALSE,
+ISBLANK(TEXT((Reason_Lost__c))))</errorConditionFormula>
+        <errorDisplayField>Reason_Lost__c</errorDisplayField>
+        <errorMessage>Reason Lost is required for Opportunity with a Stage of &quot;Closed  Lost&quot;</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>EditReorder</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Edit</masterLabel>
+        <openType>newWindow</openType>
+        <page>HFMReorderOpportunityEdit</page>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+    </webLinks>
+    <webLinks>
+        <fullName>Edit_ReOrder</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Edit</masterLabel>
+        <openType>sidebar</openType>
+        <page>HFMReorderOpportunityEdit</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

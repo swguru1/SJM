@@ -1,0 +1,395 @@
+<!--
+***************************************
+Stylesheet for SJM Procedure Tracker Application
+Version: 1.0
+Author: Adeel Ahmad
+Email: adeel.ahmad@magnet360.com
+Date : 	11/23/2015
+*************************************** 
+-->
+
+<apex:page contentType="text/css">
+.btn{
+    background-image:none !important;
+    padding-left:10px !important;
+    padding-right:10px !important;
+}
+
+.btn-primary{
+    background-color: #2a94d6 !important;
+    border-color: #2585c1 !important;
+    color: #fff !important;
+    padding: 5px 15px !important;    
+}
+    a.toggle{
+        cursor: pointer;
+    }
+
+
+.btn-danger{
+    color: #FFF!important;
+    background-color: #D9534F !important;
+    border-color: #D43F3A !important;
+}
+
+.btn-warning {
+    color: #fff !important;
+    background-color: #f0ad4e !important;
+    border-color: #eea236 !important;
+}
+
+.div-heading {
+    color: #2a94d6;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.div-heading-padding {
+    padding-top:15px;
+    padding-bottom:5px;
+}
+
+.no-margin{
+    margin:0px;
+}
+
+.no-padding{
+    padding:0px;
+}
+
+.padding-bottom{
+    padding-bottom:15px;
+}
+
+.label-new{
+    font-weight:normal;
+    text-align:left;
+}
+
+    <!-- Lookup Input Styling -->
+.lookupInput a{
+    display:none; /* hides lookup icon, autocomplete component used to display results */
+    position:absolute;
+    top:0px;
+    right:0px;
+    width:auto !important;
+    box-shadow:none !important;
+    border:none !important;
+}
+
+.lookupInput img{
+    float:right;
+}
+
+span.lookupInput{
+    position:relative;
+    display:inherit;
+}
+
+.lookupInput a, .lookupInput a{
+    border:none !important;
+    background:none !important;
+}
+
+.dateFormat {
+    display:none;
+}
+     
+span.dateInput input {
+   background-image: url('{!URLFOR($Resource.SJM_Assets, 'images/calendar.png')}');
+   background-repeat: no-repeat;
+   background-position: 99% 50%;
+   cursor:pointer;
+}
+    <!-- @Ends lookup input styling -->
+
+  <!-- accordian styles -->
+    
+   ul 
+    {
+        list-style: none;
+        padding: 0;
+    }
+    ul .inner 
+    {
+        padding:15px;
+        overflow: hidden;
+        display: none;
+        border-left: 1px solid #2084DA;
+        border-right: 1px solid #2084DA;
+        background:#F0F1F2;
+    }
+    
+    ul.accordion li
+    {
+        margin: 0px;
+        border-bottom: 1px solid #ffffff;
+    }
+    
+    ul li 
+    {
+        margin: .5em 0;
+    }
+    ul li a.toggle 
+    {
+        width: 100%;
+        display: block;
+        background: #3D9EDB ;
+        color: #ffffff !important;
+        padding: .75em;
+        border-radius: 0;
+    }
+    
+    ul.inner li a
+    {
+        background: #777777;
+    }
+    
+    ul.inner li ul.inner
+    {
+        padding: 0px;
+        border: 1px solid #777777;
+    }
+    
+    a.toggle
+    {
+        position: relative;
+        width:100%;
+    
+    }
+     a:focus 
+    {
+        outline: none !important;
+    }
+    
+    ul.accordion label
+    {
+        font-weight: normal;
+        margin-left: 5px;
+    }
+    
+    <!-- -->
+   span.question
+    {
+       background: #ffffff;
+        border-top: 1px solid #CCC;
+        display: block;
+        padding: 15px 15px 0px 15px;
+        font-weight: 600;
+    }
+    
+    span.question_option
+    {
+        display: block;
+        padding: 5px 15px 15px 15px ;
+        background:#ffffff;
+    }
+    
+   .tip_section
+    {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-left: 1px solid #fff;
+        z-index: 1000;
+        width:auto;
+        color: #fff !important;
+        padding:11px;
+        font-weight:bold;
+        min-width:42px;
+    }
+    
+    .tip_section_child {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        border-left: 1px solid #fff;
+        z-index: 1000;
+        width: auto;
+        display: inline-block;
+        color: #fff !important;
+        font-size: 18px !important;
+    }
+
+    .tip_section_child .fa{
+        padding: 11px 15px 12px;
+    }
+    
+    ul.accordion select{
+        border: 1px solid #cfd0d2;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        color: #000;
+        display: block;
+        font-size: 14px;
+        height: 34px;
+        line-height: 1.42857;
+        padding: 6px 14px;
+        transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        width: 100%;
+    }
+
+    ul.accordion select:disabled{
+        background:#cfd0d2 !important;
+    }
+    
+/** Product Item Modal **/
+.pItemModal select{
+    border: 1px solid #cfd0d2;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #000;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 14px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}   
+
+.modal.modal-wide .modal-dialog {
+  width: 90%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+
+.container-fluid{
+    padding-left:0px !important;
+    padding-right:0px !important;
+}
+    
+	/** Loading Image **/
+    
+.loadindMain{
+    width: 100%;
+    height: 100%;
+    }
+.loadind-background{
+    width: 100%;
+    opacity: 0.6;
+    height: 100%;  
+    background: rgba(255,255,255,255);
+    }
+.loading-image{
+    position: absolute !important; 
+    z-index: !important;
+    top: 50%; 
+    left: 30%; 
+    }
+    
+    	/** message styling **/
+.custom-msg h4{
+    display:none !important;
+    }
+.custom-msg   .message {
+    background-color: #fff !important;
+    }
+
+    .custom-msg .alert{
+        margin-bottom: 0 !important;
+        margin-top: 10px;
+    }
+    
+.buttonLi{
+     
+     border: 0 !important;
+    }  
+.customClass{
+     margin-top: 5px;
+    }
+.xRayHrMin{
+    display:none;
+    }    
+
+    /**** Procedure Details Input-Btn styling *****/
+    .dateOnlyInput input {
+        width: 100% !important;
+    }
+
+    .dose-dependent-fields, .xray-dependent-fields{
+        padding-left:3px !important;
+        padding-right:3px !important;
+    }
+
+    .col-xs-2.dose-amount-wrapper, .col-xs-6.xray-wrapper{
+        padding-right:0px !important;
+    }
+    <!--
+    .dose-dependent-fields select, .xray-dependent-fields select{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        text-align: center;
+    }
+    -->
+    .dose-dependent-fields:last-child, .xray-dependent-fields:last-child{
+    	//padding-right:14px !important;
+    }
+    /*Updated 12-17 - BH*/
+    .dose-amt{
+    	margin-top: 12px;
+    }
+    .decimal-placeholder{
+    	display: block;
+    	font-size: 23px;
+    	text-align: center;
+    }
+    .dose-number{
+    	margin-bottom: 10px;
+    }
+    body{
+        background:#ffffff;
+    }
+
+    ul.inner li:first-child a.tip_section_child{
+        background:#blue !important;
+    }
+
+    .Rep__c img.lookupIcon, .Account__c img.lookupIcon{
+        display:none !important;
+    }
+
+    .error-input{
+        border:1px solid #ff0000;
+    }
+
+    .lookupIcon, .lookupIconOn {
+        background:url('{!URLFOR($Resource.SJM_Assets, 'images/search_bg.png')}') no-repeat center center !important;
+        margin-top:1px;
+    }
+
+    a.form-control{
+        padding-right:5px !important;
+    }
+
+    .input-group-addon{
+        background:none !important;
+    }
+
+    input.date_input{
+        border-right:0px !important;
+    }
+
+    span.asterik{
+        padding-left: 2px;
+        color: #ff0000;
+    }
+
+    .date_input{
+        cursor:pointer !important;
+        background:#ffffff !important;
+    }
+
+    ul.ui-autocomplete{
+        z-index:100000 !important;
+    }
+
+    a.expand-all-btn{
+        font-size:13px !important; 
+        margin-right:5px;
+        text-decoration:underline;
+    }
+</apex:page>

@@ -1,0 +1,710 @@
+<!-- Purpose: VisualForce Page to use the Fullcalendar Plug-in and build business Logic
+Author: Prasad Karanam
+Date: 03/06/2016 --->
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" applyBodyTag="false" applyHtmlTag="false" docType="html-5.0" controller="DBSScheduler">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <body class="bodystyle">
+        <link href="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/lib/fullcalendar.min.css')}" rel="stylesheet" />
+        <link href="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/scheduler.min.css')}" rel="stylesheet" />
+        <apex:stylesheet value="{!URLFOR($Resource.DBSstylesheet,'DBSstylesheet.css')}" />
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+        <apex:stylesheet value="{!URLFOR($Resource.SLDS100, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.DatePicker, 'bootstrap.min.css')}" />
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Datepicker, 'css/bootstrap-datepicker3.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.AutoCompleteMultiSelect,'MultiSelectAutoComplete/MultiSelectAutoComplete.css')}" />
+        <apex:remoteObjects >
+            <apex:remoteObjectModel name="Account" fields="Name,Id"/>
+        </apex:remoteObjects>        
+        <apex:form Id="form">
+            <table class = "fcContainer">
+                <tr><td class = "Col1">
+                    <div class="searchClass" id="searchFiletsr">
+                        <div class="Filters">
+                            <!-- Sunil: Contry Code select -->
+                            <p id="countryIdentifier">
+                               
+                            </p>
+                            <div class="sFilters" id = "sContryCode">
+                                 <label for="Contry Code" class="SearchFilter">Country Code:</label>
+                              <apex:selectList id="countrySelect" html-class="SelectCancel" value="{!countries}" size="1" rendered="{!items.size > 1}">                               
+                              <apex:actionSupport event="onchange" action="{!refreshPanel}" oncomplete="getCountry(this.value);"  reRender="clsUsrList"/>
+                                <apex:selectOptions value="{!items}"/>
+                            </apex:selectList><p/>
+                            </div>
+                             <div />
+                            <!--
+                            <apex:outputPanel id="out">
+     
+                            <apex:actionstatus id="status" startText="testing...">
+                                <apex:facet name="stop">
+                                    <apex:outputPanel >
+                                        <p>You have selected:</p>
+                                        <apex:dataList value="{!countries}" var="c">{!c}</apex:dataList>
+                                    </apex:outputPanel>
+                                </apex:facet>
+                            </apex:actionstatus>
+                        </apex:outputPanel> 
+                               -->  
+                            
+                            <!-- Country code End -->
+                            <div class="sFilters" id = "sHospital">
+                                <label for="Hospital" class="SearchFilter">Hospital:</label>
+                                <input type="text" id="search-input" class="SearchFields" />
+                            </div>
+                            <div class="sFilters" id = "sAssignee">
+                                <label for="Assignee" class="SearchFilter">Assignee:</label>
+                                <apex:selectList id="clsUsrList" styleClass="clsRegion clsUsrList" value="{!sUSer}" multiselect="true">
+                                    <apex:selectOptions value="{!UsersList}" />
+                                </apex:selectList>
+                            </div>    
+                            <div class="sFilters" id="sStartDate">
+                                <label class="SearchFilter" for="Startdate">Start Date:</label>                          
+                                <div style=" display: inline-flex;">
+                                    <input class="DateFieldsnew" id="sDate" readonly="true" type="text"/>                            
+                                    
+                                    <span class="input-group-addon">
+                                        <img id="calimg1" src="/resource/1461665379000/SLDS100/assets/icons/utility/event_60.png" onClick = "imageDatepicker();"/></span>
+                                </div>
+                            </div>
+                            <div class="sFilters" id = "sCancelled">
+                                <label for="Cancelled" class="SearchFilter" size="1">Cancelled:</label>
+                                <select class="SelectCancel" id="cmbCancelled">
+                                    <option selected="selected" class="cancelvalue">No</option>
+                                    <option class="cancelvalue">Yes</option>
+                                </select>
+                            </div>
+                            <div Class = "sFilters">
+                                <button class="slds-button" onclick="resetClickevents();getRemoteEvents();" type="button" title="Submit">
+                                    <svg class="slds-button__icon" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M8.8 19.6L1.2 12c-.3-.3-.3-.8 0-1.1l1-1c.3-.3.8-.3 1 0L9 15.7c.1.2.5.2.6 0L20.9 4.4c.2-.3.7-.3 1 0l1 1c.3.3.3.7 0 1L9.8 19.6c-.2.3-.7.3-1 0z">
+                                        </path></svg>Submit</button>
+                                <button class="slds-button" onclick="ResetCalendar();" type="button" title="Reset">
+                                    <svg aria-hidden="true" class="slds-button__icon" role="img" version="1.1" viewBox="0 0 24 24"><path d="M2.5 1.8h1.4c.4 0 .7.4.7.7v3.3c0 .4.2.6.6.3.1-.2.2-.3.4-.5 2.3-2.3 5.6-3.2 8.9-2.6 1.1.2 2.3.7 3.2 1.3 2.8 1.9 4.5 4.9 4.5 8.1 0 2.5-.9 5-2.7 6.8-1.6 1.8-3.9 2.8-6.2 3-.5 0-.8-.4-.8-.8V20c0-.3.2-.6.6-.7 2.2-.1 4.2-1.3 5.4-3.3.3-.6.6-1.2.7-1.8.7-3-.5-6.1-3.2-7.7-.5-.3-1.1-.6-1.7-.7-2.5-.6-5 .1-6.7 1.8-.2.2-.4.4-.5.6-.2.4.1.6.6.6h3.2c.4 0 .6.3.6.7v1.4c0 .4-.2.6-.6.6H2.4c-.3 0-.6-.2-.6-.6V2.5c0-.3.4-.7.7-.7z">
+                                        </path></svg>Reset</button>
+                            </div>
+                            
+                        </div>
+                    </div>  
+                    </td>
+                    <td style="vertical-align: top;">
+                        <img id="image1" class="searchimage" src="{!URLFOR($Resource.SLDS100,'assets/icons/utility/search_120.png')}" onclick="imageClick();" style="cursor: pointer;"/>
+                        <img id="refresh" class="refreshimage" src= "{!URLFOR($Resource.SLDS100,'assets/icons/utility/refresh_120.png')}" onclick="refreshCalendar();" style="cursor: pointer;"/>
+                        <img id="new" class="newimage" src= "{!URLFOR($Resource.SLDS100,'assets/icons/utility/new_120.png')}" onclick="newEvent();" style="cursor: pointer;"/>
+                        <div id="calendar"></div>
+                    </td>
+                </tr>
+            </table>
+            <div  class = "loadingImage" id='loading'><img id ="refresh1" src= "{!URLFOR($Resource.SLDS100,'assets/images/spinners/slds_spinner_brand.gif')}"></img></div>   
+    </apex:form>
+    
+    <!-- Scripts -->
+    <!-- Full Calendar Business Logic -->
+    <script src="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/lib/moment.min.js')}"></script> 
+    <script src="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/lib/jquery.min.js')}"></script>
+    <script src="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/lib/fullcalendar.min.js')}"></script>
+    <script src="{!URLFOR($Resource.FullCalendar_Scheduler,'fullcalendar-scheduler-1.2.1/scheduler.min.js')}"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.SJM_Datepicker, 'js/bootstrap-datepicker.min.js')}"></script>
+        <script type="text/javascript" src="{!URLFOR($Resource.AutoCompleteMultiSelect, 'MultiSelectAutoComplete/MultiSelectAutoComplete.js')}"></script>
+        
+    <script>
+    
+    var $ = jQuery.noConflict();
+    
+    $("#search-input").autocomplete({
+        minLength: 2,
+        delay: 500,
+        multiselect: true,
+        source: function(request, response ) {
+            var acctRO = new SObjectModel.Account();
+            acctRO.retrieve({where: {Name: {like: request.term + "%" }}}, function(err, records, event) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    var result = [];
+                    records.forEach(function(record) {
+                        result.push( { 
+                            label: record.get("Name"),
+                            value: record.get("Id")
+                        });
+                    });
+                    response(result);
+                }
+            });
+        }
+        
+    });
+    
+    var sUserId = null;
+    var sAcctId;
+    var formattedlday;
+    var formattedfday;
+    var rgn;
+    var viewname;
+    var startDt;
+    var StartDateView;
+    var standardEvent = 'SJM Standard Event';
+    var evestsuncoverd = 'Uncovered';
+    var evestsassigned = 'Assigned';
+    var evestsindipendent = 'Independent';
+    var Assigneeid;
+    var AssigneeEventid;
+    var evtstarttime;
+    var evtendtime;
+    var calevtid;
+    
+    /*SUNIL - SRE-844 */
+    var selectedCountry = '';
+    
+    function getCountry(value){
+    sUserId = '';
+    selectedCountry = value;
+       
+    }
+    
+    function getUsersEvents()
+    {
+        $('#calendar').fullCalendar( 'refetchResources' );
+        try {    
+            var cmbUser = document.getElementById("clsUsrList");
+        } 
+        catch (e) {
+            console.log(e);
+        }
+    }
+    
+    function getAcctEvents()
+    {       
+        try {                    
+            var cmbAcct = document.getElementById("search-input");
+            for (var i = 0; i < cmbAcct.length; i++) {
+                if (cmbAcct.options[i].selected)
+                {
+                    $('#calendar').fullCalendar('addAccounts', {
+                        id: cmbAcct.options[i].value,
+                        title: cmbAcct.options[i].innerHTML
+                    });
+                }
+            }                   
+        } 
+        catch (e) {
+            console.log(e);
+        }
+    }
+     
+    var calView;
+    var startDate;
+    var cancelled;
+    var prevClicked = 'false';
+    var nextClicked = 'false';
+    
+    function getRemoteEvents() { 
+   
+        sAcctId = '';
+        $( ".ui-autocomplete-multiselect-item" ).each(function( index ) {
+            sAcctId =  $( this ).attr('id') + ',' + sAcctId ;
+            //alert( index + ": " + sAcctId  );
+        });
+        cancelled = document.getElementById("cmbCancelled").value;
+        $('#calendar').fullCalendar( 'removeEvents');
+        $('#calendar').fullCalendar( 'removeEventSource');
+        calView = $('#calendar').fullCalendar('getView'); 
+        
+        viewname = calView.name;
+        if(prevClicked == 'true' || nextClicked == 'true'){
+            startDate = calView.intervalStart.format();  
+        }else{
+            var stDate = document.getElementById("sDate").value;
+            var year = new Date(stDate).getFullYear();
+            var month = new Date(stDate).getMonth();
+            var day = new Date(stDate).getDate();
+            if (month<10){month = '0' + (month+1)}else{month = (month+1)}
+            startDate = year  + "-" + month + "-" + day;
+            $('#calendar').fullCalendar('gotoDate', stDate);
+            prevClicked = 'false';
+            nextClicked = 'false';
+        }
+        
+        $('#loading').show();
+        try {
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.DBSScheduler.getCalenderEvents}',                     
+                sUserId ,
+                sAcctId,
+                prevClicked,
+                nextClicked,
+                startDate ,
+                cancelled,
+                viewname,
+                selectedCountry,
+                handleResult
+            );
+            
+        } 
+        catch (e) {
+            console.log (e);
+        }
+    }
+    
+    function resetClickevents()
+    {
+        prevClicked = 'false';
+        nextClicked = 'false';
+    }
+    var userMap = {};
+    function handleResult(result, event) { 
+        
+        var cmbUser = document.getElementById($(".clsUsrList").attr('id'));
+        $('#calendar').fullCalendar( 'refetchResources' );
+        myEvents = [];
+        users = {};
+        
+        for(eventIndex in result) {
+            var eventItem = {};
+            var event = result[eventIndex];        
+            
+            if (typeof event.SfId != "undefined" ) {
+                eventItem.id = event.SfId ;
+                
+                var userName = '';
+                var userClr = ''; 
+                
+                for (var i = 0; i < cmbUser.length; i++) 
+                {
+                    if(cmbUser.options[i].value == event.UserId)
+                    {
+                        userName = cmbUser.options[i].innerHTML;
+                        userClr  = cmbUser.options[i].className;
+                    }
+                } 
+                if(event.IsUncoveredUser){
+                    $('#calendar').fullCalendar('addResource', {
+                        id: event.UserId,                       
+                        title: 'Uncovered Events'
+                    });
+                }
+                
+                eventItem.evtstatus = event.EvtStatus;
+                eventItem.resourceId = event.UserId; 
+                eventItem.rcrdTypeName = event.RcrdTypeName;
+                eventItem.eventstatus = event.AssignmentStatus;
+                
+                if(event.StartYear != undefined &&event.EndYear != undefined  ){
+                    eventItem.start = new Date(parseInt(event.StartYear), parseInt(event.StartMonth), parseInt(event.StartDay), parseInt(event.StartHour), parseInt(event.StartMinute));
+                    eventItem.end = new Date(parseInt(event.EndYear), parseInt(event.EndMonth), parseInt(event.EndDay), parseInt(event.EndHour), parseInt(event.EndMinute));
+                    var starthours = event.StartHour;
+                    var endhours = event.EndHour;
+                    var ampm = (starthours < 12) ? 'AM' : 'PM';
+                    var eampm = (endhours < 12) ? 'AM' : 'PM';
+                    var eventStartHour ;
+                    var eventStartMint ;
+                    var eventEndHour;
+                    var eventEndMint;
+                    
+                    if (starthours > 12)
+                    {
+                        starthours  = starthours - 12; 
+                    }
+                    if (endhours > 12)
+                    {
+                        endhours  = endhours - 12 ; 
+                    }
+                    
+                    eventStartHour  = '' + starthours  ;
+                    eventStartMint = '' + event.StartMinute;
+                    eventEndHour = '' + endhours;
+                    eventEndMint = '' + event.EndMinute;
+                    var pad = '00';
+                    
+                    var evtstatus = '';
+                    
+                    //alert('Status ' + event.EvtStatus);
+                    if (typeof event.EvtStatus != "undefined" ) {
+                        evtstatus = event.EvtStatus;
+                    };
+                    
+                    var accountbillcity = '';
+                    if (typeof event.AcctbillCity != "undefined") {
+                        accountbillcity = event.AcctbillCity;
+                    };
+                    
+                    var accountsearch = '';
+                    if (typeof event.Acctsearch != "undefined") {
+                        accountsearch = event.Acctsearch;
+                    };
+                    
+                    var accountname = event.AcctIdName; 
+                    var contactname = event.ContIdName;
+                    
+                    eventItem.textColor = userClr;
+                    if(event.RcrdTypeName != standardEvent)
+                    {
+                        eventItem.title = (pad + eventStartHour).substring(eventStartHour.length) + ':'+ (pad + eventStartMint).substring(eventStartMint.length) + ' ' + ampm +  ' - ' + 
+                            (pad + eventEndHour).substring(eventEndHour.length) + ':'+ (pad + eventEndMint).substring(eventEndMint.length) + ' ' + eampm + '\n' 
+                        + accountname + '\n' + accountsearch + '\n' + accountbillcity + '\n' + evtstatus;  
+                    }
+                    else
+                    {     
+                        eventItem.title =(pad + eventStartHour).substring(eventStartHour.length) + ':'+ (pad + eventStartMint).substring(eventStartMint.length) + ' ' + ampm  +  ' - ' + 
+                            (pad + eventEndHour).substring(eventEndHour.length) + ':'+ (pad + eventEndMint).substring(eventEndMint.length) + ' ' + eampm + '\n' + event.title;
+                    }
+                    
+                    
+                    eventItem.url = 'javascript:sforce.one.navigateToSObject("' + event.SfId + '","details")';
+                    myEvents.push(eventItem);
+                    
+                }
+            }
+        } 
+        
+        for (var i = 0; i < cmbUser.length; i++) 
+        {
+            
+            if( $('.clsUsrList :selected').text() ==  '--All Assignees--' ) // || cmbUser.options[i].selected == true
+            {
+                
+                if( i != 0){
+                    $('#calendar').fullCalendar('addResource', {
+                        id: cmbUser.options[i].value,                       
+                        title: cmbUser.options[i].innerHTML
+                    });
+                    
+                }
+                
+            }
+            
+            else{
+                
+                if(cmbUser.options[i].selected == true && i != 0)
+                {
+                    $('#calendar').fullCalendar('addResource', {
+                        id: cmbUser.options[i].value,                       
+                        title: cmbUser.options[i].innerHTML
+                    });
+                }
+            }
+            
+            
+        }        
+        
+        $('#calendar').fullCalendar( 'addEventSource', {
+            events: myEvents
+        })
+        
+        
+        $('#loading').hide(); 
+        
+        
+    }
+    
+    function isTouchDevice()
+    {
+        var ua = navigator.userAgent;
+        var isTouchDevice = (
+            ua.match(/iPad/i) ||
+            ua.match(/iPhone/i) ||
+            ua.match(/iPod/i) ||
+            ua.match(/Android/i)
+        );
+        
+        return isTouchDevice;
+    }
+    
+    var sUser ;
+    $(function() {
+        //alert(isTouchDevice());
+        $('#loading').show();
+        initDatePicker();
+        //rgn = $('.clsRegion :selected').text();
+        var curr = new Date(); 
+        var year = new Date().getFullYear();
+        var month = new Date().getMonth();
+        var day = new Date().getDate();
+        if (month<10){month = '0' + (month+1)}else{month = (month+1)}
+        CurrentDate = year  + "-" + month + "-" + day;         
+        var first = curr.getDate() - (curr.getDay()-1); // First day is the day of the month - the day of the week
+        var firstday = new Date(curr.setDate(first)).toUTCString();
+        formattedfday = (new Date(firstday)).toISOString().slice(0, 10);
+        
+        formattedfday = moment(formattedfday, 'YYYY-MM-DD').format('MM/DD/YYYY');
+        document.getElementById("sDate").value = formattedfday;
+        $('#calendar').fullCalendar({ 
+            schedulerLicenseKey: '0503416538-fcs-1458326882',
+            theme: false,
+            new: CurrentDate,
+            editable: false, // enable draggable events
+            //aspectRatio: 2,
+            aspectRatio: 1.5,
+            weekends: true,
+            allDaySlot : false, 
+            slotDuration: '01:00:00',
+            allDay : false, 
+            displayEventTime: false, 
+            eventOverlap: false,
+            height:'auto',
+            //contentHeight: 'auto',
+            //contentHeight: 700,
+            buttonText: {
+            week:     'Week',
+            day:      'Day'
+            },
+            header: {
+            left: 'prev',
+            center: 'timelineDay ,timelineWeek , title',    
+            right: 'next'
+            },
+            firstDay: 8,             
+            defaultView: 'timelineWeek',
+            //defaultView: 'timelineDay',
+            eventDrop: function(event,delta,revertFunc) {
+                 $('#calendar').fullCalendar('updateEvent', event);
+                 if (!confirm("Are you sure about this change?")) {
+                     revertFunc();
+                 }
+                 else{
+                     //revertFunc1(event.resourceId, event.id, event.start.format(), event.end.format());
+                 }
+            },
+            views: {
+                timelineDay: {
+                    scrollTime: '07:00'
+                    //minTime: "07:00:00",
+                    //maxTime: "20:00:00"
+                },
+                    timelineWeek: {
+                        type: 'timeline',
+                            slotDuration: { days: 1 },
+                                slotLabelFormat: [             
+                                    'ddd-DD'
+                                ]
+                    }
+            },
+                
+                resourceAreaWidth: '20%',
+                    resourceLabelText: 'Resources',  
+                        
+                        eventRender: function (event, element) { 
+                            
+                            //element.append( "<span class='closeon'>X</span>" );
+                            
+                            
+                            if (event.rcrdTypeName == standardEvent) {
+                                
+                                element.addClass('EventColorStndRecordType');
+                            }
+                            else
+                            {
+                                if(event.eventstatus == evestsuncoverd)
+                                {
+                                    element.addClass('EventColorUncovered');
+                                }
+                                else if(event.eventstatus == evestsassigned)
+                                {
+                                    element.addClass('EventColorAssignIndependent');
+                                }
+                                    else if(event.eventstatus == evestsindipendent)
+                                    {
+                                        element.addClass('EventColorAssignIndependent');
+                                    }
+                                        else
+                                        {
+                                            element.addClass('EventColorUncovered');
+                                        }
+                            }
+                            
+                            //$(element).draggable(); 
+                            
+                        },
+                            //eventAfterAllRender: function (event, element) {
+                                
+                                //$(".closon").click(function() {
+                                    //alert('Sairam');
+                                //});
+                                
+                            //},
+                                
+                                resources:[] ,            
+                                    events: []  
+    });    
+    
+    if((navigator.userAgent.match(/iPad/i) != null) || (navigator.userAgent.match(/iPhone/i) != null)||(navigator.userAgent.match(/Android/i)!= null)){
+        //$('#calendar').attr('style', 'font-size: 1em !important'); 
+        $( ".clsRegion" ).addClass('SelectValuesIPad');
+    } 
+    
+    /*if((navigator.userAgent.match(/iPhone/i) != null)){
+            $('#calendar').attr('style', 'font-size: 0.5em !important'); 
+            $( ".clsRegion" ).addClass('SelectValuesIPad');
+        } */
+    
+    sUser= $('.clsUsrList :selected').text();
+    //$( ".clsUsrList" ).focusout(function() 
+    $("#searchFiletsr").on('focusout','.clsUsrList',function () {       
+        var selected = [ ];
+        for (var i = 0; i < this.length; i++) {
+            if (this.options[i].selected) selected.push(this.options[i].value);
+        }
+        sUserId =  selected.join(",");            
+        //getCalendarUsers();
+        //getCalendarAccts();
+    });
+    
+    sAcctId = $('#search-input :selected').text();
+    $( "#search-input" ).change(function(){
+        var selected = [ ];
+        for (var i = 0; i < this.length; i++) {
+            if (this.options[i].selected) selected.push(this.options[i].value);
+        }
+        sAcctId = selected.join(",");  
+        getAcctEvents();
+    });
+    
+    sUserId = $('#clsUsrList :selected').text();
+    $( "#clsUsrList" ).change(function(){
+        var selected = [ ];
+        for (var i = 0; i < this.length; i++) {
+            if (this.options[i].selected) selected.push(this.options[i].value);
+        }
+        sUserId = selected.join(",");
+        
+    });  
+    
+    calView = $('#calendar').fullCalendar('getView');
+    startDate = calView.intervalStart.format();
+    endDate = calView.intervalEnd.format();
+    getRemoteEvents();
+    
+    
+    });
+    
+    $('body').on('click', 'button.fc-timelineDay-button', function() {
+        calView = $('#calendar').fullCalendar('getView');
+        startDate = calView.intervalStart.format();
+        StartDateView = calView.name;
+        getRemoteEvents();         
+    });
+    $('body').on('click', 'button.fc-timelineWeek-button', function() {
+        calView = $('#calendar').fullCalendar('getView');
+        startDate = calView.intervalStart.format();
+        var strtDate = moment(startDate, 'YYYY-MM-DD').add('days', +0).format('MM/DD/YYYY');
+        document.getElementById("sDate").value = strtDate;
+        resetDate = strtDate;
+        getRemoteEvents();
+    });
+    $('body').on('click', 'button.fc-prev-button', function() {
+        prevClicked = 'true';
+        calView = $('#calendar').fullCalendar('getView');
+        startDate = calView.intervalStart.format();
+        if (calView.name == StartDateView)
+        {
+            var strtDate = moment(startDate, 'YYYY-MM-DD').format('MM/DD/YYYY');
+            document.getElementById("sDate").value = strtDate;
+            resetDate = strtDate;
+        }
+        else
+        {
+            var strtDate = moment(startDate, 'YYYY-MM-DD').add('days', +0).format('MM/DD/YYYY');
+            document.getElementById("sDate").value = strtDate;
+            resetDate = strtDate;
+        }
+        getRemoteEvents();
+    });
+    $('body').on('click', 'button.fc-next-button', function() {
+        nextClicked = 'true';
+        calView = $('#calendar').fullCalendar('getView');
+        startDate = calView.intervalStart.format();
+        if (calView.name == StartDateView)
+        {
+            var strtDate = moment(startDate, 'YYYY-MM-DD').format('MM/DD/YYYY');
+            document.getElementById("sDate").value = strtDate;
+            resetDate = strtDate;
+        }
+        else
+        {
+            var strtDate = moment(startDate, 'YYYY-MM-DD').add('days', +0).format('MM/DD/YYYY');
+            document.getElementById("sDate").value = strtDate;
+            resetDate = strtDate;
+        }
+        getRemoteEvents();
+    });
+    
+    var resetDate = '';
+    function ResetCalendar()
+    {
+        sUserId = sUser;
+        sAcctId = '';
+        $('#search-input').val('');
+        $('.clsRegion').find("option").attr("selected", false);
+        $('.clsRegion').val(sUser);
+        
+        document.getElementById("sDate").value = formattedfday;
+        $('#calendar').fullCalendar('gotoDate', formattedfday);
+        
+        document.getElementById("cmbCancelled").value = "No";
+        $('#calendar').fullCalendar( 'refetchResources' );
+    };
+    
+    function refreshCalendar()
+    { 
+        getRemoteEvents();
+    };
+    
+    function newEvent(){
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.DBSScheduler.getRecordId}', handleRecordTypeResult);
+    };
+    
+    function handleRecordTypeResult(result, event) { 
+        sforce.one.createRecord('Event', result);
+    }
+    
+    var isHide = true;
+    function imageClick(){
+        if(isHide == false){
+            $('#searchFiletsr').hide("slide", {
+                direction: "left"
+            }, 10);
+            isHide = true;
+            getRemoteEvents();
+        }
+        else{
+            $('#searchFiletsr').show();
+            isHide = false;
+        }
+        $('#image1').show(); 
+    };
+    
+    function initDatePicker(){
+        //$('#sDate').datepicker();
+        $('#sDate').datepicker({
+            orientation: "bottom auto",
+            todayHighlight: true,
+            autoclose: true,
+            format: 'mm/dd/yyyy',
+            disableTouchKeyboard: true
+            
+        });
+        
+        $("body").click(function(){
+            if(document.getElementById("sDate").value ==''){  
+                if(resetDate !='' ){document.getElementById("sDate").value =resetDate ;}
+                else{document.getElementById("sDate").value =formattedfday;}
+            };
+        });
+        
+        
+    }
+    function imageDatepicker()
+    {  
+        $('#sDate').datepicker('show');
+    }
+    
+    //Hide if the user has access to only one country
+    if({!items.size <= 1 })
+       $('#sContryCode').hide();
+    
+    </script>
+</body> 
+</apex:page>

@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Activate</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ChangeStatus</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Terminate</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AccountId</fullName>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ActivatedById</fullName>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ActivatedDate</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Award_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Award Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Sole Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dual Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tri Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Committed(MS/Rev)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Individual Tier Commitments/Attainments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Open Access/Capped(All Play)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Limited Access W/ Commitment to other Vendors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non- applicatble</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>BillingAddress</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Commitment_for_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Commitment for Price</label>
+        <picklist>
+            <picklistValues>
+                <fullName>N/A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Open Access/Capped</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tri-Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dual Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sole Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Committed (MS/Rev)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Individual Tier Commitments/Attainments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Limited Access W/ Commitment to other Vendors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CompanySignedDate</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>CompanySignedId</fullName>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ContractTerm</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Contract_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;file:///&quot;&amp;  SpecialTerms  ,&quot;View&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contract Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contract_Ref__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Related Contract</label>
+        <referenceTo>Contract</referenceTo>
+        <relationshipLabel>Contracts</relationshipLabel>
+        <relationshipName>Contracts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Termination_date__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Termination date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>CustomerSignedDate</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>CustomerSignedId</fullName>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CustomerSignedTitle</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Customer_Contract__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Contract #</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Deal_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Deal Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Disposable/Implantable Product Agreement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standalone Rebate Agreement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fixed Cost Program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bridge to Budget</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Budgetary Quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Capital Alternative (CAP)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cash Purchase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cash Rental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disposable Purchase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disposable Rental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evaluation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QP Offset</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Catheter Purchase</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Catheter Rental</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>EndDate</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Entered_Updated_in_Rebate_Systems__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Entered/Updated in Rebate Systems</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Execution_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Execution Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Fully Executed</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executed without Signature</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Forecast_Entered_for_Accruals__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Forecast Entered for Accruals</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Master_Agreement_Reference__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Master Agreement Reference</label>
+        <referenceTo>Contract</referenceTo>
+        <relationshipLabel>Contracts (Master Agreement Reference)</relationshipLabel>
+        <relationshipName>Contracts1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Name</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>One_Time_Contract__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>One Time Contract</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OwnerExpirationNotice</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Performance_Measurement_Starting_Period__c</fullName>
+        <externalId>false</externalId>
+        <label>Performance Measurement Starting Period</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Price_Structure__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Request_Number__r.Price_Structure__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Price Structure</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pricebook2Id</fullName>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Forecast_Form_Submitted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Rebate Forecast Form Submitted</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Rebate Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>N/A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Threshold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Share</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complete Source</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Admin Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Limited Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Change Out</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Risk Share</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QP Rebate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price Differential</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Choice Alliance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Therapeutic Upgrade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>One Time</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Heart Failure Bundle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AED Rebate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Rebate_starting_period__c</fullName>
+        <externalId>false</externalId>
+        <label>Rebate starting period</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Execution Date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Current Month</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Following Fiscal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Rebates_or_Fee_Setup_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Rebates or Fee Setup Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Request_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Request Number</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Contracts</relationshipLabel>
+        <relationshipName>Contracts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Request_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Amendment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Master T&amp;C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consignments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evaluations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NDA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Rep__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Rep</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sharepoint_Num__c</fullName>
+        <externalId>true</externalId>
+        <label>Sharepoint Num</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingAddress</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>SpecialTerms</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>StartDate</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Status</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>In Approval Process</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Activated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Technology_Clause__c</fullName>
+        <externalId>false</externalId>
+        <label>Technology Clause</label>
+        <picklist>
+            <picklistValues>
+                <fullName>All new products to be negotiated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All new products at no increase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All new products at capped increase ($/%)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evolutionary products at no increase, Revolutionary negotiated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evolutionary products at capped increase ($/%), Revolutionary negotiated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <listViews>
+        <fullName>AllActivatedContracts</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTRACT.STATUS_CODE</field>
+            <operation>equals</operation>
+            <value>A</value>
+        </filters>
+        <label>All Activated Contracts</label>
+    </listViews>
+    <listViews>
+        <fullName>AllContracts</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All Contracts</label>
+    </listViews>
+    <listViews>
+        <fullName>AllDraftContracts</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTRACT.STATUS_CODE</field>
+            <operation>equals</operation>
+            <value>D</value>
+        </filters>
+        <label>All Draft Contracts</label>
+    </listViews>
+    <listViews>
+        <fullName>AllInApprovalContracts</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTRACT.STATUS_CODE</field>
+            <operation>equals</operation>
+            <value>P</value>
+        </filters>
+        <label>All In Approval Contracts</label>
+    </listViews>
+    <listViews>
+        <fullName>MyActivatedContracts</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CONTRACT.STATUS_CODE</field>
+            <operation>equals</operation>
+            <value>A</value>
+        </filters>
+        <label>My Activated Contracts</label>
+    </listViews>
+    <listViews>
+        <fullName>MyDraftContracts</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CONTRACT.STATUS_CODE</field>
+            <operation>equals</operation>
+            <value>D</value>
+        </filters>
+        <label>My Draft Contracts</label>
+    </listViews>
+    <listViews>
+        <fullName>MyInApprovalContracts</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CONTRACT.STATUS_CODE</field>
+            <operation>equals</operation>
+            <value>P</value>
+        </filters>
+        <label>My In Approval Contracts</label>
+    </listViews>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Contract_Ops</fullName>
+        <active>true</active>
+        <label>Contract Ops</label>
+        <picklistValues>
+            <picklist>Award_Status__c</picklist>
+            <values>
+                <fullName>All Committed%28MS%2FRev%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dual Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Individual Tier Commitments%2FAttainments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Access W%2F Commitment to other Vendors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non- applicatble</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open Access%2FCapped%28All Play%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sole Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tri Vendor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Commitment_for_Price__c</picklist>
+            <values>
+                <fullName>All Committed %28MS%2FRev%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dual Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Individual Tier Commitments%2FAttainments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Access W%2F Commitment to other Vendors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open Access%2FCapped</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sole Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tri-Vendor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Type__c</picklist>
+            <values>
+                <fullName>Bridge to Budget</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Budgetary Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Capital Alternative %28CAP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cash Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cash Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disposable Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disposable Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disposable%2FImplantable Product Agreement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fixed Cost Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QP Offset</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standalone Rebate Agreement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Execution_Status__c</picklist>
+            <values>
+                <fullName>Executed without Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fully Executed</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rebate_Type__c</picklist>
+            <values>
+                <fullName>AED Rebate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Admin Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Change Out</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Choice Alliance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complete Source</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heart Failure Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Share</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One Time</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Differential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QP Rebate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Risk Share</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Therapeutic Upgrade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Threshold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rebate_starting_period__c</picklist>
+            <values>
+                <fullName>Current Month</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Execution Date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Following Fiscal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Type__c</picklist>
+            <values>
+                <fullName>Amendment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consignments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Master T%26C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NDA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Activated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Approval Process</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Technology_Clause__c</picklist>
+            <values>
+                <fullName>All new products at capped increase %28%24%2F%25%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All new products at no increase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All new products to be negotiated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evolutionary products at capped increase %28%24%2F%25%29%2C Revolutionary negotiated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evolutionary products at no increase%2C Revolutionary negotiated</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>CONTRACT.CONTRACT_NUMBER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CONTRACT.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>SALES.ACCOUNT.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CONTRACT.STATUS</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTRACT.CONTRACT_NUMBER</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTRACT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Request_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>SALES.ACCOUNT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CORE.USERS.ALIAS</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTRACT.START_DATE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTRACT.END_DATE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CONTRACT.STATUS</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CORE.USERS.FIRST_NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CORE.USERS.LAST_NAME</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTRACT.CONTRACT_NUMBER</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CONTRACT.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CORE.USERS.ALIAS</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>CONTRACT.CONTRACT_NUMBER</searchFilterFields>
+        <searchFilterFields>CONTRACT.NAME</searchFilterFields>
+        <searchFilterFields>Request_Number__c</searchFilterFields>
+        <searchFilterFields>CONTRACT.STATUS</searchFilterFields>
+        <searchFilterFields>CONTRACT.START_DATE</searchFilterFields>
+        <searchFilterFields>CONTRACT.END_DATE</searchFilterFields>
+        <searchFilterFields>SALES.ACCOUNT.NAME</searchFilterFields>
+        <searchFilterFields>CORE.USERS.LAST_NAME</searchFilterFields>
+        <searchResultsAdditionalFields>CONTRACT.CONTRACT_NUMBER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTRACT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Request_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>SALES.ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTRACT.STATUS</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTRACT.START_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTRACT.END_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.FIRST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.LAST_NAME</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>Contract_Term_should_not_be_blank</fullName>
+        <active>true</active>
+        <errorConditionFormula>One_Time_Contract__c = FALSE  &amp;&amp;  ISBLANK(ContractTerm)</errorConditionFormula>
+        <errorDisplayField>ContractTerm</errorDisplayField>
+        <errorMessage>Please Enter Contract term</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Add_Capital_Products</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Add Capital Products</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/ContractProductsPicker?id={!Contract.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Add_Disposable_Products</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Add Disposable Products</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/a0Y/e?CF00Nj000000B7TQI={!Contract.ContractNumber}&amp;CF00Nj000000B7TQI_lkid={!Contract.Id}&amp;retURL=%2F800j0000000Jr1q&amp;RecordType=012j00000010JIf&amp;ent=01Ij0000001N1tR</url>
+    </webLinks>
+    <webLinks>
+        <fullName>CAP_Products</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>CAP Products</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/a0Y/e?CF00Nj000000B7TQI={!Contract.ContractNumber}&amp;CF00Nj000000B7TQI_lkid={!Contract.Id}&amp;retURL=%2F800j0000000Jr1q&amp;RecordType=012j0000000ufkJ&amp;ent=01Ij0000001N1tR</url>
+    </webLinks>
+</CustomObject>

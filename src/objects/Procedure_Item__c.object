@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>Procedure_Item_Edit_Fields</fullName>
+        <description>Fieldset used on procedure edit page</description>
+        <displayedFields>
+            <field>Catheter_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Notes__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastActivityDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Procedure_Item__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Location__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Number_of_Electrodes__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastViewedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Procedure Item Edit Fields</label>
+    </fieldSets>
+    <fields>
+        <fullName>Catheter_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Catheter Type</label>
+        <picklist>
+            <controllingField>Procedure_Item__c</controllingField>
+            <picklistValues>
+                <fullName>Fixed</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advisor FL SE</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Steer</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Steer - MediGuide</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Circ fxd loop</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Circ var loop</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High density</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>DBSGImplanted_Generator__c</fullName>
+        <externalId>false</externalId>
+        <label>Implanted Generator</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Infinity 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Infinity 7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Libra</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Libra XP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brio</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>DBSGPocket_Adapter__c</fullName>
+        <externalId>false</externalId>
+        <label>Pocket Adapter</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2304</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2305</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2311</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2316</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <picklist>
+            <controllingField>Procedure_Item__c</controllingField>
+            <picklistValues>
+                <fullName>High Right Atrium (HRA)</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bundle of HIS (HIS)</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Coronary Sinus (CS)</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Right Ventricle (RV)</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pulmonary Vein (PV)</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Manufacturer__c</fullName>
+        <externalId>false</externalId>
+        <label>Manufacturer</label>
+        <picklist>
+            <controllingField>Procedure_Item__c</controllingField>
+            <picklistValues>
+                <fullName>SJM</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+                <controllingFieldValues>ICE</controllingFieldValues>
+                <controllingFieldValues>Transseptal Needle</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Siemens/BioSense</fullName>
+                <default>false</default>
+                <controllingFieldValues>ICE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Boston Scientific</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+                <controllingFieldValues>ICE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bard</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+                <controllingFieldValues>Transseptal Needle</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Biosense Webster</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+                <controllingFieldValues>Transseptal Needle</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cook</fullName>
+                <default>false</default>
+                <controllingFieldValues>Transseptal Needle</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medtronic</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+                <controllingFieldValues>Transseptal Needle</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Baylis</fullName>
+                <default>false</default>
+                <controllingFieldValues>Transseptal Needle</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Agilis NxT</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SL</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SR</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mullins</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RAMP</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LAMP</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSTA</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SALF</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SEPT</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other (competitive)</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+                <controllingFieldValues>Transseptal Needle</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Electrodes__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Electrodes</label>
+        <picklist>
+            <controllingField>Procedure_Item__c</controllingField>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>20</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>24</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PriceUpdate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>PriceUpdate</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Price_List__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Price List</label>
+        <referenceTo>Price_List__c</referenceTo>
+        <relationshipLabel>Procedure Items</relationshipLabel>
+        <relationshipName>Procedure_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Procedure_Item__c</fullName>
+        <externalId>false</externalId>
+        <label>Procedure Item</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ICE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Transseptal Needle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EP Study - Introducers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EP Study - Diagnostic EP Catheters</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ablation Catheter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DBS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Procedure__c</fullName>
+        <externalId>false</externalId>
+        <label>Procedure</label>
+        <referenceTo>Procedure__c</referenceTo>
+        <relationshipLabel>Procedure Items</relationshipLabel>
+        <relationshipName>Procedure_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Resterilized__c</fullName>
+        <externalId>false</externalId>
+        <label>Resterilized?</label>
+        <picklist>
+            <controllingField>Procedure_Item__c</controllingField>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+                <controllingFieldValues>ICE</controllingFieldValues>
+                <controllingFieldValues>Transseptal Needle</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+                <controllingFieldValues>EP Study - Diagnostic EP Catheters</controllingFieldValues>
+                <controllingFieldValues>EP Study - Introducers</controllingFieldValues>
+                <controllingFieldValues>ICE</controllingFieldValues>
+                <controllingFieldValues>Transseptal Needle</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Tip_Size__c</fullName>
+        <externalId>false</externalId>
+        <label>Tip Size</label>
+        <picklist>
+            <controllingField>Procedure_Item__c</controllingField>
+            <picklistValues>
+                <fullName>TactiCath</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FlexAbility</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FlexAbility SE</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Irrigated</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4/5mm Non-irrigated</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8/10mm Non-irrigated</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cryo Balloon</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cryo Cath</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MediGuide Irrigated</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ablation Catheter</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UniqueID__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(TEXT(Procedure_Item__c)=&quot;Transseptal Needle&quot;, TEXT(Procedure_Item__c), 
+IF(OR(TEXT(Procedure_Item__c)=&quot;ICE&quot;, TEXT(Procedure_Item__c)=&quot;EP Study - Introducers&quot;), TEXT(Procedure_Item__c) + &quot;;&quot; + TEXT(Manufacturer__c),
+IF(TEXT(Procedure_Item__c)=&quot;Ablation Catheter&quot;, TEXT(Procedure_Item__c) + &quot;;&quot; + TEXT(Tip_Size__c),
+IF(TEXT(Procedure_Item__c)=&quot;EP Study - Diagnostic EP Catheters&quot;, TEXT(Procedure_Item__c) + &quot;;&quot; + TEXT(Catheter_Type__c) + &quot;;&quot; + TEXT(Number_of_Electrodes__c),TEXT(Procedure_Item__c)
+)
+)
+)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>UniqueID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Procedure Item</label>
+    <nameField>
+        <displayFormat>PI-{000000}</displayFormat>
+        <label>Procedure Item Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Procedure Items</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>SJM_AF</fullName>
+        <active>true</active>
+        <label>SJM AF</label>
+        <picklistValues>
+            <picklist>Catheter_Type__c</picklist>
+            <values>
+                <fullName>Advisor FL SE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Circ fxd loop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Circ var loop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fixed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High density</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Steer - MediGuide</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>DBSGImplanted_Generator__c</picklist>
+            <values>
+                <fullName>Brio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Infinity 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Infinity 7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Libra</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Libra XP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>DBSGPocket_Adapter__c</picklist>
+            <values>
+                <fullName>2304</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2305</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2311</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2316</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Location__c</picklist>
+            <values>
+                <fullName>Bundle of HIS %28HIS%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Coronary Sinus %28CS%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Right Atrium %28HRA%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pulmonary Vein %28PV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right Ventricle %28RV%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Manufacturer__c</picklist>
+            <values>
+                <fullName>Agilis NxT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Baylis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biosense Webster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boston Scientific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CSTA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LAMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medtronic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mullins</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other %28competitive%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RAMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SALF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SEPT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SJM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Siemens%2FBioSense</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Electrodes__c</picklist>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Procedure_Item__c</picklist>
+            <values>
+                <fullName>Ablation Catheter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP Study - Diagnostic EP Catheters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP Study - Introducers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ICE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transseptal Needle</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Resterilized__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tip_Size__c</picklist>
+            <values>
+                <fullName>4%2F5mm Non-irrigated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8%2F10mm Non-irrigated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cryo Balloon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cryo Cath</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FlexAbility</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FlexAbility SE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Irrigated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MediGuide Irrigated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TactiCath</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Restrict_User_from_Editing_after24_hours</fullName>
+        <active>true</active>
+        <description>This rule will restrict regular users from editing Procedure Item records after 24 hours</description>
+        <errorConditionFormula>$User.ProfileId &lt;&gt; &apos;00ej0000000Uqu8&apos; &amp;&amp; $User.ProfileId &lt;&gt; &apos;00ej0000000YNhr&apos; &amp;&amp; (Today() - DATEVALUE(CreatedDate)) &gt; 2</errorConditionFormula>
+        <errorMessage>You&apos;re trying to edit\delete fields which are locked down.  Individual Procedure Items are locked down for pricing protection 24 hours after submission.</errorMessage>
+    </validationRules>
+</CustomObject>

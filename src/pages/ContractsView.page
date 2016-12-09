@@ -1,0 +1,102 @@
+<apex:page standardController="Account" extensions="Contractviewcontroller" showHeader="false" id="page" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+<apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />           
+<apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system.css')}" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+
+
+
+<script type='text/javascript' src='/canvas/sdk/js/publisher.js'/>
+<script src="https://mobile1.t.salesforce.com/soap/ajax/35.0/connection.js" type="text/javascript" />
+
+
+
+
+</head>
+
+
+<body>
+
+<apex:form id="fid">
+
+
+<div class="slds">
+        <div class="slds-page-header" role="banner">
+          <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+              <div class="slds-media">
+                <div class="slds-media__figure">
+                  <svg aria-hidden="true" class="slds-icon slds-icon--large slds-icon-standard-user">
+                      <use xlink:href="{!URLFOR($Resource.slds0121, 'assets/icons/custom-sprite/svg/symbols.svg#custom58')}" />
+                  </svg>
+                </div>
+        <div class="slds-media__body">
+            <p class="slds-text-heading--label">{!Account.Name}</p>
+                <div class="slds-grid">
+                    <h1 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" title="Record Title">Contract Records</h1>
+                <div class="slds-col slds-shrink-none">             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <br />   
+         
+ <nav role="navigation">
+  <p id="bread-crumb-label" class="slds-assistive-text"></p>
+  <ol class="slds-breadcrumb slds-list--horizontal" aria-labelledby="bread-crumb-label">
+  
+  </ol>
+</nav> 
+
+
+
+
+  <apex:PageBlock id="pid" >      
+
+
+
+ <div class="slds-scrollable--x">  
+ 
+
+      <apex:pageBlockTable id="pbSectn" styleClass="slds-table slds-table--bordered" value="{!contr}" var="Contract">
+       <apex:column title="Contract Number" >    
+        
+        
+       <apex:outputLink value="/apex/Contractpage?id={!Contract.id}">View</apex:outputLink>
+         </apex:column>  
+        <apex:column value="{!Contract.Name}" />
+      <apex:column value="{!Contract.Request_Type__c}" />
+           <apex:column value="{!Contract.StartDate}" />
+           
+             <apex:column value="{!Contract.EndDate}" />
+          
+          
+
+          <apex:column value="{!Contract.Status }" />
+        
+
+      </apex:pageBlockTable>
+
+ </div>    
+ <br>
+ </br> 
+ 
+  
+
+
+  </apex:pageBlock>
+  
+</div>
+  </div>
+ 
+  </apex:form>
+  
+ </body> 
+</html>
+
+
+
+</apex:page>

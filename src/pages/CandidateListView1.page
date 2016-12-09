@@ -1,0 +1,56 @@
+<apex:page controller="candidateListViewExtension1" showHeader="false" standardStylesheets="false" sidebar="true" readOnly="true" cache="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" action="{!listView}">  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/>            
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />           
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system.css')}" /> 
+    
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:includeScript value="/canvas/sdk/js/publisher.js"/>
+        </head>
+        <body>
+
+            <apex:form >               
+                
+                <div class="slds-page-header" role="banner">
+                    <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                        <div class="slds-col--padded slds-size--1-of-1">
+                            <h1 class="slds-page-header__title slds-text-heading--label slds-truncate" title="Candidates">Candidates List View</h1>
+                            <p align="right"><apex:commandButton styleClass="slds-button slds-button--neutral" value="New" action="{!URLFOR($Action.Candidate__c.New)}" />
+                            <apex:commandButton styleClass="slds-button slds-button--neutral" value="Search" action="{!URLFOR($Action.Candidate__c.Search)}" /></p>
+                        </div>
+                    </div>    
+                </div>
+                                                                
+            
+            
+            <apex:pageBlock id="ThePage">
+            
+            <apex:actionFunction action="{!refreshGrid}" name="queryByPage" reRender="myPanel,myButtons" >
+                <apex:param name="firstParam" assignTo="{!selectedPage}" value="" />
+            </apex:actionFunction>                        
+            
+            <apex:dynamicComponent componentValue="{!myCommandButtons}"/>            
+            
+             <apex:pageBlockSection columns="1" collapsible="false">                                
+                <apex:outputPanel id="myPanel">
+                <apex:pageMessages id="theMessages" />
+                <apex:pageBlockTable styleClass="slds-table slds-table--bordered slds-table--cell-buffer" value="{!Candidates}" var="obj">
+                    <apex:column styleClass="slds-truncate" headerClass="slds-text-heading--label" headerValue="Candidate Number">
+                        <apex:outputLink value="/{!obj.cand.Id}">{!obj.cand.Name}</apex:outputLink>
+                    </apex:column>
+                    <apex:column styleClass="slds-truncate" headerClass="slds-text-heading--label" headerValue="Last Name" value="{!obj.lastName}"/>
+                    <apex:column styleClass="slds-truncate" headerClass="slds-text-heading--label" headerValue="First Name" value="{!obj.firstName}"/>             
+                    <apex:column styleClass="slds-truncate" headerClass="slds-text-heading--label" headerValue="Referred By" value="{!obj.cand.Referred_By__r.Name}"/>
+                    <apex:column styleClass="slds-truncate" headerClass="slds-text-heading--label" headerValue="Referred To" value="{!obj.cand.Referred_To__r.Name}"/>
+                    <apex:column styleClass="slds-truncate" headerClass="slds-text-heading--label" headerValue="Stage Name" value="{!obj.cand.Stage_Name__c}"/>
+                    <apex:facet name="footer">Showing Page # {!pageNumber} of {!totalPages}</apex:facet>
+                </apex:pageBlockTable>
+                </apex:outputPanel>                
+             </apex:pageBlockSection>                                 
+            </apex:pageBlock>
+         </apex:form>           
+        </body>
+    </html>
+</apex:page>

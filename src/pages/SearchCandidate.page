@@ -1,0 +1,88 @@
+<apex:page standardController="Candidate__c" extensions="candidateSearchExtension" showHeader="false" standardStylesheets="false" sidebar="true" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/>            
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />           
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS0121, 'assets/styles/salesforce-lightning-design-system.css')}" /> 
+    
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:includeScript value="/canvas/sdk/js/publisher.js"/>
+        </head>
+        <body>            
+
+            <apex:form >
+                
+                
+                <div class="slds-page-header" role="banner">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <!--
+<nav class="slds-m-bottom--xx-small" role="navigation" aria-label="Breadcrumbs">
+<ol class="slds-breadcrumb slds-list--horizontal">
+<li class="slds-breadcrumb__item slds-text-heading--label"><a href="javascript:void(0);">Candidates</a></li>
+<li class="slds-breadcrumb__item slds-text-heading--label"><a href="javascript:void(0);">Search</a></li>
+</ol>
+</nav>
+-->
+                            <h1 class="slds-page-header__title slds-truncate" title="Candidates">Search for Candidates</h1>
+                        </div>
+                    </div>    
+                </div>
+                
+                
+                
+                
+                <div class="slds-modal__content">
+                    
+                    <div class="slds-form--inline slds-p-around--medium slds-m-bottom--x-small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="inputLastName">Last Name</label>
+                            <div class="slds-form-element__control">
+                                <apex:inputText id="inputLastName" value="{!SearchLastName}" styleClass="slds-input SearchLastName" required="true"/>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="inputFirstName">First Name</label>
+                            <div class="slds-form-element__control">
+                                <apex:inputText id="inputFirstName" value="{!SearchFirstName}" styleClass="slds-input SearchFirstName" required="true"/>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element">
+                            <apex:commandButton id="btnSearch" value="Search" styleClass="slds-button slds-button--brand" action="{!SearchForCandidates}" />
+                        </div>
+                    </div>
+                </div>
+                <apex:messages />
+            </apex:form>
+            
+            <apex:pageBlock rendered="{!IsSearchListAvailable}">
+            <div class="slds-page-header" role="banner">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <h1 class="slds-page-header__title slds-truncate" title="Candidates">Results</h1>
+                        </div>
+                    </div>    
+                </div>
+            
+            <apex:pageBlockTable styleClass="slds-table slds-table--bordered slds-table--cell-buffer" value="{!theCandidateInfoList}" var="cl">
+                <apex:column styleClass="slds-truncate" headerValue="Candidate Number" >
+                    <apex:outputLink value="/{!cl.EXTERNALSYSTEMID}">{!CandNameMap[cl.EXTERNALSYSTEMID]}</apex:outputLink>
+                </apex:column>
+                <apex:column styleClass="slds-truncate" headerValue="First Name" value="{!cl.FIRST_NAME}"/>
+                <apex:column styleClass="slds-truncate" headerValue="Last Name" value="{!cl.LAST_NAME}"/>
+                <apex:column styleClass="slds-truncate" headerValue="Address Line1" value="{!cl.ADDRESS_LINE1}"/>
+                <apex:column styleClass="slds-truncate" headerValue="Address Line2" value="{!cl.ADDRESS_LINE2}"/>
+                <apex:column styleClass="slds-truncate" headerValue="City" value="{!cl.ADDRESS_CITY}"/>
+                <apex:column styleClass="slds-truncate" headerValue="State/Province" value="{!cl.ADDRESS_STATE_PROVINCE}"/>
+                <apex:column styleClass="slds-truncate" headerValue="Country" value="{!cl.ADDRESS_COUNTRY}"/>
+            </apex:pageBlockTable>
+                                    
+            </apex:pageBlock>
+            
+        </body>
+    </html>
+    
+</apex:page>

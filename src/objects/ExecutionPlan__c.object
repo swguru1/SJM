@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Execution Plans for Accounts</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ANZ_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>ANZ ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Manager_Division__c</fullName>
+        <externalId>false</externalId>
+        <formula>Relationship_Manager__r.Profile.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Manager Division</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Associated Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Bespoke_Plans</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Active_Flag__c</fullName>
+        <description>Image indicator for active/ inactive plans</description>
+        <externalId>false</externalId>
+        <formula>IMAGE( CASE( Active__c , &quot;ACTIVE&quot;, &quot;/img/samples/flag_green.gif&quot;, &quot;INACTIVE&quot;, &quot;/img/samples/flag_red.gif&quot;, &quot;/s.gif&quot;), &quot;flag&quot;)</formula>
+        <label>Active Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF((Expiry_Date__c  &gt;=  TODAY() &amp;&amp;(Start_Date__c   &lt;=  TODAY()) &amp;&amp;  Approved__c =TRUE),
+&quot;ACTIVE&quot;, &quot;INACTIVE&quot;)</formula>
+        <label>Active</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the Execution Plan has been Approved by the Territory Manager and the Plan is locked.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, the Execution Plan has been Approved by the Territory Manager and the plan is locked.</inlineHelpText>
+        <label>Approved</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Current_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Status</label>
+        <length>10000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Desired_Outcome_F__c</fullName>
+        <externalId>false</externalId>
+        <label>Desired Outcome</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Desired_Outcome__c</fullName>
+        <externalId>false</externalId>
+        <label>National Strategic Objective</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Expiry_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Expiry Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Relationship_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Territory Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bespoke_Plans</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Remaining_Activities__c</fullName>
+        <externalId>false</externalId>
+        <label>Remaining Activities</label>
+        <summarizedField>ExecutionPlanActivity__c.Remaining__c</summarizedField>
+        <summaryForeignKey>ExecutionPlanActivity__c.ExecutionPlan__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Template__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Template</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Total_Activities__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Activities</label>
+        <summarizedField>ExecutionPlanActivity__c.Quantity__c</summarizedField>
+        <summaryForeignKey>ExecutionPlanActivity__c.ExecutionPlan__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <label>Execution Plan</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Relationship_Manager__c</columns>
+        <columns>Active_Flag__c</columns>
+        <columns>Account__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Expiry_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <sharedTo>
+            <role>ANZ_SJM_Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Execution_Plan_Templates</fullName>
+        <columns>NAME</columns>
+        <columns>Active_Flag__c</columns>
+        <columns>Approved__c</columns>
+        <columns>Current_Status__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Expiry_Date__c</columns>
+        <columns>Template__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Template__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Execution Plan Templates</label>
+        <sharedTo>
+            <roleAndSubordinates>ANZ_SJM_Administrator</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Execution_Plans</fullName>
+        <columns>NAME</columns>
+        <columns>Relationship_Manager__c</columns>
+        <columns>Active_Flag__c</columns>
+        <columns>Account__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Expiry_Date__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Execution Plans</label>
+        <sharedTo>
+            <roleAndSubordinates>ANZ_SJM_Administrator</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Execution Plan Name</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Execution Plans</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Account_Execution_Plan_Template</fullName>
+        <active>true</active>
+        <description>Execution Plan Template</description>
+        <label>Account Execution Plan Template</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Bespoke_Plan</fullName>
+        <active>true</active>
+        <description>Execution Plan for Accounts and Person Accounts</description>
+        <label>Account Execution Plan</label>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Relationship_Manager__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Active_Flag__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Account__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Expiry_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Start_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Relationship_Manager__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Active_Flag__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Account__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Expiry_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Start_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>OWNER.ALIAS</lookupDialogsAdditionalFields>
+        <lookupFilterFields>NAME</lookupFilterFields>
+        <lookupFilterFields>Relationship_Manager__c</lookupFilterFields>
+        <lookupFilterFields>Account__c</lookupFilterFields>
+        <lookupFilterFields>Expiry_Date__c</lookupFilterFields>
+        <lookupFilterFields>Start_Date__c</lookupFilterFields>
+        <lookupFilterFields>OWNER.ALIAS</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>Relationship_Manager__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active_Flag__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Account__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Expiry_Date__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Start_Date__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>OWNER.ALIAS</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Relationship_Manager__c</searchFilterFields>
+        <searchFilterFields>Active_Flag__c</searchFilterFields>
+        <searchFilterFields>Account__c</searchFilterFields>
+        <searchFilterFields>Expiry_Date__c</searchFilterFields>
+        <searchFilterFields>Start_Date__c</searchFilterFields>
+        <searchFilterFields>OWNER.ALIAS</searchFilterFields>
+        <searchResultsAdditionalFields>Relationship_Manager__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Active_Flag__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Expiry_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.ALIAS</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>Select_Execution_Plan_Template</searchResultsCustomButtons>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>EP_Approved_Name_Lock</fullName>
+        <active>true</active>
+        <errorConditionFormula>Approved__c = TRUE &amp;&amp;
+ ISCHANGED(  Name  )</errorConditionFormula>
+        <errorMessage>The Execution Plan Name can not be changed on an approved Plan.
+Please contact the Execution Plan Territory Manager.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Expiry_cant_exceed_Start_Date</fullName>
+        <active>true</active>
+        <errorConditionFormula>Start_Date__c  &gt;  Expiry_Date__c</errorConditionFormula>
+        <errorDisplayField>Expiry_Date__c</errorDisplayField>
+        <errorMessage>The Start Date must not be greater than the Expiry Date</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Select_Execution_Plan_Template</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Select Execution Plan Template</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/QVFP_BespokenPlanOverride?acctid={!Account.Id}</url>
+    </webLinks>
+</CustomObject>

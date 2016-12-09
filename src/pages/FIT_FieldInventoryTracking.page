@@ -1,0 +1,811 @@
+<apex:page showHeader="false" sidebar="false" applyBodyTag="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false" cache="true" expires="600" standardController="FIT_DeepLinkDummy__c" tabStyle="Field_Inventory_Tracking__tab">
+<apex:remoteObjects >
+    <apex:remoteObjectModel name="Transactions__c" fields="Id,User__c,Account__c,Ship_To_Address__c,Shipping_Priority__c,PO_Number__c,Ship_To_Address_Formula__c,RecordTypeId,LastModifiedDate,Commissionable_Sales_Rep__c,Patient_First_Name__c,Patient_Last_Name__c,Implant_Date__c,Total_Price__c,Commissionable_Sales_Rep_Name__c,Account_Name__c,Submit__c" />
+    <apex:remoteObjectModel name="Transaction_Items__c" fields="Id,Quantity__c,Product_Description__c,Model_Number__c,PH1_Description__c,Transaction_ID__c,RecordTypeId,Original_Location_Name__c,Original_Location__c,Serial__c,Model__c,Use_By_Date__c,Model_Description_Inventory__c,Inventory_Model__c,Product_Model__c,Price__c,Price_Type__c,Special_Pricing__c,Inventory__c,Added_via_Scan__c" />
+    <apex:remoteObjectModel name="FIT_DeepLinkDummy__c" fields="Id,FIT_Serial_Found__c,FIT_Serial_Value__c,FIT_Transaction__c,FIT_Transaction_Record_Type_Id__c,FIT_Inventory__c" />
+    <apex:remoteObjectModel name="Inventory__c" fields="Id,Serial_Number__c" />
+</apex:remoteObjects>
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>Field Inventory Tracking</title>
+
+    <link rel="stylesheet" href="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'css/font-awesome.min.css')}" />
+    <link rel="stylesheet" href="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'css/bootstrap.min.css')}" />
+    <link rel="stylesheet" href="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'css/app.css')}" />
+
+	<!--[if gte IE 9]>
+		<style type="text/css">
+			.gradient {
+				filter: none;
+			}
+		</style>
+	<![endif]-->
+</head>
+<body>
+	<!-- required for field access on page load when redirected from barcode scanner -->
+	<apex:outputText value="{!FIT_DeepLinkDummy__c.FIT_Serial_Value__c}" rendered="false" />
+	<!-- begin app UI -->
+    <section>
+    	<!-- app header -->
+        <nav class="navbar navbar-fit-app">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img src="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'images/record-icon.png')}" alt="" title="" />
+                        <span>Field Inventory Tracking</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- pages container -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="panel-group panel-main-nav" id="accordion" role="tablist" aria-multiselectable="true">
+                    <!-- Consignment Request section -->
+                    <div class="panel hide" data-record-type="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Consignment_Request_Record_Type_ID__c}">
+                        <div class="panel-heading" role="tab" id="consignmentRequestHeading">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#consignmentRequest" aria-expanded="true" aria-controls="consignmentRequest">
+                                    Consignment Request
+                                    <i class="fa fa-chevron-right pull-right"></i>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="consignmentRequest" class="panel-collapse collapse" role="tabpanel" aria-labelledby="consignmentRequestHeading">
+                            <div class="panel-body">
+                                <div id="consignmentRequestEdit">
+                                    <form id="consignmentRequestForm">
+                                        <input type="hidden" id="isEdit" value="false" />
+                                        <input type="hidden" id="isSubmitted" value="false" />
+                                        <input type="hidden" id="recordId" value="" />
+                                        <div class="custom-search-input">  
+                                            <h1>Create Transaction<span class="required">*</span></h1>
+
+                                            <div class="input-group col-xs-12">
+                                                <label for="user_field">User</label>
+                                                <c:FIT_Typeahead searchBoxId="user_field" object="User" primaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_User_Typeahead_Field_1__c}" searchScope="NAME" placeholder="Select a User..." recordLimit="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_User_Typeahead_Record_Limit__c}" styleClass="form-control input-lg" stealFocus="false" />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-info btn-lg btn-lookup" type="button" tabindex="-1">
+                                                        <!-- <i class="fa fa-search"></i> -->
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                            
+                                            <div class="input-group col-xs-12">
+                                                <label for="acc_field">Account</label>
+                                                <c:FIT_Typeahead searchBoxId="acc_field" object="Account" primaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Account_Typeahead_Field_1__c}" secondaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Account_Typeahead_Field_2__c}" thirdField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Account_Typeahead_Field_3__c}" searchScope="NAME" placeholder="Select an Account..." recordLimit="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Account_Typeahead_Record_Limit__c}" styleClass="form-control input-lg bgray" stealFocus="false" />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-info btn-lg btn-lookup" type="button" tabindex="-1">
+                                                        <!-- <i class="fa fa-search"></i> -->
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </span>
+                                            </div> 
+                                        </div>
+
+                                        <div class="custom-search-input2">
+                                            <div class="input-group col-xs-12">
+                                                <label for="ship_field">Ship To Address<span class="required">*</span></label>
+                                                <c:FIT_Typeahead searchBoxId="ship_field" object="Ship_To_Address__c" primaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Ship_To_Address_Typeahead_Field_1__c}" secondaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Ship_To_Address_Typeahead_Field_2__c}" thirdField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Ship_To_Address_Typeahead_Field_3__c}" fourthField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Ship_To_Address_Typeahead_Field_4__c}" searchScope="ALL" placeholder="Select an Address..." recordLimit="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Ship_To_Address_Typeahead_Rec_Limit__c}" styleClass="form-control input-lg" stealFocus="false" />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-info btn-lg btn-lookup" type="button" tabindex="-1">
+                                                        <!-- <i class="fa fa-search"></i> -->
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+
+                                            <div class="input-group col-xs-12">
+                                                <label>Shipping Priority<span class="required">*</span></label>
+                                                <a class="btn btn-default btn-select">
+                                                    <input type="hidden" class="btn-select-input" id="shippingPriority" name="shippingPriority" value="" />
+                                                    <span class="btn-select-value">Select an Item</span>
+                                                    <span class='btn-select-arrow fa fa-caret-down'></span>
+                                                    <ul id="shippingPriorityPicklist">
+                                                        <!-- picklist values load here -->
+                                                    </ul>
+                                                </a>
+                                            </div>  
+                                        </div>
+
+                                        <div class="custom-search-input3">   
+                                            <div class="input-group col-xs-12">
+                                                <label for="poNumber">PO Number</label>
+                                                <input type="text" class="form-control input-lg" placeholder="" id="poNumber" name="poNumber" />
+                                            </div>
+                                        </div>
+
+                                        <div class="btn-container">      
+                                            <div class="input-group col-xs-12">
+                                                <input type="button" class="btn btn-default cancel transaction-cancel" value="Cancel"  />
+                                                <input type="button" class="btn btn-warning" value="Save & Add Item" id="submitConsignmentRequest" />
+                                            </div>  
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div id="consignmentRequestItemEdit" class="hide"> 
+                                    <div class="custom-search-input panel-item-edit">  
+                                        <h1>Add Item</h1>
+                                        <form id="consignmentRequestItemForm">
+                                            <input type="hidden" id="itemCount" value="0" />
+                                            <input type="hidden" id="itemNames" value="" />
+                                            <input type="hidden" id="itemNameEdit" value="" />
+                                            <input type="hidden" id="isEdit" value="false" />
+                                            <input type="hidden" id="recordId" value="" />
+                                            <div class="input-group col-xs-12">
+                                                <label for="product_field">Product<span class="required">*</span></label>
+                                                <c:FIT_Typeahead searchBoxId="product_field" object="Product_FIM__c" primaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Product_Typeahead_Field_1__c}" secondaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Product_Typeahead_Field_2__c}" thirdField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Product_Typeahead_Field_3__c}" searchScope="ALL" placeholder="Select a Product..." recordLimit="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Product_Typeahead_Record_Limit__c}" styleClass="form-control input-lg" stealFocus="false" filterClause="Material_Type__c = \'ZMOD\' AND Is_Active__c = \'Y\'" />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-info btn-lg btn-lookup" type="button">
+                                                        <!-- <i class="fa fa-search"></i> -->
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </span>
+                                            </div>      
+
+                                            <div class="input-group col-xs-12">
+                                                <label for="quantity_field">Quantity<span class="required">*</span></label>
+                                                <input type="number" min="1" max="99" id="quantity_field" name="quantity_field" class="form-control input-lg" placeholder="Enter Quantity from 1 to 99..." data-max-char="2" />
+                                            </div>
+
+                                            <div class="btn-container pl0 pr0">      
+                                                <div class="input-group col-xs-12 mb0">
+                                                    <input type="button" class="btn btn-default cancel transaction-item-cancel" value="Cancel"  />
+                                                    <input type="button" class="btn btn-warning" value="Save & Add Item" id="submitConsignmentRequestItem" />
+                                                </div>  
+                                            </div>  
+                                        </form>
+                                    </div>
+                                    
+                                    <div class="panel panel-submit hide">
+                                        <div class="panel-body text-center">
+                                            <h1>Ready to submit?</h1>
+                                            <button type="button" class="btn-primary transaction-submit">Submit Transaction</button> 
+                                        </div>
+                                    </div>                     
+                                    
+                                    <div class="panel-group panel-details" id="consignmentRequestDetails" role="tablist" aria-multiselectable="true">
+                                        <div class="panel">
+                                            <div class="panel-heading" role="tab" id="consignmentRequestTransactionDetailsHeading">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" href="#consignmentRequestTransactionDetails" aria-expanded="false" aria-controls="consignmentRequestTransactionDetails">
+                                                        Transaction Details
+                                                        <i class="fa fa-lg fa-plus-circle pull-right text-blue"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="consignmentRequestTransactionDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="consignmentRequestTransactionDetailsHeading">
+                                                <div class="panel-body">
+                                                    <div>
+                                                        <dl class="dl-horizontal clearfix">
+                                                            <dt>Location Name:</dt>
+                                                            <dd></dd>
+                                                            <dt>Ship to Address:</dt>
+                                                            <dd></dd>
+                                                            <dt>Shipping Priority:</dt>
+                                                            <dd></dd>
+                                                            <dt>PO Number:</dt>
+                                                            <dd></dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="transaction-actions clearfix">
+                                                    	<apex:outputPanel layout="none" rendered="{!$ObjectType.Transactions__c.Deletable}">
+										                    <a href="#" class="transaction-delete pull-left" data-recordid="">
+										                        <i class="fa fa-trash"></i>
+										                        <span>Delete Transaction</span>
+										                    </a>
+										                </apex:outputPanel>
+										                <apex:outputPanel layout="none" rendered="{!$ObjectType.Transactions__c.Updateable}">
+										                    <a href="#" class="transaction-edit pull-right" data-recordid="">
+										                        <i class="fa fa-pencil"></i>
+										                        <span>Edit Transaction</span>
+										                    </a>
+										                </apex:outputPanel>
+									                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="consignmentRequestTransactionItemDetailsContainer">
+                                        <div class="panel-group panel-details panel-item-details" role="tablist" aria-multiselectable="true">
+                                            <!-- transaction items load here -->
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-submitted hide">
+                                        <div class="panel-body">
+                                            <p class="transaction-submitted">
+                                                Submitted:
+                                                <span>[Transaction LastModifiedDate goes here]</span>
+                                            </p>
+                                        </div>
+                                    </div>          
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Inventory Transfer section -->
+                    <div class="panel hide" data-record-type="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Transfer_Record_Type_ID__c}">
+                        <div class="panel-heading" role="tab" id="inventoryTransferHeading">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#inventoryTransfer" aria-expanded="false" aria-controls="inventoryTransfer">
+                                    Inventory Transfer
+                                    <i class="fa fa-chevron-right pull-right"></i>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="inventoryTransfer" class="panel-collapse collapse" role="tabpanel" aria-labelledby="inventoryTransferHeading">
+                            <div class="panel-body">
+                            	<div id="inventoryTransferItemEdit"> 
+                                    <div class="custom-search-input panel-item-edit">  
+                                        <h1>Add Item</h1>
+                                        <form id="inventoryTransferItemForm">
+                                        	<input type="hidden" id="parentRecordId" />
+                                        	<input type="hidden" id="isParentSubmitted" value="false" />
+                                        	<input type="hidden" id="itemCount" value="0" />
+                                            <input type="hidden" id="itemNames" value="" />
+                                            <input type="hidden" id="itemNameEdit" value="" />
+                                            <input type="hidden" id="isEdit" value="false" />
+                                            <input type="hidden" id="recordId" value="" />
+			                                <div class="input-group col-xs-12 input-barcode">
+			                                    <a href="#" class="btn-barcode"></a>
+			                                    <label class="sr-only">Scan Barcode</label>
+			                                    <input id="barcode_field" type="text" class="form-control input-lg" placeholder="Scan barcode" />
+			                                    <span class="input-group-btn label-hidden">
+			                                        <button class="btn btn-info btn-lg" type="button">
+			                                            <i class="fa fa-barcode"></i>
+			                                        </button>
+			                                    </span>
+			                                </div>      
+				                                 
+				                                 
+				                            <div class="input-group col-xs-12">
+												<label class="sr-only" for="inventory_field">Search Product</label>
+                                                <c:FIT_Typeahead searchBoxId="inventory_field" object="Inventory__c" primaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Field_1__c}" secondaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Field_2__c}" thirdField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Field_3__c}" fourthField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Field_4__c}" searchScope="ALL" placeholder="Select a Product..." recordLimit="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Record_Limit__c}" styleClass="form-control input-lg" stealFocus="false" orderBy="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Order_By_Field__c}" />
+                                                <span class="input-group-btn label-hidden">
+                                                    <button class="btn btn-info btn-lg btn-lookup" type="button">
+                                                        <!-- <i class="fa fa-search"></i> -->
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+				                                                                       
+				                            <p class="text-help">Please scan barcode or search product to add item.</p>
+
+	                                    	<div class="btn-container pl0 pr0">      
+                                                <div class="input-group col-xs-12 mb0">
+                                                    <input type="button" class="btn btn-default cancel transaction-item-cancel" value="Cancel"  />
+                                                    <input type="button" class="btn btn-warning" value="Save & Add Item" id="submitInventoryTransferItem" />
+                                                </div>  
+                                            </div>
+                                		</form>
+                                	</div>
+
+                                	<div class="panel panel-submit hide">
+                                        <div class="panel-body text-center">
+                                            <h1>Ready to submit?</h1>
+                                            <button type="button" class="btn-primary transaction-submit">Submit Transaction</button> 
+                                        </div>
+                                    </div>
+
+                                	<div class="panel-group panel-details hide" id="inventoryTransferDetails" role="tablist" aria-multiselectable="true">
+                                        <div class="panel">
+                                            <div class="panel-heading" role="tab" id="inventoryTransferTransactionDetailsHeading">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" href="#inventoryTransferTransactionDetails" aria-expanded="false" aria-controls="inventoryTransferTransactionDetails">
+                                                        Transaction Details
+                                                        <i class="fa fa-lg fa-plus-circle pull-right text-blue"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="inventoryTransferTransactionDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="inventoryTransferTransactionDetailsHeading">
+                                                <div class="panel-body">
+                                                    <div>
+                                                        <dl class="dl-horizontal clearfix">
+                                                            <dt>To Location:</dt>
+                                                            <dd></dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="transaction-actions clearfix">
+                                                    	<apex:outputPanel layout="none" rendered="{!$ObjectType.Transactions__c.Deletable}">
+										                    <a href="#" class="transaction-delete pull-left" data-recordid="">
+										                        <i class="fa fa-trash"></i>
+										                        <span>Delete Transaction</span>
+										                    </a>
+										                </apex:outputPanel>
+									                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="inventoryTransferTransactionItemDetailsContainer">
+                                        <div class="panel-group panel-details panel-item-details" role="tablist" aria-multiselectable="true">
+                                            <!-- transaction items load here -->
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-submitted hide">
+                                        <div class="panel-body">
+                                            <p class="transaction-submitted">
+                                                Submitted:
+                                                <span>[Transaction LastModifiedDate goes here]</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sales Order section -->
+                    <div class="panel hide" data-record-type="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Sales_Order_Record_Type_ID__c}">
+                        <div class="panel-heading" role="tab" id="salesOrderHeading">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#salesOrder" aria-expanded="false" aria-controls="salesOrder">
+                                    Sales Order
+                                    <i class="fa fa-chevron-right pull-right"></i>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="salesOrder" class="panel-collapse collapse" role="tabpanel" aria-labelledby="salesOrderHeading">
+                            <div class="panel-body">
+                            	<div id="salesOrderEdit">
+                                    <form id="salesOrderForm">
+                                        <input type="hidden" id="isEdit" value="false" />
+                                        <input type="hidden" id="isSubmitted" value="false" />
+                                        <input type="hidden" id="recordId" value="" />
+                                        <div class="custom-search-input">  
+                                            <h1>Create Transaction<span class="required">*</span></h1>
+                                            <div class="input-group col-xs-12">
+                                                <label for="acc_sales_field">Account</label>
+                                                <c:FIT_Typeahead searchBoxId="acc_sales_field" object="Account" primaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Account_Typeahead_Field_1__c}" secondaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Account_Typeahead_Field_2__c}" thirdField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Account_Typeahead_Field_3__c}" searchScope="NAME" placeholder="Select an Account..." recordLimit="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Account_Typeahead_Record_Limit__c}" styleClass="form-control input-lg bgray" stealFocus="false" />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-info btn-lg btn-lookup" type="button" tabindex="-1">
+                                                        <!-- <i class="fa fa-search"></i> -->
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="custom-search-input3">
+                                            <div class="input-group col-xs-12">
+                                                <label for="poNumberSales">PO Number</label>
+                                                <input type="text" class="form-control input-lg" placeholder="" id="poNumberSales" name="poNumberSales" />
+                                            </div>
+                                            <div class="input-group col-xs-12">
+                                                <label for="user_sales_field">Commissionable Sales Rep</label>
+                                                <c:FIT_Typeahead searchBoxId="user_sales_field" object="User" primaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_User_Typeahead_Field_1__c}" searchScope="NAME" placeholder="Select a Sales Rep..." recordLimit="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_User_Typeahead_Record_Limit__c}" styleClass="form-control input-lg" stealFocus="false" />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-info btn-lg btn-lookup" type="button" tabindex="-1">
+                                                        <!-- <i class="fa fa-search"></i> -->
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="custom-search-input2">   
+                                            <div class="input-group col-xs-12">
+                                                <label for="patientFirstName">Patient First Name</label>
+                                                <input type="text" class="form-control input-lg" placeholder="" id="patientFirstName" name="patientFirstName" />
+                                            </div>
+                                            <div class="input-group col-xs-12">
+                                                <label for="patientLastName">Patient Last Name</label>
+                                                <input type="text" class="form-control input-lg" placeholder="" id="patientLastName" name="patientLastName" />
+                                            </div>
+                                        </div>
+
+                                        <div class="custom-search-input3">
+                                            <div class="input-group col-xs-12">
+                                                <label for="implantDate">Implant Date</label>
+                                                <input type="text" class="form-control input-lg input-date" placeholder="Pick a Date..." id="implantDate" name="implantDate" />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-info btn-lg btn-date" type="button" tabindex="-1">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="btn-container">      
+                                            <div class="input-group col-xs-12">
+                                                <input type="button" class="btn btn-default cancel transaction-cancel" value="Cancel"  />
+                                                <input type="button" class="btn btn-warning" value="Save & Add Item" id="submitSalesOrder" />
+                                            </div>  
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div id="salesOrderItemEdit" class="hide"> 
+                                    <div class="custom-search-input panel-item-edit">  
+                                        <h1>Add Item</h1>
+                                        <form id="salesOrderItemForm">
+                                        	<input type="hidden" id="itemCount" value="0" />
+                                            <input type="hidden" id="itemNames" value="" />
+                                            <input type="hidden" id="itemNameEdit" value="" />
+                                            <input type="hidden" id="isEdit" value="false" />
+                                            <input type="hidden" id="recordId" value="" />
+			                                <div class="input-group col-xs-12 input-barcode">
+			                                    <a href="#" class="btn-barcode"></a>
+			                                    <label class="sr-only">Scan Barcode</label>
+			                                    <input id="barcode_field" type="text" class="form-control input-lg" placeholder="Scan barcode" />
+			                                    <span class="input-group-btn label-hidden">
+			                                        <button class="btn btn-info btn-lg" type="button">
+			                                            <i class="fa fa-barcode"></i>
+			                                        </button>
+			                                    </span>
+			                                </div>      
+				                                 
+				                                 
+				                            <div class="input-group col-xs-12">
+												<label class="sr-only" for="inventory_sales_field">Search Product</label>
+                                                <c:FIT_Typeahead searchBoxId="inventory_sales_field" object="Inventory__c" primaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Field_1__c}" secondaryField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Field_2__c}" thirdField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Field_3__c}" fourthField="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Field_4__c}" searchScope="ALL" placeholder="Select a Product..." recordLimit="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Record_Limit__c}" styleClass="form-control input-lg" orderBy="{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Typeahead_Order_By_Field__c}" stealFocus="false" />
+                                                <span class="input-group-btn label-hidden">
+                                                    <button class="btn btn-info btn-lg btn-lookup" type="button">
+                                                        <!-- <i class="fa fa-search"></i> -->
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+				                                                                       
+				                            <p class="text-help">Please scan barcode or search product to add item.</p>
+
+				                            <div class="custom-search-input3 custom-special-pricing hide"> 
+												<div class="input-group col-xs-12 input-group-sales-order">
+													<label>Special Pricing</label>
+													<input id="specialPricing" class="form-control input-lg input-currency" name="specialPricing" placeholder="" type="text" />
+												</div>
+											</div> 
+
+	                                    	<div class="btn-container pl0 pr0">      
+                                                <div class="input-group col-xs-12 mb0">
+                                                    <input type="button" class="btn btn-default cancel transaction-item-cancel" value="Cancel"  />
+                                                    <input type="button" class="btn btn-warning" value="Save & Add Item" id="submitSalesOrderItem" />
+                                                </div>  
+                                            </div>
+                                		</form>
+                                	</div>
+
+                                	<div class="panel panel-submit hide">
+                                        <div class="panel-body text-center">
+                                            <h1>Ready to submit?</h1>
+                                            <button type="button" class="btn-primary transaction-submit">Submit Transaction</button> 
+                                        </div>
+                                    </div>
+
+                                	<div class="panel-group panel-details hide" id="salesOrderDetails" role="tablist" aria-multiselectable="true">
+                                        <div class="panel">
+                                            <div class="panel-heading" role="tab" id="salesOrderTransactionDetailsHeading">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" href="#salesOrderTransactionDetails" aria-expanded="false" aria-controls="salesOrderTransactionDetails">
+                                                        Transaction Details
+                                                        <i class="fa fa-lg fa-plus-circle pull-right text-blue"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="salesOrderTransactionDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="salesOrderTransactionDetailsHeading">
+                                                <div class="panel-body">
+                                                    <div>
+                                                        <dl class="dl-horizontal clearfix">
+                                                            <dt>Location Name:</dt>
+                                                            <dd></dd>
+                                                            <dt>PO Number:</dt>
+                                                            <dd></dd>
+                                                            <dt>Commissionable Sales Rep:</dt>
+                                                            <dd></dd>
+                                                            <dt>Patient First Name:</dt>
+                                                            <dd></dd>
+                                                            <dt>Patient Last Name:</dt>
+                                                            <dd></dd>
+                                                            <dt>Implant Date:</dt>
+                                                            <dd></dd>
+                                                            <dt>Total Price:</dt>
+                                                            <dd></dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="transaction-actions clearfix">
+                                                    	<apex:outputPanel layout="none" rendered="{!$ObjectType.Transactions__c.Deletable}">
+										                    <a href="#" class="transaction-delete pull-left" data-recordid="">
+										                        <i class="fa fa-trash"></i>
+										                        <span>Delete Transaction</span>
+										                    </a>
+										                </apex:outputPanel>
+										                <apex:outputPanel layout="none" rendered="{!$ObjectType.Transactions__c.Updateable}">
+										                    <a href="#" class="transaction-edit pull-right" data-recordid="">
+										                        <i class="fa fa-pencil"></i>
+										                        <span>Edit Transaction</span>
+										                    </a>
+										                </apex:outputPanel>
+									                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="salesOrderTransactionItemDetailsContainer">
+                                        <div class="panel-group panel-details panel-item-details" role="tablist" aria-multiselectable="true">
+                                            <!-- transaction items load here -->
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-submitted hide">
+                                        <div class="panel-body">
+                                            <p class="transaction-submitted">
+                                                Submitted:
+                                                <span>[Transaction LastModifiedDate goes here]</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Error Modal -->
+        <div class="modal fade" id="errorModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="message"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal - NOT CURRENTLY USED -->
+        <div class="modal fade" id="successModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Success</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="message"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<!-- Delete Transaction Prompt Modal -->
+        <div class="modal fade" id="deleteTransactionModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delete Transaction</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this record? This action cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="confirmTransactionDelete" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<!-- Delete Transaction Item Prompt Modal -->
+        <div class="modal fade" id="deleteTransactionItemModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delete Transaction Item</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this record? This action cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="confirmTransactionItemDelete" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<!-- Loading Screen -->
+        <div class="status-loading">
+        	<div class="slds-spinner--medium">
+				<img src="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'images/slds_spinner.gif')}" alt="Loading..." />
+			</div>
+        </div>
+    </section>
+    <script src="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'js/jquery-2.1.4.min.js')}"></script>
+    <script src="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'js/handlebars.min-latest.js')}"></script>
+    <script src="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'js/bootstrap.min.js')}"></script>
+    <script src="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'js/jquery.validate.min.js')}"></script>
+    <script src="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'js/moment.min.js')}"></script>
+    <script src="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'js/bootstrap-datetimepicker.js')}"></script>
+    <!-- Handlebars template for Consignment Request items -->
+    <script id="consignmentRequestTransactionItem" type="text/x-handlebars-template">
+        {{#each transactionItems}}
+        <div class="panel">
+            <div class="panel-heading" role="tab" id="consignmentRequestTransactionItemDetailsHeading{{@index}}">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" href="#consignmentRequestTransactionItemDetails{{@index}}" aria-expanded="false" aria-controls="consignmentRequestTransactionItemDetails{{@index}}">
+                        Product: <span>{{Name}}</span>
+                        <i class="fa fa-lg fa-plus-circle pull-right text-blue"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="consignmentRequestTransactionItemDetails{{@index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="consignmentRequestTransactionItemDetailsHeading{{@index}}">
+                <div class="panel-body">
+                    <div data-recordid="{{Id}}">
+                        <dl class="dl-horizontal clearfix">
+                            <dt>Product Description:</dt>
+                            <dd>{{Product_Description__c}}</dd>
+                            <dt>Quantity:</dt>
+                            <dd>{{Quantity__c}}</dd>
+                        </dl>
+                    </div>
+                    <div class="transaction-actions clearfix">
+                    	<apex:outputPanel layout="none" rendered="{!$ObjectType.Transaction_Items__c.Deletable}">
+		                    <a href="#" class="transaction-item-delete pull-left" data-recordid="{{Id}}" data-itemid="{{Model_Number__c}}">
+		                        <i class="fa fa-trash"></i>
+		                        <span>Delete Item</span>
+		                    </a>
+		                </apex:outputPanel>
+		                <apex:outputPanel layout="none" rendered="{!$ObjectType.Transaction_Items__c.Updateable}">
+		                    <a href="#" class="transaction-item-edit pull-right" data-recordid="{{Id}}" data-itemid="{{Model_Number__c}}">
+		                        <i class="fa fa-pencil"></i>
+		                        <span>Edit Item</span>
+		                    </a>
+		                </apex:outputPanel>
+	                </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <!-- Handlebars template for Inventory Transfer items -->
+    <script id="inventoryTransferTransactionItem" type="text/x-handlebars-template">
+        {{#each transactionItems}}
+        <div class="panel">
+            <div class="panel-heading" role="tab" id="inventoryTransferTransactionItemDetailsHeading{{@index}}">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" href="#inventoryTransferTransactionItemDetails{{@index}}" aria-expanded="false" aria-controls="inventoryTransferTransactionItemDetails{{@index}}">
+                        Product: <span>{{Model__c}}</span>
+                        <i class="fa fa-lg fa-plus-circle pull-right text-blue"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="inventoryTransferTransactionItemDetails{{@index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="inventoryTransferTransactionItemDetailsHeading{{@index}}">
+                <div class="panel-body">
+                    <div data-recordid="{{Id}}">
+                        <dl class="dl-horizontal clearfix">
+                            <dt>Product Description:</dt>
+                            <dd>{{Model_Description_Inventory__c}}</dd>
+                            <dt>Serial #:</dt>
+                            <dd>{{Serial__c}}</dd>
+                            <dt>Use By Date:</dt>
+                            <dd>{{Use_By_Date__c}}</dd>
+                            <dt>From Location:</dt>
+                            <dd>{{Original_Location_Name__c}}</dd>
+                        </dl>
+                    </div>
+                    <div class="transaction-actions clearfix">
+                    	<apex:outputPanel layout="none" rendered="{!$ObjectType.Transaction_Items__c.Deletable}">
+		                    <a href="#" class="transaction-item-delete pull-left" data-recordid="{{Id}}" data-itemid="{{Inventory__c}}">
+		                        <i class="fa fa-trash"></i>
+		                        <span>Delete Item</span>
+		                    </a>
+		                </apex:outputPanel>
+		                <apex:outputPanel layout="none" rendered="{!$ObjectType.Transaction_Items__c.Updateable}">
+		                    <a href="#" class="transaction-item-edit pull-right" data-recordid="{{Id}}" data-itemid="{{Inventory__c}}">
+		                        <i class="fa fa-pencil"></i>
+		                        <span>Edit Item</span>
+		                    </a>
+		                </apex:outputPanel>
+	                </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <!-- Handlebars template for Sales Order items -->
+    <script id="salesOrderTransactionItem" type="text/x-handlebars-template">
+        {{#each transactionItems}}
+        <div class="panel">
+            <div class="panel-heading" role="tab" id="salesOrderTransactionItemDetailsHeading{{@index}}">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" href="#salesOrderTransactionItemDetails{{@index}}" aria-expanded="false" aria-controls="salesOrderTransactionItemDetails{{@index}}">
+                        Product: <span>{{Model__c}}</span>
+                        <i class="fa fa-lg fa-plus-circle pull-right text-blue"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="salesOrderTransactionItemDetails{{@index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="salesOrderTransactionItemDetailsHeading{{@index}}">
+                <div class="panel-body">
+                    <div data-recordid="{{Id}}">
+                        <dl class="dl-horizontal clearfix">
+                            <dt>Product Description:</dt>
+                            <dd>{{Model_Description_Inventory__c}}</dd>
+                            <dt>Serial #:</dt>
+                            <dd>{{Serial__c}}</dd>
+                            <dt>Use By Date:</dt>
+                            <dd>{{Use_By_Date__c}}</dd>
+                            <dt>Price:</dt>
+                            <dd>{{formatCurrency Price__c}}</dd>
+                            <dt>Price Type:</dt>
+                            <dd>{{Price_Type__c}}</dd>
+                            <dt>Special Pricing:</dt>
+                            <dd>{{formatCurrency Special_Pricing__c}}</dd>
+                        </dl>
+                    </div>
+                    <div class="transaction-actions clearfix">
+                    	<apex:outputPanel layout="none" rendered="{!$ObjectType.Transaction_Items__c.Deletable}">
+		                    <a href="#" class="transaction-item-delete pull-left" data-recordid="{{Id}}" data-itemid="{{Inventory__c}}">
+		                        <i class="fa fa-trash"></i>
+		                        <span>Delete Item</span>
+		                    </a>
+		                </apex:outputPanel>
+		                <apex:outputPanel layout="none" rendered="{!$ObjectType.Transaction_Items__c.Updateable}">
+		                    <a href="#" class="transaction-item-edit pull-right" data-recordid="{{Id}}" data-itemid="{{Inventory__c}}">
+		                        <i class="fa fa-pencil"></i>
+		                        <span>Edit Item</span>
+		                    </a>
+		                </apex:outputPanel>
+	                </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <script type="text/javascript">
+    	//set app variables
+    	var __sfdcSessionId = "{!GETSESSIONID()}";
+    	var orgId = "{!$Organization.Id}";
+    	var userId = "{!$User.Id}";
+    	var userFirstLastName = "{!$User.Firstname & ' ' & $User.Lastname}";
+    	var pic2shopCallbackUrl = "{!URLEncode($Setup.Field_Inventory_Tracking_Settings__c.FIT_Pic2Shop_Callback_URL__c)}";
+    	var fitCustomSettingsOrgValues = {
+    		"FIT_Consignment_Request_Record_Type_ID__c":"{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Consignment_Request_Record_Type_ID__c}",
+    		"FIT_Consignment_Request_Item_RecTypeID__c":"{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Consignment_Request_Item_RecTypeID__c}",
+    		"FIT_Inventory_Transfer_Record_Type_ID__c":"{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Transfer_Record_Type_ID__c}",
+    		"FIT_Inventory_Transfer_Item_RecTypeID__c":"{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Inventory_Transfer_Item_RecTypeID__c}",
+    		"FIT_Sales_Order_Record_Type_ID__c":"{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Sales_Order_Record_Type_ID__c}",
+    		"FIT_Sales_Order_Item_RecTypeID__c":"{!$Setup.Field_Inventory_Tracking_Settings__c.FIT_Sales_Order_Item_RecTypeID__c}"
+    	};
+    	var canDeleteTransactions = {!$ObjectType.Transactions__c.Deletable};
+    	var deepLinkDummyId = "{!FIT_DeepLinkDummy__c.Id}";
+    	var serialScanValue = "{!FIT_DeepLinkDummy__c.FIT_Serial_Value__c}";
+    	var isScan = deepLinkDummyId.length > 0;
+    </script>
+    <script src="{!URLFOR($Resource.FIT_FieldInventoryTrackingAssets, 'js/app.js')}"></script>
+    <script type="text/javascript">
+		showLoading();
+		getTransactionRecordTypeAccess(__sfdcSessionId);
+		if (deepLinkDummyId.length > 0) {
+			getDeepLinkStubRecord(deepLinkDummyId);
+		}
+    	iosDoubleTapFix();
+        iosPageJumpFix();
+    </script>  
+</body>
+</html>
+</apex:page>

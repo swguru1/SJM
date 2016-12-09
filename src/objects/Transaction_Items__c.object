@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>FIT Project</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Added_via_Scan__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Defaults to TRUE if the Transaction Item was scanned via barcode scanner vs manually added</description>
+        <externalId>false</externalId>
+        <label>Added via Scan</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Error_Description__c</fullName>
+        <description>Value returned via the web service call to SAP</description>
+        <externalId>false</externalId>
+        <label>Error Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Error_Number__c</fullName>
+        <description>Value returned via the web service call to SAP</description>
+        <externalId>false</externalId>
+        <label>Error #</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Error_Severity__c</fullName>
+        <description>Value returned via the web service call to SAP</description>
+        <externalId>false</externalId>
+        <label>Error Severity</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inventory_Model__c</fullName>
+        <description>Used within the Product Details for FIT mobile</description>
+        <externalId>false</externalId>
+        <formula>Inventory__r.Model_Number__c</formula>
+        <label>Inventory Model #</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inventory__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Inventory #</label>
+        <referenceTo>Inventory__c</referenceTo>
+        <relationshipLabel>Transaction Items</relationshipLabel>
+        <relationshipName>Transaction_Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Line_Number__c</fullName>
+        <description>Value sent to SAP via the web service call to distinguish each Transaction Item</description>
+        <externalId>false</externalId>
+        <label>Line #</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model_Description_Inventory__c</fullName>
+        <description>Defaults to the Model Description field from the Product table via workflow. Used to ensure the value will not be deleted if associated Inventory item is deleted.</description>
+        <externalId>false</externalId>
+        <label>Model Description</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model_Description_Product__c</fullName>
+        <description>Defaults to the Model Description field from the Product table</description>
+        <externalId>false</externalId>
+        <formula>Model_Number__r.Product_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Model Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model_Number__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Model #</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product_FIM__c.Material_Type__c</field>
+                <operation>equals</operation>
+                <value>ZMOD</value>
+            </filterItems>
+            <filterItems>
+                <field>Product_FIM__c.Is_Active__c</field>
+                <operation>equals</operation>
+                <value>Y</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Product_FIM__c</referenceTo>
+        <relationshipLabel>Transaction Items</relationshipLabel>
+        <relationshipName>Transaction_Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <description>Defaults to the Model # field from the Products table via workflow. Used to ensure the value will not be deleted if associated Inventory item is deleted.</description>
+        <externalId>false</externalId>
+        <label>Model #</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Original_Location_Name__c</fullName>
+        <description>Defaults to the Location Name field from the Inventory table via workflow. Used to ensure the value will not be deleted if associated Inventory item is deleted.</description>
+        <externalId>false</externalId>
+        <label>Original Location Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Original_Location__c</fullName>
+        <description>Defaults to the Location # field from the Inventory table via workflow. Used to ensure the value will not be deleted if associated Inventory item is deleted.</description>
+        <externalId>false</externalId>
+        <label>Original Location #</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PH1_Description__c</fullName>
+        <description>Defaults to the PH1 Description field from the Product table</description>
+        <externalId>false</externalId>
+        <formula>Model_Number__r.PH1_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PH1 Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PH2_Description__c</fullName>
+        <description>Defaults to the PH2 Description field from the Product table</description>
+        <externalId>false</externalId>
+        <formula>Model_Number__r.PH2_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PH2 Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PH3_Description__c</fullName>
+        <description>Defaults to the PH3 Description field from the Product table</description>
+        <externalId>false</externalId>
+        <formula>Model_Number__r.PH3_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PH3 Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Price_Type__c</fullName>
+        <description>Defaults to the lowest of the List Price, Group Price and Contract Price fields from the Customer Pricing table</description>
+        <externalId>false</externalId>
+        <label>Price Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>List</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Price__c</fullName>
+        <description>Defaults to the lowest of the List Price, Group Price and Contract Price fields from the Customer Pricing table</description>
+        <externalId>false</externalId>
+        <label>Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Processed_Date__c</fullName>
+        <description>Defaults to the date when the Consignment Request or Inventory Transfer web service acknowledgement was received</description>
+        <externalId>false</externalId>
+        <label>Processed Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Product_Description__c</fullName>
+        <description>Used within the Product Details for FIT mobile</description>
+        <externalId>false</externalId>
+        <formula>Model_Number__r.Product_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Product Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Model__c</fullName>
+        <description>Used within the Product Details for FIT mobile</description>
+        <externalId>false</externalId>
+        <formula>Model_Number__r.Name</formula>
+        <label>Product Model #</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <defaultValue>1</defaultValue>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Received__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Received</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Roll_Up_Price__c</fullName>
+        <description>Defaults to the Special Pricing field value if the Special Pricing field is not null. Else, defaults to the Price field value.</description>
+        <externalId>false</externalId>
+        <formula>IF(  Special_Pricing__c  &gt; 0, Special_Pricing__c,  Price__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Roll-Up Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Serial__c</fullName>
+        <description>Defaults to the Serial # field from the Inventory table via workflow. Used to ensure the value will not be deleted if associated Inventory item is deleted.</description>
+        <externalId>false</externalId>
+        <label>Serial #</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Special_Pricing__c</fullName>
+        <externalId>false</externalId>
+        <label>Special Pricing</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Success</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Failure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Transaction_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Transaction ID</label>
+        <referenceTo>Transactions__c</referenceTo>
+        <relationshipLabel>Transaction Items</relationshipLabel>
+        <relationshipName>Transaction_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Unit_of_Measure__c</fullName>
+        <description>Defaults to the Unit of Measure field from the Product table</description>
+        <externalId>false</externalId>
+        <formula>Model_Number__r.Unit_of_Measure__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unit of Measure</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Use_By_Date__c</fullName>
+        <description>Defaults to the Use By Date field from the Inventory table via workflow. Used to ensure the value will not be deleted if associated Inventory item is deleted.</description>
+        <externalId>false</externalId>
+        <label>Use By Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <label>Transaction Item</label>
+    <nameField>
+        <displayFormat>TI-{00000}</displayFormat>
+        <label>Transaction Item ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Transaction Items</pluralLabel>
+    <recordTypes>
+        <fullName>Consignment_Request</fullName>
+        <active>true</active>
+        <label>Consignment Request</label>
+        <picklistValues>
+            <picklist>Price_Type__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Failure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Success</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Consignment_Request_Read_Only</fullName>
+        <active>true</active>
+        <description>Record Type for Consignment Requests with a Status of Send or Received or Transaction Items with a Status of Pending or Success</description>
+        <label>Consignment Request - Read Only</label>
+        <picklistValues>
+            <picklist>Price_Type__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Failure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Success</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Inventory_Transfer</fullName>
+        <active>true</active>
+        <label>Inventory Transfer</label>
+        <picklistValues>
+            <picklist>Price_Type__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Failure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Success</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Inventory_Transfer_Read_Only</fullName>
+        <active>true</active>
+        <description>Record Type for Inventory Transfers with a Status of Send or Received or Transaction Items with a Status of Pending or Success</description>
+        <label>Inventory Transfer - Read Only</label>
+        <picklistValues>
+            <picklist>Price_Type__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Failure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Success</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Sales_Order</fullName>
+        <active>true</active>
+        <label>Sales Order</label>
+        <picklistValues>
+            <picklist>Price_Type__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Failure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Success</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Sales_Order_Read_Only</fullName>
+        <active>true</active>
+        <description>Record Type for Sales Orders with a Status of PO Pending or Invoiced</description>
+        <label>Sales Order - Read Only</label>
+        <picklistValues>
+            <picklist>Price_Type__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Failure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Success</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

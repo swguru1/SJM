@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>FIT Project</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Inventory Limits</relationshipLabel>
+        <relationshipName>Inventory_Limits</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>As_Of_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>As Of Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Available_to_Order__c</fullName>
+        <description>Defaults to the RIO Limit minus the Inventory Level</description>
+        <externalId>false</externalId>
+        <formula>RIO_Limit__c -  Inventory_Level__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Available to Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inventory_Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Inventory Level</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_Name_Hyperlink__c</fullName>
+        <description>Defaults to either the First Name + Last Name fields from the User table or the link to the Account, depending on if the User or Account field is populated, respectively. Used for displaying in the &quot;All Inventory Limits&quot; list view.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c) , HYPERLINK(&quot;https://sjm--qa.cs17.my.salesforce.com/&quot; &amp; Account__r.Id , Account__r.Name , &apos;_self&apos;) , User__r.FirstName &amp;&apos; &apos;&amp; User__r.LastName)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RIO_Limit__c</fullName>
+        <externalId>false</externalId>
+        <label>RIO Limit</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RIO_PH1_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>RIO PH1 Description</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RIO_PH1__c</fullName>
+        <externalId>false</externalId>
+        <label>RIO PH1 #</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <description>Defaults to either the Region field from the User table or the USD AF Region field from the Account table, depending on if the User or Account field is populated, respectively</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c ) , Account__r.USD_AF_Region__c ,User__r.Region__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Region</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Inventory_Limits</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Inventory Limits</label>
+    <listViews>
+        <fullName>All_Inventory_Limits</fullName>
+        <columns>NAME</columns>
+        <columns>Region__c</columns>
+        <columns>Location__c</columns>
+        <columns>Location_Name_Hyperlink__c</columns>
+        <columns>RIO_Limit__c</columns>
+        <columns>Inventory_Level__c</columns>
+        <columns>Available_to_Order__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Inventory Limits</label>
+    </listViews>
+    <nameField>
+        <label>RIO PH1 Description</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Inventory Limits</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Location__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RIO_Limit__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Inventory_Level__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Available_to_Order__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RIO_PH1__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RIO_PH1_Description__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Location__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RIO_Limit__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Inventory_Level__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Available_to_Order__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RIO_PH1__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RIO_PH1_Description__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Location__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RIO_Limit__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Inventory_Level__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Available_to_Order__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RIO_PH1__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RIO_PH1_Description__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Location_Name_Hyperlink__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RIO_Limit__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Inventory_Level__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Available_to_Order__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Location__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

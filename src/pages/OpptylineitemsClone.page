@@ -1,0 +1,7 @@
+<apex:page standardController="Opportunity" extensions="OpportunityCloneWithItemsController" action="{!cloneWithItems}" standardStylesheets="false" sidebar="false" showHeader="false" applyBodyTag="false" applyHtmlTag="false" docType="html-5.0" >
+     <meta charset="UTF-8" />
+     <apex:includeScript value="/canvas/sdk/js/publisher.js" />
+     <script>
+      Sfdc.canvas.publisher.publish({ name : "publisher.close", payload : { refresh:"true" }});
+    </script>
+</apex:page>

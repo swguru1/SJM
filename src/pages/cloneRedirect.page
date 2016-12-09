@@ -1,0 +1,6 @@
+<apex:page standardController="Event" extensions="cloneRedirectExtension" action="{!whereTo}" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+<script src="/canvas/sdk/js/publisher.js"/>
+    <script>
+        Sfdc.canvas.publisher.publish({ name: "publisher.close", payload: {refresh:"true"}});
+    </script>
+</apex:page>

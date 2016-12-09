@@ -1,0 +1,3 @@
+<apex:page controller="QVFC_CoachingSession" action="{!init}" tabstyle="Coaching_Session__c">
+	<apex:pageMessages />
+</apex:page>

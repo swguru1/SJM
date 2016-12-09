@@ -1,0 +1,67 @@
+<apex:page standardController="Coaching_Session__c" extensions="QVFC_CallRecordRelatedList" action="{!Init}">
+<apex:form >
+    <div class="bPageBlock brndScnBrd secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+              <tr>
+                <td class="pbTitle">
+                  <img width="1" height="1" title="" class="minWidth" alt="" src="/s.gif" /><img title="Coaching Session" class="relatedListIcon" alt="Coaching Session" src="/s.gif" />
+                  <h3 id="a0MN000000046gL_00NN0000000KbeP_title">Call Record</h3>
+                </td>
+                
+                <td class="pbButton">
+                    <apex:commandButton action="{!actionUpdate}" value="Update" id="theButton"/>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <apex:variable value="" var="" rendered="{!IF(mp_liCallRecord.size > 0, TRUE, FALSE)}">
+            <div class="pbBody" >
+                <table id="mytable" class="list" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody>
+                       <tr class="headerRow">
+                            <th>Call Record</th>
+                            <th>Facility</th>
+                            <th>Practitioner</th>
+                            <th>Call Objectives</th>
+                            <th>Call Type</th>
+                            <th>Coaching Objectives</th>
+                        </tr>
+                        
+                        <!-- ListRow -->
+                        <apex:repeat value="{!mp_liCallRecord}" var="p">
+                            <tr onmouseover="if (window.hiOn){hiOn(this);}" onmouseout="if (window.hiOff){hiOff(this);}" onfocus="if (window.hiOn){hiOn(this);}" onblur="if (window.hiOff){hiOff(this);}" class="dataRow even first">
+                                <td><apex:outputlink value="/{!p.id}" target="_parent">{!p.Name}</apex:outputlink></td>
+                                <td><apex:outputField value="{!p.Facility_Practitioner__c}" /></td>
+                                <td><apex:outputField value="{!p.Contact__c}" /></td>
+                                <td><apex:outputField value="{!p.Call_Objectives__c}" /></td>
+                                <td><apex:outputField value="{!p.Case_Type__c}" /></td>
+                                <td><apex:inputField value="{!p.Coaching_Objectives__c}" /></td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>        
+                </table>
+            </div>
+        </apex:variable>
+        
+        <apex:variable value="" var="" rendered="{!IF(mp_liCallRecord.size > 0, FALSE, TRUE)}">
+            <div class="pbBody">
+              <table cellspacing="0" cellpadding="0" border="0" class="list">
+                <tbody>
+                  <tr class="headerRow">
+                    <th class="noRowsHeader" scope="col">No records to display</th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </apex:variable>
+        
+        <apex:variable value="" var="" rendered="{!NOT(mp_bSeeAllList)}">
+            <a href="/apex/QVFP_CallRecordRelatedList?RecordID={!mp_strObjectId}&list=true" target="_top">{!mp_strAllListView}</a>
+        </apex:variable>
+    </div>
+</apex:form>
+</apex:page>

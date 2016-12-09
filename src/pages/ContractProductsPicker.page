@@ -1,0 +1,103 @@
+<apex:page controller="ContractProductsMultipicker">
+
+<head>
+<script>
+function pageRefresh(){
+sforce.one.back(true)
+Sfdc.canvas.publisher.publish({name: "publisher.close", payload:{ refresh:"true"}});
+}
+
+  
+
+</script>
+<script type='text/javascript'>
+    function noenter(ev)  {
+        if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+            doSearchAF();
+            return false;
+         } else {
+              return true;
+         }
+     }
+</script>
+</head>
+  <apex:form id="fid">
+  <apex:pagemessages />
+  <center><b>Search Product:</b>
+  <apex:actionFunction name="doSearchAF" action="{!Search}" />
+
+  <apex:inputText value="{!strName}" id="searchStr" styleclass="searchStr" onkeypress="return noenter(event);"/>
+  
+  
+  <apex:commandButton value="Search" action="{!Search}" reRender="fid"/>
+  </center>
+ <br/>
+      <apex:pageblock title="Products" id="pbid">   
+              <center><apex:commandButton value="Save" action="{!Save}" id="saveButton"/>
+            &nbsp; &nbsp; &nbsp;  <apex:commandbutton style="float:centre" styleClass="slds-button slds-button--brand" value="Exit" action="{!cancelRecord}" /> </center>
+          <apex:pageBlockTable value="{!lstProdW}" var="p">
+          <apex:column >
+            <apex:facet name="header">
+                <apex:inputCheckbox value="{!isAllSelect}" >
+                <apex:actionSupport event="onchange" action="{!selectAll}" reRender="pbid"/>
+                </apex:inputCheckbox>
+            </apex:facet>
+               <apex:inputCheckbox value="{!p.isSelect}" />
+          </apex:column>
+              <apex:column headerValue="Quantity">
+                  <apex:inputtext value="{!p.qty}">
+               
+                  </apex:inputtext>
+              </apex:column>
+              <apex:column value="{!p.prods.Name}"/>
+              <apex:column value="{!p.prods.ProductCode}"/> 
+              
+              <apex:column headerValue="Type">
+                 
+                  
+                  
+  
+   <apex:selectList value="{!p.PrdType}" multiselect="false" size="1">
+
+                <apex:selectOption itemValue="New" itemLabel="New"/>
+                <apex:selectOption itemValue="Upgrade" itemLabel="Upgrade"/>
+                <apex:selectOption itemValue="Re-manufactured" itemLabel="Re-manufactured"/>
+            </apex:selectList>
+
+              </apex:column>
+              
+              
+              
+                     
+              <apex:column value="{!p.prods.USD_Selling_Division__c}"/> 
+              <apex:column value="{!p.prods.USD_Product_Category__c}"/>          
+          </apex:pageBlockTable><br/>
+          </apex:pageblock>
+          
+          <apex:pageblock title="Associated Products" id="pid">
+          <apex:pageBlockTable value="{!cntrctline}" var="cnt">
+         
+            
+              <apex:column value="{!cnt.Product__r.Name}"/>
+              
+                <apex:column value="{!cnt.Qty__c}"/> 
+              <apex:column value="{!cnt.Product__r.Productcode}"/>  
+               <apex:column value="{!cnt.Product_Type__c}"/>            
+          </apex:pageBlockTable>
+          
+       <apex:outputPanel id="refresh" rendered="true">
+ <apex:outputPanel id="refresh1" rendered="{!refreshPage}">
+  <script>
+   window.top.location='/apex/ContractProductsPicker?id={!ContractId}';
+  </script>
+ </apex:outputPanel>
+</apex:outputPanel>
+
+      </apex:pageblock>
+      <script>
+      function checkAll(){
+      
+      }
+      </script>
+  </apex:form>
+</apex:page>

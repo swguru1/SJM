@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This is a junction object to maintain Account-Contact M:M relationships.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ANZ_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>ANZ ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Record_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Record Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <description>Accounts</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Account</inlineHelpText>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Affiliated Contacts</relationshipLabel>
+        <relationshipName>Affiliations</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Available_for_Procedure__c</fullName>
+        <externalId>false</externalId>
+        <label>Available for Procedure?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Monday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Monday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tuesday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tuesday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wednesday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wednesday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thursday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thursday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Friday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Friday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Saturday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Saturday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sunday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sunday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Available_in_Clinic__c</fullName>
+        <description>Which day the Physician is available?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Which day the Physician is available?</inlineHelpText>
+        <label>Available?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Monday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Monday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tuesday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tuesday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wednesday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wednesday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thursday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thursday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Friday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Friday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Saturday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Saturday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sunday AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sunday PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Clinical_Trials_Shared_Interests__c</fullName>
+        <externalId>false</externalId>
+        <label>Clinical Trials Shared Interests</label>
+        <length>160</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact__r.LastName &amp; &apos;,&apos; &amp; Contact__r.FirstName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contact Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <description>Contacts</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Contacts</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Affiliated Accounts</relationshipLabel>
+        <relationshipName>Affiliations</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fax__c</fullName>
+        <externalId>false</externalId>
+        <label>Fax</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Job_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Title</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Advanced Trainee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consultant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deputy Head of Department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Director</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fellow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Registrar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visiting Medical Officer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Source</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Phone__c</fullName>
+        <externalId>false</externalId>
+        <label>Phone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Primary__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Primary Relationship</inlineHelpText>
+        <label>Primary?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Role__c</fullName>
+        <description>Role the Contact is playing at an Account/Organization</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Role the Contact is playing at an Account/Organization</inlineHelpText>
+        <label>Role</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Physician</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Administrator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Member</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Society__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Society</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Professional Society</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Affiliations (Society)</relationshipLabel>
+        <relationshipName>Affiliations2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Status of the Affiliation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of the Affiliation</inlineHelpText>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>InActive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>level_of_influence__c</fullName>
+        <description>This describes the level of influence of this Practitioner at THIS  Facility</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Use this field to describe the level of influence of this Practitioner at THIS  Facility</inlineHelpText>
+        <label>Level of Influence?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Decision Maker</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Follower</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Influencer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Blocker</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>who_do_they_respect__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field describes who may exert influence over this person at this facility</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Use this field to describe who may exert influence over this person at this facility</inlineHelpText>
+        <label>Who do they Respect</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>R360 Doctor to Doctor</relationshipLabel>
+        <relationshipName>Facilities_Practitioner_Relationships</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Affiliation</label>
+    <listViews>
+        <fullName>ANZ_Affiliations</fullName>
+        <columns>NAME</columns>
+        <columns>Contact__c</columns>
+        <columns>Account__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>1/30/2016 12:00 AM</value>
+        </filters>
+        <label>ANZ Affiliations</label>
+        <sharedTo>
+            <roleAndSubordinates>ANZ_SJM_Administrator</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Account__c</columns>
+        <columns>Account_Record_Type__c</columns>
+        <columns>Contact__c</columns>
+        <columns>Role__c</columns>
+        <columns>Status__c</columns>
+        <columns>Available_in_Clinic__c</columns>
+        <columns>Available_for_Procedure__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>AFF-{000}</displayFormat>
+        <label>Affiliation Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Affiliations</pluralLabel>
+    <recordTypes>
+        <fullName>Account_Contact</fullName>
+        <active>true</active>
+        <label>Account-Contact</label>
+        <picklistValues>
+            <picklist>Available_for_Procedure__c</picklist>
+            <values>
+                <fullName>Friday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Friday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saturday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saturday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thursday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thursday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuesday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuesday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wednesday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wednesday PM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Available_in_Clinic__c</picklist>
+            <values>
+                <fullName>Friday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Friday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saturday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saturday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thursday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thursday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuesday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuesday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wednesday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wednesday PM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>Administrator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physician</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>InActive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Professional_Society</fullName>
+        <active>true</active>
+        <label>Professional Society</label>
+        <picklistValues>
+            <picklist>Available_for_Procedure__c</picklist>
+            <values>
+                <fullName>Friday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Friday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saturday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saturday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thursday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thursday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuesday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuesday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wednesday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wednesday PM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Available_in_Clinic__c</picklist>
+            <values>
+                <fullName>Friday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Friday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saturday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saturday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sunday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thursday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thursday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuesday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuesday PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wednesday AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wednesday PM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>Member</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>InActive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Account__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Role__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Available_in_Clinic__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Available_for_Procedure__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Role__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

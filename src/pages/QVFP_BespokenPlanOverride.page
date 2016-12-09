@@ -1,0 +1,47 @@
+<apex:page standardcontroller="ExecutionPlan__c" extensions="QVFC_BespokenPlanOverride" action="{!Init}">
+  <apex:form > 
+    <apex:pageMessages />
+    <apex:outputPanel id="Relation360Panel">
+        <apex:sectionHeader title="Execution Plan Template Selection"></apex:sectionHeader>
+       
+        <apex:pageblock >
+            <apex:dataTable var="relation" value="{!BespokenPlanTemplates}" 
+                styleClass="list AccoutTable" headerClass="headerRow" rowClasses="odd,even">
+                
+                <apex:column >
+                    <apex:facet name="header"></apex:facet>
+                    <apex:commandButton action="{!Use}" value="Use" styleClass="btnImportant" rerender="Relation360Panel">
+                        <apex:param value="{!relation.Id}" name="template" />
+                    </apex:commandButton>
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Name</apex:facet>
+                    <apex:outputField value="{!relation.Name}" />
+                </apex:column>
+
+                <apex:column >
+                    <apex:facet name="header">National Strategic Outcome</apex:facet>
+                    <apex:outputField value="{!relation.Desired_Outcome__c}" />
+                </apex:column>
+
+                <apex:column >
+                    <apex:facet name="header">Start Date</apex:facet>
+                    <apex:outputField value="{!relation.Start_Date__c}" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Expriry Date</apex:facet>
+                    <apex:outputField value="{!relation.Expiry_Date__c}" />
+                </apex:column>      
+                <!-- 
+                 <apex:column >
+                    <apex:facet name="header">Remaining Activities</apex:facet>
+                    <apex:outputField value="{!relation.Remaining_Activities__c}" />
+                </apex:column>
+                 -->    
+            </apex:dataTable>
+        </apex:pageblock>
+    </apex:outputPanel>
+</apex:form> 
+</apex:page>

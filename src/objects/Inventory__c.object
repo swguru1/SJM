@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>FIT Project</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Inventory</relationshipLabel>
+        <relationshipName>Inventory</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Area__c</fullName>
+        <description>Defaults to either the Area field from the User table or the USD AF Area field from the Account table, depending on if the User or Account field is populated, respectively</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c ) , Account__r.USD_AF_Area__c ,User__r.Area__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Batch_Lot_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Batch/Lot #</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Division__c</fullName>
+        <description>Defaults to either the Division field from the User table or the USD AF Division field from the Account table, depending on if the User or Account field is populated, respectively</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c ) , Account__r.USD_AF_Division__c ,User__r.Division)</formula>
+        <label>Division</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inventory_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Inventory ID</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Is_this_my_Inventory__c</fullName>
+        <description>Indicates whether the current running user is the same value as the User field. Used to build the &quot;My Inventory&quot; list views.</description>
+        <externalId>false</externalId>
+        <formula>IF( User__r.Id = $User.Id, &quot;Yes&quot;, &quot;No&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is this my Inventory?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_Name_Hyperlink__c</fullName>
+        <description>Defaults to either the First Name + Last Name fields from the User table or the link to the Account, depending on if the User or Account field is populated, respectively. Used for displaying in the &quot;All Inventory&quot; list view.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c) ,  HYPERLINK(&quot;https://sjm--qa.cs17.my.salesforce.com/&quot; &amp;  Account__r.Id , Account__r.Name , &apos;_self&apos;) ,  User__r.FirstName &amp;&apos; &apos;&amp; User__r.LastName)</formula>
+        <label>Location Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_Name__c</fullName>
+        <description>Used within the search results of the Product (Inventory) field for FIT mobile</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c) , Account__r.Name , User__r.FirstName &amp;&apos; &apos;&amp; User__r.LastName )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model_Description__c</fullName>
+        <description>Defaults to the Model Description field from the Product table</description>
+        <externalId>false</externalId>
+        <formula>Product_Number__r.Product_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Model Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model_Number__c</fullName>
+        <externalId>true</externalId>
+        <label>Model #</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PH1_Description__c</fullName>
+        <description>Defaults to the PH1 Description field from the Product table</description>
+        <externalId>false</externalId>
+        <formula>Product_Number__r.PH1_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PH1 Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PH2_Description__c</fullName>
+        <description>Defaults to the PH2 Description field from the Product table</description>
+        <externalId>false</externalId>
+        <formula>Product_Number__r.PH2_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PH2 Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PH3_Description__c</fullName>
+        <description>Defaults to the PH3 Description field from the Product table</description>
+        <externalId>false</externalId>
+        <formula>Product_Number__r.PH3_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PH3 Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Part_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Part #</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product #</label>
+        <referenceTo>Product_FIM__c</referenceTo>
+        <relationshipLabel>Inventory</relationshipLabel>
+        <relationshipName>Inventory</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Receipt_Date_NULL__c</fullName>
+        <description>Used to determine if the Receipt Date field is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( Receipt_Date__c ), &quot;BLANK&quot;, &quot;NOT BLANK&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Receipt Date NULL?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Receipt_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Receipt Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <description>Defaults to either the Region field from the User table or the USD AF Region field from the Account table, depending on if the User or Account field is populated, respectively</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c ) , Account__r.USD_AF_Region__c ,User__r.Region__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Return_By_Date_Within_30_Days__c</fullName>
+        <description>Used to determine if the Return By Date is within 30 days of the current date</description>
+        <externalId>false</externalId>
+        <formula>IF( Return_By_Date__c  &lt;= TODAY()+30, &quot;Yes&quot;, &quot;No&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Return By Date Within 30 Days?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Return_By_Date__c</fullName>
+        <description>Used to determine the Return By Date, depending on if the Return Disposition is &quot;Short Dated&quot; or &quot;Long Dated&quot;</description>
+        <externalId>false</externalId>
+        <formula>IF(Return_Disposition__c = &quot;Long Dated&quot;, Use_By_Date__c - 65,
+IF(Return_Disposition__c = &quot;Short Dated&quot;, Use_By_Date__c + 25, NULL))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Return By Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Return_Date_TODAY_Greater_than_0__c</fullName>
+        <description>Used to determine if the number of days between the current date and the Return By Date is greater than zero</description>
+        <externalId>false</externalId>
+        <formula>IF(Return_By_Date__c -TODAY()&gt; 0, &quot;Yes&quot;, &quot;No&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Return Date - TODAY Greater than 0</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Return_Date_TODAY__c</fullName>
+        <description>Used to determine the number of days between the current date and the Return By Date</description>
+        <externalId>false</externalId>
+        <formula>Return_By_Date__c - TODAY()</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Return Date - TODAY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Return_Disposition__c</fullName>
+        <description>Used to determine whether the Inventory item is &quot;Short Dated&quot; or &quot;Long Dated&quot;</description>
+        <externalId>false</externalId>
+        <formula>IF (Use_By_Date__c -  Receipt_Date__c &lt;= 120, &quot;Short Dated&quot;, 
+IF (Use_By_Date__c -  Receipt_Date__c &gt; 120, &quot;Long Dated&quot;, NULL ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Return Disposition</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Return_Status_Text__c</fullName>
+        <description>Used to build the &quot;My Inventory - Expiring&quot; and &quot;My Inventory - Need to Return&quot; list views</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(ISNULL( Receipt_Date__c), ISNULL(Use_By_Date__c),Return_By_Date__c - TODAY() &lt;0), &quot;CONTACT SOS&quot;,
+
+
+IF (AND(Return_By_Date__c - TODAY() &lt;=29, Return_By_Date__c - TODAY() &gt;=0) , &quot;WARNING - NEED TO RETURN&quot;, 
+
+IF(Return_By_Date__c - TODAY()&gt;=30, &quot;OK&quot;, NULL)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Return Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Return_Status__c</fullName>
+        <description>Used to display the Return Status green, yellow or red icon in the page layout</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(ISNULL( Receipt_Date__c), ISNULL(Use_By_Date__c),Return_By_Date__c - TODAY() &lt;0), IMAGE( &quot;/servlet/servlet.FileDownload?file=015g0000001BStf&quot;, &quot;CONTACT SOS&quot;, 15, 15),
+
+
+IF (AND(Return_By_Date__c - TODAY() &lt;=29, Return_By_Date__c - TODAY() &gt;=0) , IMAGE( &quot;/servlet/servlet.FileDownload?file=015g0000001BStk&quot;, &quot;WARNING - NEED TO RETURN&quot;, 15, 15),
+
+IF(Return_By_Date__c - TODAY()&gt;=30, IMAGE( &quot;/servlet/servlet.FileDownload?file=015g0000001BStu&quot;, &quot;OK&quot;, 15, 15),NULL)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>GREEN = OK
+YELLOW = WARNING -  NEED TO RETURN
+RED = CONTACT SOS</inlineHelpText>
+        <label>Return Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Serial_Number__c</fullName>
+        <externalId>true</externalId>
+        <label>Serial #</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stock_Partner_Number__c</fullName>
+        <externalId>true</externalId>
+        <label>Location #</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Use_By_Date_Receipt_Date__c</fullName>
+        <description>Used to determine the number of days between the Receipt Date and the Use By Date</description>
+        <externalId>false</externalId>
+        <formula>Use_By_Date__c -  Receipt_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Use By Date - Receipt Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Use_By_Date_Within_30_Days__c</fullName>
+        <description>Used to determine if the Use By Date is within 30 days of the current date. Used to build the &quot;My Inventory - Expiring&quot; and &quot;My Inventory - Need to Return&quot; list views.</description>
+        <externalId>false</externalId>
+        <formula>IF( Use_By_Date__c  &lt;= TODAY()+30, &quot;Yes&quot;, &quot;No&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Use By Date - Within 30 Days?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Use_By_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Use By Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>User_Account_Phone__c</fullName>
+        <description>Defaults to either the Phone field from the User table or the Phone field from the Account table, depending on if the User or Account field is populated, respectively. Used for displaying in the &quot;All Inventory&quot; list views.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( User__c) ,  Account__r.Phone  ,  User__r.Phone )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Email__c</fullName>
+        <description>Defaults to the Email field from the User table. Used for displaying in the &quot;All Inventory&quot; list view.</description>
+        <externalId>false</externalId>
+        <formula>User__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Inventory</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Inventory</label>
+    <listViews>
+        <fullName>All_Inventory</fullName>
+        <columns>NAME</columns>
+        <columns>Model_Number__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>Region__c</columns>
+        <columns>Stock_Partner_Number__c</columns>
+        <columns>Location_Name_Hyperlink__c</columns>
+        <columns>User_Account_Phone__c</columns>
+        <columns>User_Email__c</columns>
+        <columns>Use_By_Date__c</columns>
+        <columns>Quantity__c</columns>
+        <columns>Receipt_Date__c</columns>
+        <columns>Return_By_Date__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Inventory</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Inventory_All</fullName>
+        <columns>NAME</columns>
+        <columns>Model_Number__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>Use_By_Date__c</columns>
+        <columns>Quantity__c</columns>
+        <columns>Receipt_Date__c</columns>
+        <columns>Return_By_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Is_this_my_Inventory__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <label>My Inventory - All</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Inventory_Expiring</fullName>
+        <columns>NAME</columns>
+        <columns>Model_Number__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>Use_By_Date__c</columns>
+        <columns>Quantity__c</columns>
+        <columns>Receipt_Date__c</columns>
+        <columns>Return_By_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Is_this_my_Inventory__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <filters>
+            <field>Use_By_Date_Within_30_Days__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <filters>
+            <field>Return_Status__c</field>
+            <operation>equals</operation>
+            <value>CONTACT SOS,WARNING - NEED TO RETURN</value>
+        </filters>
+        <label>My Inventory - Expiring</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Inventory_Need_to_Return</fullName>
+        <columns>NAME</columns>
+        <columns>Model_Number__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>Use_By_Date__c</columns>
+        <columns>Quantity__c</columns>
+        <columns>Receipt_Date__c</columns>
+        <columns>Return_By_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Is_this_my_Inventory__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <filters>
+            <field>Return_By_Date_Within_30_Days__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <label>My Inventory - Need to Return</label>
+    </listViews>
+    <nameField>
+        <displayFormat>I-{00000}</displayFormat>
+        <label>Inventory #</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Inventory</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Model_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Quantity__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Region__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Serial_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Stock_Partner_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Use_By_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Receipt_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Return_By_Date__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Region__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Model_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Model_Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Serial_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Stock_Partner_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Location_Name_Hyperlink__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Use_By_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Quantity__c</lookupDialogsAdditionalFields>
+        <lookupFilterFields>NAME</lookupFilterFields>
+        <lookupFilterFields>Region__c</lookupFilterFields>
+        <lookupFilterFields>Product_Number__c</lookupFilterFields>
+        <lookupFilterFields>Stock_Partner_Number__c</lookupFilterFields>
+        <lookupFilterFields>Serial_Number__c</lookupFilterFields>
+        <lookupFilterFields>Location_Name_Hyperlink__c</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>Region__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Product_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Serial_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Stock_Partner_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Use_By_Date__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Quantity__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Receipt_Date__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Return_By_Date__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Region__c</searchFilterFields>
+        <searchFilterFields>Model_Number__c</searchFilterFields>
+        <searchFilterFields>Stock_Partner_Number__c</searchFilterFields>
+        <searchFilterFields>Model_Description__c</searchFilterFields>
+        <searchFilterFields>Serial_Number__c</searchFilterFields>
+        <searchFilterFields>Location_Name_Hyperlink__c</searchFilterFields>
+        <searchFilterFields>Use_By_Date__c</searchFilterFields>
+        <searchFilterFields>Quantity__c</searchFilterFields>
+        <searchResultsAdditionalFields>Region__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Model_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Model_Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Serial_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Stock_Partner_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Location_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Use_By_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Quantity__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

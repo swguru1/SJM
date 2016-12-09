@@ -1,0 +1,448 @@
+<apex:page standardController="Procedure__c" docType="html-5.0" showHeader="true" standardStylesheets="true" sidebar="false" extensions="SJM_DBSProcedureTracker" >
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Assets, '/css/bootstrap.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Procedure, '/css/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_FontAwesome, 'css/font-awesome.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.SJM_Datepicker, 'css/bootstrap-datepicker3.min.css')}" />
+    
+    <apex:form Id="frm"> 
+        
+        <!-- Hidden input created for specific purposes to get the recordIs in functions -->
+        <input type="hidden" id="procedureId" value="{!currentProcedure.Id}" />
+        <input type="hidden" id="procedureItemId" value="{!currentProcedureItems.Id}" />
+        <input type="hidden" value="{!eventId}" id="eventId" />
+       
+        <input type="hidden" value="{!dbsrectypeid}" id="dbsrectypeid" />
+        <input type="hidden" id="isUpdate" value="{!currentProcedure.Id}" />
+        <input type="hidden" id="isItemsUpdate" value="{!currentProcedureItems.Id}" />
+        <input id="focusedHiddenInput" type="hidden" style="position: fixed;z-index: -1;"/>
+        <input id="saveAndNewProcedure" type="hidden" value= "0"/>
+        <!--<input id="eventId" type="hidden" value="{!eventId}" />
+<apex:outputText id="AlokTest" value="{!dbsrectypeid}"/>-->
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 text-right">
+                    <!-- Primary Button to save dbs procedure & Procedure Items -->
+                    <input type="button" class="btn btn-primary" value="Save Procedure" onclick="removeFocus(); saveProcedure();" />
+                    <!--<input type="button" class="btn btn-primary" value="Save & New" onclick="removeFocus(); saveNewProcedure(); saveProcedure();" />-->
+                </div>
+            </div>
+            
+            <!-- Including Page Messages -->
+            <div class="row custom-msg hide">
+                <div class="col-xs-12">
+                    <div class="alert">
+                    </div>
+                </div>  
+            </div>
+            <!-- Page Messages : ENDS -->
+            
+            <!-- Procedure details section, It contains all the information related to procedure -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">DBS Procedure</div>  
+            </div>
+            
+            <div class="row procedure_section">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Account
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['account__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <!-- Hidden input that will contains account when account is selected from autocomplete -->
+                    <input type="hidden" value="{!accountId}" id="accountId" />
+                    <apex:inputField value="{! currentProcedure.Account__c }" 
+                                     styleClass="form-control Account__c {!requiredFieldsMap['account__c']}" id="account" >
+                        <!-- Calling the autoComplete component -->
+                        <c:SJM_AutoComplete objectname="Account" autocomplete_textbox="{!$Component.account}" showAcctAddress="true" />
+                    </apex:inputField>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Search Terms</label>
+                    <apex:inputText value="{!currentProcedure.DBS_Account_Search__c}" styleClass="form-control DBS_Account_Search__c"  html-readonly="true" />
+                </div>
+            </div>
+            
+            <div class="row procedure_section">
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Date
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['procedure_date__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <div class="input-group date">
+                        <input type="text" readonly="true" value="{!procedureDate}"  id="procedureDate" class="procedure_date__c form-control date_input {!requiredFieldsMap['procedure_date__c']}" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>                          
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom" >
+                    <label class="no-margin label-new">Procedure Physician
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['procedure_physician__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <apex:inputField value="{! currentProcedure.Procedure_Physician__c }" styleClass="form-control Procedure_Physician__c {!requiredFieldsMap['procedure_physician__c']}" id="physician" html-placeHolder="Enter text to search...">
+                        <c:SJM_AutoComplete objectname="Contact" autocomplete_textbox="{!$Component.physician}"  />
+                    </apex:inputField>
+                </div>
+                  
+                </div>
+                <div class="row procedure_section">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">
+                        <!-- Label of the input field -->
+                        Procedure Covered By 
+                        <!-- This panel will only be generated when field is required and added in custom settings -->
+                        <apex:outputPanel layout="inline" styleClass="asterik" rendered="{!requiredFieldsMap['rep__c'] == 'required'}">*</apex:outputPanel>
+                    </label>
+                    <apex:inputField value="{! currentProcedure.Rep__c }" 
+                                     styleClass="form-control Rep__c {!requiredFieldsMap['rep__c']}" id="rep" html-placeHolder="Enter text to search...">
+                    <c:SJM_AutoComplete objectname="User" autocomplete_textbox="{!$Component.rep}"/>
+                    </apex:inputField>
+                </div>
+               
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Duration (Minutes)</label>
+                    <apex:inputField value="{!currentProcedure.DBS_Implant_Duration_Time__c }" styleClass="form-control DBS_Implant_Duration_Time__c" />
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Travel Time (Minutes)</label>
+                    <apex:inputField value="{!currentProcedure.DBS_Travel_Time__c }" styleClass="form-control DBS_Travel_Time__c" />
+                </div>               
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Wait Time (Minutes)</label>
+                    <apex:inputField value="{! currentProcedure.DBS_Wait_Time__c}" styleClass="form-control DBS_Wait_Time__c" />
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Activity Type</label>
+                    <apex:inputField value="{!currentProcedure.DBSG_Activity_Type__c}" styleClass="form-control DBSG_Activity_Type__c" />
+                </div> 
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Follow up Type</label>
+                    <apex:inputField value="{!currentProcedure.DBSG_Follow_up_Type__c}" styleClass="form-control DBSG_Follow_up_Type__c" />
+                </div> 
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Intervention Type</label>
+                    <apex:inputField value="{! currentProcedure.DBSG_Intervention_Type__c }" styleClass="form-control DBSG_Intervention_Type__c"  />
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Indication</label>
+                    <apex:inputField value="{! currentProcedure.DBSG_Indication__c}" styleClass="form-control DBSG_Indication__c DBSG_Indication__c"  />
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Target Area</label>
+                    <apex:inputField value="{!currentProcedure.DBSG_Target_Area__c }" styleClass="form-control DBSG_Target_Area__c" />
+                </div>               
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Target Area 2</label>
+                    <apex:inputField value="{! currentProcedure.DBSG_Target_Area_2__c}" styleClass="form-control DBSG_Target_Area_2__c" />
+                </div>
+            </div>   
+            <div class="row procedure_section">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom" >
+                    <label class="no-margin label-new">Associated Events</label>
+                    <apex:outputPanel layout="inline" styleClass="asterik"></apex:outputPanel>
+                    <apex:outputPanel id="evtnids">
+                        <apex:selectList value="{!eventId}" size="1" styleClass="form-control" id="evtid" >
+                            <apex:selectOptions value="{!events}"></apex:selectOptions>
+                        </apex:selectList>
+                    </apex:outputPanel>
+                 </div>
+             </div>    
+                
+            <!-- procedure items detail-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  div-heading div-heading-padding">Procedure Items
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Implanted Generator</label>
+                    <apex:inputField value="{! currentProcedureItems.DBSGImplanted_Generator__c}" styleClass="form-control DBSGImplanted_Generator__c"  />
+                    <!--<apex:inputField value="{!currentProcedureItems.DBS_Travel_Time__c }" styleClass="form-control DBSGImplanted_Generator__c"  />-->
+                    
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-bottom">
+                    <label class="no-margin label-new">Pocket Adapter</label>
+                    <apex:inputField value="{! currentProcedureItems.DBSGPocket_Adapter__c}" styleClass="form-control DBSGPocket_Adapter__c"  />
+                    <!--<apex:inputField value="{!currentProcedureItems.DBS_Travel_Time__c }" styleClass="form-control DBSGPocket_Adapter__c"  />-->
+                    
+                </div>  
+            </div>  
+        </div>
+        
+    </apex:form>
+    
+    
+    
+    <!-- Loading-Status -->
+    <div class="search_loading hide" >
+        <div class="waitingSearchDiv loadindMain" id="el_loading" >
+            <div class="loadind-background">
+                <!-- background color div -->
+            </div>
+            
+            <div class="waitingHolder loading-image" >
+                <img class="waitingImage" src="/img/loading.gif" />
+                <span class="waitingDescription">Saving....</span>
+            </div>
+        </div>
+    </div> 
+    <!-- Loading Status : ENDS -->
+    
+    <!-- Adding Scripts -->
+    <script type="text/javascript" src="{!URLFOR($Resource.SJM_Assets, 'js/jquery-1.11.3.min.js')}">  </script>
+    <script type="text/javascript" src="{!URLFOR($Resource.SJM_Datepicker, 'js/bootstrap-datepicker.min.js')}"></script>
+    
+    
+    <script type="text/javascript">
+    var __sfdcSessionId = '{!GETSESSIONID()}';
+    </script>
+    <script src="../../soap/ajax/35.0/connection.js"
+    type="text/javascript"></script>
+    <script type='text/javascript' src='/canvas/sdk/js/publisher.js'/>  
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+        console.log("loading...");
+        
+        //Initializing date picker on document ready
+        initDatePicker(); 
+        
+        $('.input-group input, .input-group i').click(function(){
+            $('#procedureDate').datepicker('hide');
+            $('#procedureDate').datepicker('show');
+        });
+    });
+    
+    function initDatePicker(){
+        $('#procedureDate').datepicker({
+            orientation: "bottom auto",
+            todayHighlight: true,
+            autoclose: true,
+            format: 'mm/dd/yyyy',
+            disableTouchKeyboard: true
+        }); 
+    }
+    
+    //Binding and event that if touchStart event calls, it will add focus on hidden input
+    //resulting the closing of keyboard if open in iphone
+    $('body').bind('touchstart', function(e) { 
+        $("#focusedHiddenInput").focus();
+    });
+    
+    // Function to hide keyboard
+    function blurInputs(){
+        hideKeyboard();
+    }
+    
+    // Actual function that will hide keyboard
+    // Spent lot of time in searching, and found that you have to call blur two time to make it work
+    var hideKeyboard = function() {
+        document.activeElement.blur();
+        $("input").blur();
+    };
+    
+    // Prevent focus of first input on page; override Salesforce script
+    function setFocusOnLoad() {};
+    
+    // Remove focus    
+    function removeFocus(){
+        $('select, input, textarea').blur();
+        return true;
+    }
+    
+    
+    function validateRequiredFields(){
+        var msg = '';
+        $('.procedure_section input.required, .procedure_section select.required').each(function(){
+            if($(this).val() == ''){
+                msg += $(this).parents('.col-lg-6').find('label.label-new').text()
+                msg = msg.replace("*", "");
+                msg += ' is required. <br />';
+                $(this).addClass('error-input');
+            }else{
+                $(this).removeClass('error-input');
+            }
+        });
+        if(msg != ''){
+            $('.custom-msg').removeClass('hide');
+            $('.custom-msg .alert').addClass('alert-danger');
+            $('.custom-msg .alert').html('<strong>Error! Required fields are missing:</strong><br />'+msg);
+            return false;
+        }else{
+            $('.custom-msg').addClass('hide');
+            $('.custom-msg .alert').removeClass('alert-danger');
+            $('.custom-msg .alert').html('');
+            return true;
+        }
+    }
+    
+    // set Save&new input field value
+    function saveNewProcedure(){
+        $('#saveAndNewProcedure').val('1');
+        
+    }
+    
+    // Primary function for saving the procedure
+    function saveProcedure(){
+        
+        // If all required fields are filled, then it will going to save otherwise it wont
+        if(validateRequiredFields()){
+            $('.search_loading').removeClass('hide');        
+            
+            // Preparing the data for procedure
+            // Getting all input values by their name as class
+            var procedure =  new sforce.SObject( "Procedure__c" );
+            
+            procedure.Account__c = $('input#accountId').val(); 
+            procedure.Rep__c = $('input[id$="rep_lkid"]').val();
+            
+            procedure.Procedure_Physician__c = $('input[id$="physician_lkid"]').val(); 
+            
+            if($('#procedureDate').val() != ''){    
+                $('#procedureDate').datepicker('update');
+                procedure.Procedure_Date__c =  $('#procedureDate').datepicker('getDate');
+            }
+            
+            if($('.DBS_Implant_Duration_Time__c').val() != '')
+            {
+                procedure.DBS_Implant_Duration_Time__c = $('.DBS_Implant_Duration_Time__c').val(); 
+            }
+            
+            if($('.DBS_Travel_Time__c').val() != '')
+            {
+                procedure.DBS_Travel_Time__c = $('.DBS_Travel_Time__c').val(); 
+            }
+            
+            if($('.DBS_Wait_Time__c').val() != '')
+            {
+                procedure.DBS_Wait_Time__c = $('.DBS_Wait_Time__c').val();
+            }
+            
+            procedure.DBSG_Intervention_Type__c = $('.DBSG_Intervention_Type__c').val();  
+            procedure.DBSG_Indication__c = $('.DBSG_Indication__c').val();
+            
+            procedure.DBSG_Target_Area__c = $('.DBSG_Target_Area__c').val();
+            procedure.DBSG_Target_Area_2__c = $('.DBSG_Target_Area_2__c').val();
+            
+            procedure.DBSG_Activity_Type__c = $('.DBSG_Activity_Type__c').val();
+            procedure.DBSG_Follow_up_Type__c = $('.DBSG_Follow_up_Type__c').val();
+            
+            // Added to populate Event ID
+            procedure.Related_Event_ID__c = $('#eventId').val();
+           
+            procedure.RecordTypeId = $('#dbsrectypeid').val();
+            
+            // This will returns the procedureId as i am saving that in html
+            procedureId = $('#procedureId').val();
+            
+            // If procedureId is present, it will call update otherwise it will call insert
+            if(procedureId != ''){
+                procedure.Id = procedureId;
+                sforce.connection.update([procedure],
+                                         {onSuccess : success, onFailure : failed});
+            }
+            else{
+                //alert('Line 7');
+                sforce.connection.create([procedure],
+                                         {onSuccess : success, onFailure : failed});
+            }      
+            
+        }
+        
+    }
+    
+    
+    
+    // If procedure and Procedure items are being successfully saved
+    // Redirects to the detail page for newly created/modified procedure
+    function navigateToDetailPage(id){
+        //Incase of salesforce1/lightning, redirecting using sf methods
+        if( '{!isS1}' == 'true' ) {
+            if($('#isUpdate').val() == ''){
+                sforce.one.navigateToURL('/'+id, true);                    
+            }else{
+                sforce.one.back(true);
+            }
+        }else {
+            // Incase of desktop, just redirect window to detail page with id
+            window.location='/'+id;
+        }
+    }
+    
+    // If adding procedure query successfully executed
+    
+    function success(result) {
+        
+        //If update/insert call returns success then go for procedure item save 
+        if (result[0].getBoolean("success")) {
+            //alert('Succss if');
+            
+            // If procedure is successfully saved/updated
+            $('#procedureId').val(result[0].id);
+            saveProcedureItems(result[0].id);
+            $('.search_loading').addClass('hide');
+            navigateToDetailPage($('#procedureId').val());
+            // Save procedure items after procedure is successfully saved
+        }
+        else{
+            //alert('Succss else');
+            // If procedure is not able  to save then it wont go for procedure item save
+            // It shows error on screen which is returned
+            failed(result);
+        }
+    }
+    
+    // If procedure is failed to save then it will stop loading and show error message on top
+    function failed(errors) {
+        $('.search_loading').addClass('hide');       
+        $('.custom-msg').removeClass('hide');
+        $('.custom-msg .alert').addClass('alert-danger');
+        $('.custom-msg .alert').html('<strong>Error!</strong> '+errors[0]['errors'].message);
+    }
+    
+    function saveProcedureItems(pId){
+        console.log('pId ' + pId);
+        var changedItems = [];
+        
+        $('#procedureId').val(pId);
+        var item = new sforce.SObject("Procedure_Item__c");
+        item.Procedure_Item__c = 'DBS';
+        var DBSImplantedGenerator = $('.DBSGImplanted_Generator__c').val();
+        var DBSPocketAdapter = $('.DBSGPocket_Adapter__c').val();
+        item.Id = $('#procedureItemId').val();
+        item.DBSGImplanted_Generator__c = DBSImplantedGenerator;
+        item.DBSGPocket_Adapter__c = DBSPocketAdapter;
+        item.Procedure__c = pId;
+        changedItems.push(item);
+        
+        if(changedItems.length > 0){
+            var results = sforce.connection.upsert("Id", changedItems);
+            //{onSuccess : successOnItems, onFailure : failedOnItems});
+        }
+        
+        console.log("Ready to navigate " + $('#procedureId').val());
+        navigateToDetailPage($('#procedureId').val());
+    }
+    
+    // It is just a fix for iphone, cant find better that that
+    // This is known issue in sf1 that on some of inputs, it redirects to top in iphone
+    var a = navigator.userAgent;
+    if ((a.indexOf('Salesforce') != -1) && (a.indexOf('iPhone') != -1 || a.indexOf('iPad') != -1) && (a.indexOf('Safari') == -1)) {
+        var s = document.createElement('style');
+        if ((a.indexOf('OS/8') != -1 || a.indexOf('OS 8') != -1)) {
+            s.innerHTML = "html,html body{overflow:auto;-webkit-overflow-scrolling:touch;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        } else if ((a.indexOf('OS/9') != -1 || a.indexOf('OS 9') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        else if ((a.indexOf('OS/10') != -1 || a.indexOf('OS 10') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        else if ((a.indexOf('OS/11') != -1 || a.indexOf('OS 11') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        else if ((a.indexOf('OS/12') != -1 || a.indexOf('OS 12') != -1)) {
+            s.innerHTML = "html,html body{overflow:scroll;-webkit-overflow-scrolling:touch;zindex:0;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+        }
+        document.getElementsByTagName('head')[0].appendChild(s);
+        
+        //fix for freezing input fields on iOS
+        window.onkeydown=function(){window.focus();}
+    } 
+    </script>
+</apex:page>
